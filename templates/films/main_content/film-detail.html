@@ -1,0 +1,163 @@
+{% extends 'films/main_content/base.html' %}
+{% load static %}
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plyr.css' %}">
+    <link rel="stylesheet" href="{% static 'css/photoswipe.css' %}">
+    <link rel="stylesheet" href="{% static 'css/default-skin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="{% static 'icon/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{% static 'icon/favicon-32x32.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'icon/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'icon/apple-touch-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'icon/apple-touch-icon-144x144.png' %}">
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Dmitry Volkov">
+{% endblock %}
+
+{% block main_block %}
+    <!-- details -->
+    <section class="section details">
+        <!-- details background -->
+        <div class="details__bg" data-bg="{% static 'img/home/home__bg.jpg' %}"></div>
+        <!-- end details background -->
+
+        <!-- details content -->
+        <div class="container">
+            <div class="row">
+                <!-- title -->
+                <div class="col-12">
+                    <h1 class="details__title">{{ movie.orig_title }}</h1>
+                </div>
+                <!-- end title -->
+
+                <!-- content -->
+                <div class="col-12 col-xl-6">
+                    <div class="card card--details">
+                        <div class="row">
+                            <!-- card cover -->
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
+                                <div class="card__cover">
+                                    <img src="{% static 'img/covers/cover.jpg' %}" alt="">
+                                </div>
+                            </div>
+                            <!-- end card cover -->
+
+                            <!-- card content -->
+                            <div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
+                                <div class="card__content">
+                                    <div class="card__wrap">
+                                        <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
+
+                                        <ul class="card__list">
+                                            <li>HD</li>
+                                        </ul>
+                                    </div>
+
+                                    <ul class="card__meta">
+                                        <li><span>Genre:</span>
+                                            <p>{{ movie.ganre }},</p>
+
+                                        <li><span>Release year:</span> {{ movie.released }}</li>
+                                        {% if movie.duration %}
+                                            <li><span>Running time:</span></li>
+                                        {% endif %}
+                                        <li><span>Running time:</span>None</li>
+                                        <li><span>Country:</span> <a href="#">None</a></li>
+                                    </ul>
+
+                                    <div class="card__description card__description--details">
+                                        It is a long established fact that a reader will be distracted by the readable
+                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
+                                        that
+                                        it has a more-or-less normal distribution of letters, as opposed to using
+                                        'Content
+                                        here, content here', making it look like readable English. Many desktop
+                                        publishing
+                                        packages and web page editors now use Lorem Ipsum as their default model text,
+                                        and a
+                                        search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card content -->
+                        </div>
+                    </div>
+                </div>
+                <!-- end content -->
+
+                <!-- player -->
+                <div class="col-12 col-xl-6">
+                    <iframe src="{{ movie.iframe_src }}" width="540" height="303" frameborder="0"
+                            allowfullscreen></iframe>
+
+
+                </div>
+                <!-- end player -->
+
+                <div class="col-12">
+                    <div class="details__wrap">
+                        <!-- availables -->
+                        <div class="details__devices">
+                            <span class="details__devices-title">Available on devices:</span>
+                            <ul class="details__devices-list">
+                                <li><i class="icon ion-logo-apple"></i><span>IOS</span></li>
+                                <li><i class="icon ion-logo-android"></i><span>Android</span></li>
+                                <li><i class="icon ion-logo-windows"></i><span>Windows</span></li>
+                                <li><i class="icon ion-md-tv"></i><span>Smart TV</span></li>
+                            </ul>
+                        </div>
+                        <!-- end availables -->
+
+                        <!-- share -->
+                        <div class="details__share">
+                            <span class="details__share-title">Share with friends:</span>
+
+                            <ul class="details__share-list">
+                                <li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
+                                <li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
+                                <li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
+                                <li class="vk"><a href="#"><i class="icon ion-logo-vk"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- end share -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end details content -->
+    </section>
+    <!-- end details -->
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.mousewheel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.mCustomScrollbar.min.js' %}"></script>
+    <script src="{% static 'js/wNumb.js' %}"></script>
+    <script src="{% static 'js/nouislider.min.js' %}"></script>
+    <script src="{% static 'js/plyr.min.js' %}"></script>
+    <script src="{% static 'js/jquery.morelines.min.js' %}"></script>
+    <script src="{% static 'js/photoswipe.min.js' %}"></script>
+    <script src="{% static 'js/photoswipe-ui-default.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
