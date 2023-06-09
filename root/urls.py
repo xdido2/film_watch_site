@@ -22,6 +22,7 @@ from root import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('site/', include('site_info.urls')),
     path('', include('movies.urls')),
     path('user/', include('users.urls'))
 ]

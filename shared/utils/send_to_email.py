@@ -11,7 +11,7 @@ from users.token_gen import account_activation_token
 
 
 @shared_task
-def send_email(domain, email: str, type_):
+def send_email(protocol, domain, email: str, type_):
     user = get_object_or_404(User, email=email)
     subject = 'Activate your account'
     from_email = EMAIL_HOST_USER
@@ -19,6 +19,7 @@ def send_email(domain, email: str, type_):
     if type_ == 'register':
         message = render_to_string('films/auth/activate-account-for-register.html', {
             'user': user.username,
+            'protocol': protocol,
             'domain': domain,
             'uidb64': urlsafe_base64_encode(force_bytes(str(user.pk))),
             'token': account_activation_token.make_token(user)
@@ -28,6 +29,7 @@ def send_email(domain, email: str, type_):
     elif type_ == 'forgot_password':
         message = render_to_string('films/auth/activate-account-for-forgot-password.html', {
             'user': user,
+            'protocol': protocol,
             'domain': domain,
             'uid': urlsafe_base64_encode(force_bytes(str(user.pk))),
             'token': account_activation_token.make_token(user)

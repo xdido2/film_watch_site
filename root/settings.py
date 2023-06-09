@@ -24,7 +24,8 @@ INSTALLED_APPS = [
     # My Apps
     'movies.apps.MoviesConfig',
     'users.apps.UsersConfig',
-    'shared.apps.SharedConfig'
+    'shared.apps.SharedConfig',
+    'site_info.apps.SiteInfoConfig',
 
     # Third party apps
 
@@ -83,20 +84,20 @@ DATABASES = {
 #     }
 # }
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.users.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.users.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.users.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.users.password_validation.NumericPasswordValidator',
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.users.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.users.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.users.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.users.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 LANGUAGE_CODE = 'en-us'
 

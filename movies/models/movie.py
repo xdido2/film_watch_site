@@ -14,6 +14,7 @@ class Movie(Model):
 
     class Meta:
         ordering = ['-id']
+        unique_together = ['ru_title', 'orig_title']
 
     def __str__(self):
         return self.ru_title

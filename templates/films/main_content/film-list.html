@@ -20,7 +20,7 @@
                         <a href="moviegridfw.html" class="grid"><i class="ion-grid active"></i></a>
                     </div>
                     <div class="flex-wrap-movielist mv-grid-fw">
-                        {% for movie in movies %}
+                        {% for movie in page_obj %}
                             <div class="movie-item-style-2 movie-item-style-1">
                                 <img src="{% static 'images/uploads/mv1.jpg' %}" alt="">
                                 <div class="hvr-inner">
@@ -36,24 +36,24 @@
                     </div>
                     <div class="topbar-filter">
                         <label>Movies per page:</label>
-                        <select>
-                            <option value="range">20 Movies</option>
-                            <option value="saab">10 Movies</option>
-                        </select>
+
+
+                        <option value="saab">10 Movies</option>
+
 
                         <div class="pagination2">
-                            <span>Page 1 of {{ page_obj.num_pages }}:</span>
+                            <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}:</span>
                             {% if page_obj.has_previous %}
-                                <a href="?page={{ page_obj.previous_page_number }}"></a>
+                                 <a href="?page={{ page_obj.previous_page_number }}"><i class="ion-arrow-left-b"></i></a>
                             {% endif %}
                             {% if  page_obj.number %}
                                 <a class="active">{{ page_obj.number }}</a>
                             {% endif %}
                             {% if page_obj.has_next %}
-                                <a href="?page={{ page_obj.next_page_number }}"></a>
+                                <a href="?page={{ page_obj.next_page_number }}"><i class="ion-arrow-right-b"></i></a>
                             {% endif %}
 
-                            <a href="#"><i class="ion-arrow-right-b"></i></a>
+
                         </div>
                     </div>
                 </div>

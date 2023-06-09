@@ -7,15 +7,13 @@ from movies.models.movie import Movie
 def film_list_view(request):
     movies = Movie.objects.all()
     latest_movies = Movie.objects.order_by('-released')
-    p = Paginator(movies, 10)
+    p = Paginator(movies, 18)
     page_number = request.GET.get('page')
 
     page_obj = p.get_page(page_number)
 
     context = {
-        'movies': movies,
         'total_count_movie': movies.count(),
-
         'latest_movies': latest_movies,
         'page_obj': page_obj,
     }
@@ -28,8 +26,3 @@ def film_detail_view(request, slug):
         'movie': movie,
     }
     return render(request, 'films/main_content/film-detail.html', context)
-
-
-@xframe_options_exempt
-def index(request):
-    return render(request, 'index.html')
