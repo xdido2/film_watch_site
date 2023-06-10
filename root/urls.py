@@ -22,9 +22,9 @@ from root import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('site/', include('site_info.urls')),
-    path('', include('movies.urls')),
-    path('user/', include('users.urls'))
+    path('site/', include('apps.site_info.urls')),
+    path('', include('apps.movies.urls')),
+    path('user/', include('apps.users.urls'))
 ]
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
 #                                                                              document_root=settings.MEDIA_ROOT)

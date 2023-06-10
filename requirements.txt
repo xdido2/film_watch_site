@@ -10,7 +10,10 @@ click-plugins==1.1.1
 click-repl==0.2.0
 Django==4.2.1
 django-autoslug==1.9.9
+django-elasticsearch-dsl==7.3
 django-redis==5.2.0
+elasticsearch==7.9.1
+elasticsearch-dsl==7.4.1
 flower==1.2.0
 humanize==4.6.0
 idna==3.4
@@ -19,6 +22,7 @@ Pillow==9.5.0
 prometheus-client==0.17.0
 prompt-toolkit==3.0.38
 psycopg2-binary==2.9.6
+python-dateutil==2.8.2
 python-dotenv==1.0.0
 pytz==2023.3
 redis==4.5.5
@@ -29,5 +33,3 @@ tornado==6.3.2
 urllib3==2.0.2
 vine==5.0.0
 wcwidth==0.2.6
-
-pbkdf2_sha256$600000$yoMBPhTnwpVREmFn3KjSod$DB4LnmfYZeJL8OL1wSixrh6Y9Dp89AsOSuTw1RzetfU=

@@ -22,12 +22,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My Apps
-    'movies.apps.MoviesConfig',
-    'users.apps.UsersConfig',
-    'shared.apps.SharedConfig',
-    'site_info.apps.SiteInfoConfig',
-
+    'apps.movies',
+    'apps.users',
+    'apps.shared',
+    'apps.site_info',
     # Third party apps
+
+    'django_elasticsearch_dsl',
 
 ]
 
@@ -98,6 +99,12 @@ DATABASES = {
 #         'NAME': 'django.contrib.users.password_validation.NumericPasswordValidator',
 #     },
 # ]
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'localhost:9200'
+    },
+}
 
 LANGUAGE_CODE = 'en-us'
 

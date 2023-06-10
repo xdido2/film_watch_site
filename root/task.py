@@ -1,8 +1,7 @@
 import requests
 from celery import shared_task
 
-from movies.models.movie import Movie
-
+from apps.movies.models.movie import Movie
 
 
 @shared_task
