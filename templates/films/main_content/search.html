@@ -17,9 +17,7 @@
                                             class="ion-android-arrow-dropright"></i> </a>
                                 </div>
                                 <div class="mv-item-infor">
-                                    <h6>
-                                        <a href="{% url 'film-detail' slug=movie.slug_link %}">{{ movie.orig_title }}</a>
-                                    </h6>
+                                    <h6><a href="{% url 'film-detail' slug=movie.slug_link %}">{{ movie.orig_title }}</a></h6>
                                     <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
                                 </div>
                             </div>
@@ -35,7 +33,7 @@
                         <div class="pagination2">
                             <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}:</span>
                             {% if page_obj.has_previous %}
-                                <a href="?page={{ page_obj.previous_page_number }}"><i class="ion-arrow-left-b"></i></a>
+                                 <a href="?page={{ page_obj.previous_page_number }}"><i class="ion-arrow-left-b"></i></a>
                             {% endif %}
                             {% if  page_obj.number %}
                                 <a class="active">{{ page_obj.number }}</a>

@@ -8,7 +8,6 @@ def film_list_view(request):
     latest_movies = Movie.objects.order_by('-released')
     p = Paginator(movies, 18)
     page_number = request.GET.get('page')
-
     page_obj = p.get_page(page_number)
 
     context = {

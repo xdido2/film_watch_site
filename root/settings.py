@@ -26,15 +26,14 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.shared',
     'apps.site_info',
+    
     # Third party apps
-
     'django_elasticsearch_dsl',
 
 ]
 
 MIDDLEWARE = [
-    # 'django.middleware.security.SecurityMiddleware',   # закомментировал из-за плеера
-
+    # 'django.middleware.security.SecurityMiddleware',   # закомментированно из-за плеера
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,26 +84,22 @@ DATABASES = {
 #     }
 # }
 
-# AUTH_PASSWORD_VALIDATORS = [
-#     {
-#         'NAME': 'django.contrib.users.password_validation.UserAttributeSimilarityValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.users.password_validation.MinimumLengthValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.users.password_validation.CommonPasswordValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.users.password_validation.NumericPasswordValidator',
-#     },
-# ]
+AUTH_PASSWORD_VALIDATORS = [
+    # {
+    #     'NAME': 'django.contrib.users.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.users.password_validation.MinimumLengthValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.users.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.users.password_validation.NumericPasswordValidator',
+    # },
+]
 
-ELASTICSEARCH_DSL = {
-    'default': {
-        'hosts': 'localhost:9200'
-    },
-}
+
 
 LANGUAGE_CODE = 'en-us'
 
@@ -136,3 +131,9 @@ EMAIL_HOST_USER = 'iamgoodmanbich@gmail.com'
 EMAIL_HOST_PASSWORD = 'gkmjsskibpjevnch'
 
 CELERY_BROKER_URL = 'amqp://user:password@localhost/'
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': '127.0.0.1:9200'
+    },
+}

@@ -20,7 +20,8 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="profile" href="#">
+    <link rel="profile" href="">
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type="image/icon type">
 
     <!--Google Font-->
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600'/>
@@ -61,7 +62,7 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav flex-child-menu menu-right">
-                    <li class="loginLink" type="submit"><a href="{% url 'login' %}">log in</a></li>
+                    <li class="loginLink" type="submit"><a type="submit" href="{% url 'login' %}">log in</a></li>
                     <li class="btn signupLink" type="submit"><a href="{% url 'register' %}">sign up</a></li>
                 </ul>
             </div>
@@ -69,14 +70,14 @@
         </nav>
 
         <!-- top search form -->
-        <div class="top-search">
-            <select>
-                <option value="united">TV show</option>
-                <option value="saab">Others</option>
-            </select>
-            <input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
-        </div>
-    </div>
+        <form method="get" action="{% url 'search' %}">
+            <div class="top-search">
+                <input
+                        type="text"
+                        name="q"
+                        placeholder="Search for a movie that you are looking for.."/>
+            </div>
+        </form>
 </header>
 <!-- END | Header -->
 
@@ -85,10 +86,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Movie Listing - Grid Fullwidth</h1>
+                    <h1>HOME</h1>
                     <ul class="breadcumb">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><span class="ion-ios-arrow-right"></span> movie listing</li>
+                        <h4>Movie Listing</h4>
+{#                        <li class="active"><a href="#">Home</a></li>#}
+{#                        <li><span class="ion-ios-arrow-right"></span> movie listing</li>#}
                     </ul>
                 </div>
             </div>
