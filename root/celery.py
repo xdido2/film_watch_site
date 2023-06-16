@@ -12,7 +12,7 @@ app.autodiscover_tasks()
 def setup_periodic_tasks(sender, **kwargs):
     from root.task import movie_data_form_api
     sender.add_periodic_task(
-        crontab(hour=24, minute=0),
+        crontab(hour=0, minute=3),
         movie_data_form_api.s(),
         name='refresh content data in db',
     )

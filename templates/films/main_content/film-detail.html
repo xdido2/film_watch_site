@@ -31,6 +31,21 @@
     <meta name="author" content="Dmitry Volkov">
 {% endblock %}
 
+{% block page_name %}
+    <div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>{{ movie.ru_title }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
 {% block main_block %}
     <!-- details -->
     <section class="section details">
