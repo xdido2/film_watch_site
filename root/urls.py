@@ -27,6 +27,7 @@ urlpatterns = [
     path('user/', include('apps.users.urls'))
 ]
 handler404 = "root.views.page_not_found_view"
+handler500 = "root.views.page_not_found_view"
 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
 #                                                                              document_root=settings.MEDIA_ROOT)
