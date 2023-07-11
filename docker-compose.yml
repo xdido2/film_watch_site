@@ -104,7 +104,7 @@ services:
     ports:
       - "2022:80"
     depends_on:
-      - web_service
+      - web
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
