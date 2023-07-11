@@ -20,6 +20,7 @@ services:
       - static_volume:/app/static
       - media_volume:/app/media
     depends_on:
+      - elasticsearch
       - rabbitmq
       - db
 
@@ -31,7 +32,18 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_PASSWORD=1
+      - POSTGRES_DB=film_watch_site
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
 
   rabbitmq:
     image: rabbitmq:management
@@ -86,19 +98,6 @@ services:
     depends_on:
       - db
 
-  elasticsearch:
-    container_name: es-container
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
-    environment:
-      - xpack.security.enabled=false
-      - "discovery.type=single-node"
-    networks:
-      - es-net
-    volumes:
-      - esdata1:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
-
   nginx:
     build: compose/nginx
     ports:
@@ -110,11 +109,8 @@ services:
       - media_volume:/app/media
 
 volumes:
-  esdata1:
+  esdata:
   postgres_data:
   static_volume:
   media_volume:
 
-
-networks:
-  esnet:
