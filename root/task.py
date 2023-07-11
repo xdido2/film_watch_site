@@ -19,13 +19,12 @@ def movie_data_form_api():
                 'ru_title': content.get('ru_title', ''),
                 'orig_title': content.get('orig_title', ''),
                 'released': content.get('released', ''),
-                'iframe_src': 'https:' + content.get('iframe_src', '')
+                'iframe_src': 'https:' + content.get('iframe_src', ''),
             }
 
             if not Movie.objects.filter(orig_title=objects['orig_title'],
                                         ru_title=objects['ru_title']).exists() and objects is not None:
                 Movie.objects.create(**objects)
-
 
 # import requests
 #

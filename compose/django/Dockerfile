@@ -6,7 +6,6 @@ ENV PYTHONDONTWRITEBYTECODE 1
 COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 
-
 COPY ./compose/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
@@ -26,7 +25,6 @@ RUN chmod +x /start-celerybeat
 COPY ./compose/django/celery/flower/start /start-flower
 RUN sed -i 's/\r$//g' /start-flower
 RUN chmod +x /start-flower
-
 
 WORKDIR /app
 

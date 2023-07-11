@@ -8,6 +8,8 @@ class Movie(Model):
     orig_title = CharField(max_length=255)
     released = CharField(max_length=15, null=True, blank=True)
     iframe_src = CharField(max_length=255, unique=True)
+    imdb_id = CharField(max_length=25)
+    kinopoisk_id = CharField(max_length=25)
     genre = ManyToManyField('movies.Genre', 'ganre', blank=True)
     slug_link = AutoSlugField(populate_from='orig_title',
                               unique_with=['orig_title'])

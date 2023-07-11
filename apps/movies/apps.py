@@ -5,6 +5,6 @@ class MoviesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'apps.movies'
 
-    def ready(self):
-        from root.task import movie_data_form_api
-        movie_data_form_api.delay()
+    # def ready(self):
+    #     from root.task import movie_data_form_api
+    #     movie_data_form_api.delay()
