@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     # Third party apps
     'django_elasticsearch_dsl',
+    'storages',
 
 ]
 
@@ -130,3 +131,10 @@ ELASTICSEARCH_DSL = {
         'hosts': 'localhost:9200'
     },
 }
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+AWS_ACCESS_KEY_ID = os.getenv("MINIO_ROOT_USER")
+AWS_SECRET_ACCESS_KEY = os.getenv("MINIO_ROOT_PASSWORD")
+AWS_STORAGE_BUCKET_NAME = os.getenv("MINIO_BUCKET_NAME")
+AWS_S3_ENDPOINT_URL = os.getenv("MINIO_END_POINT")

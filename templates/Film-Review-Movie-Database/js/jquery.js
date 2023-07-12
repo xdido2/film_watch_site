@@ -921,7 +921,7 @@ function markFunction( fn ) {
 
 /**
  * Support testing using an element
- * @param {Function} fn Passed the created element and returns a boolean result
+ * @param {Function} fn Passed the created element and returns a boolean result_tmdb
  */
 function assert( fn ) {
 	var el = document.createElement("fieldset");
@@ -2573,7 +2573,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 			// equals `i`), unless we didn't visit _any_ elements in the above loop because we have
 			// no element matchers and no seed.
 			// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
-			// case, which will result in a "00" `matchedCount` that differs from `i` but is also
+			// case, which will result_tmdb in a "00" `matchedCount` that differs from `i` but is also
 			// numerically zero.
 			if ( bySet && i !== matchedCount ) {
 				j = 0;
@@ -4307,7 +4307,7 @@ jQuery.fn.extend( {
 			// The calling jQuery object (element matches) is not empty
 			// (and therefore has an element appears at this[ 0 ]) and the
 			// `value` parameter was not undefined. An empty jQuery object
-			// will result in `undefined` for elem = this[ 0 ] which will
+			// will result_tmdb in `undefined` for elem = this[ 0 ] which will
 			// throw an exception if an attempt to read a data cache is made.
 			if ( elem && value === undefined ) {
 
@@ -9831,7 +9831,7 @@ jQuery.fn.load = function( url, params, callback ) {
 				// Exclude scripts to avoid IE 'Permission Denied' errors
 				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
 
-				// Otherwise use the full result
+				// Otherwise use the full result_tmdb
 				responseText );
 
 		// If the request succeeds, this function gets "data", "status", "jqXHR"

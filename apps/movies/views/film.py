@@ -5,7 +5,7 @@ from apps.movies.models.movie import Movie
 
 def film_list_view(request):
     movies = Movie.objects.all()
-    latest_movies = Movie.objects.order_by('-released')
+    latest_movies = Movie.objects.order_by('-release_date')
     p = Paginator(movies, 18)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)

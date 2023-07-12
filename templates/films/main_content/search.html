@@ -25,14 +25,18 @@
                     <div class="flex-wrap-movielist mv-grid-fw">
                         {% for movie in page_obj %}
                             <div class="movie-item-style-2 movie-item-style-1">
-                                <img src="{% static 'images/uploads/mv1.jpg' %}" alt="">
+                                {% if movie.poster %}
+                                    <img src="https://image.tmdb.org/t/p/original/{{ movie.poster }}" alt="">
+                                {% else %}
+                                    <img src="{% static 'images/no_poster.png' %}" alt="">
+                                {% endif %}
                                 <div class="hvr-inner">
                                     <a href="{% url 'film-detail' slug=movie.slug_link %}"> Read more <i
                                             class="ion-android-arrow-dropright"></i> </a>
                                 </div>
                                 <div class="mv-item-infor">
                                     <h6><a href="{% url 'film-detail' slug=movie.slug_link %}">{{ movie.ru_title }}</a></h6>
-                                    <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                                    <p class="rate"><i class="ion-android-star"></i><span>{{ movie.vote }}</span> /10</p>
                                 </div>
                             </div>
                         {% endfor %}

@@ -13,7 +13,7 @@ class MoviesIndex(Document):
 
     class Django:
         model = Movie
-        fields = ['orig_title', 'ru_title']
+        fields = ['orig_title', 'ru_title', 'poster', 'vote']
 
     @classmethod
     def generate_id(cls, article):

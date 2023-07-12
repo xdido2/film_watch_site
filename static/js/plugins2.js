@@ -1791,7 +1791,7 @@
 			// Reset width/height so it will not mess
 			this.overlay.width(width).height('100%');
 
-			// jQuery does not return reliable result for IE
+			// jQuery does not return reliable result_tmdb for IE
 			if (IE) {
 				offsetWidth = Math.max(document.documentElement.offsetWidth, document.body.offsetWidth);
 

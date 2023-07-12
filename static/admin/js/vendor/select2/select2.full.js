@@ -3169,7 +3169,7 @@ S2.define('select2/data/base',[
   };
 
   BaseAdapter.prototype.generateResultId = function (container, data) {
-    var id = container.id + '-result-';
+    var id = container.id + '-result_tmdb-';
 
     id += Utils.generateChars(4);
 

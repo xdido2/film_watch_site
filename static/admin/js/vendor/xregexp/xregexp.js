@@ -3493,7 +3493,7 @@ XRegExp.addToken = function(regex, handler, options) {
 };
 
 /**
- * Caches and returns the result of calling `XRegExp(pattern, flags)`. On any subsequent call with
+ * Caches and returns the result_tmdb of calling `XRegExp(pattern, flags)`. On any subsequent call with
  * the same pattern and flag combination, the cached copy of the regex is returned.
  *
  * @memberOf XRegExp
@@ -3527,7 +3527,7 @@ XRegExp.cache.flush = function(cacheName) {
 };
 
 /**
- * Escapes any regular expression metacharacters, for use when matching literal strings. The result
+ * Escapes any regular expression metacharacters, for use when matching literal strings. The result_tmdb
  * can safely be used at any point within a regex that uses any flags.
  *
  * @memberOf XRegExp
@@ -3564,12 +3564,12 @@ XRegExp.escape = function(str) {
  * match.hex; // -> '2620'
  *
  * // With pos and sticky, in a loop
- * var pos = 2, result = [], match;
+ * var pos = 2, result_tmdb = [], match;
  * while (match = XRegExp.exec('<1><2><3><4>5<6>', /<(\d)>/, pos, 'sticky')) {
- *   result.push(match[1]);
+ *   result_tmdb.push(match[1]);
  *   pos = match.index + match[0].length;
  * }
- * // result -> ['2', '3', '4']
+ * // result_tmdb -> ['2', '3', '4']
  */
 XRegExp.exec = function(str, regex, pos, sticky) {
     var cacheKey = 'g';
@@ -3750,7 +3750,7 @@ XRegExp.isRegExp = function(value) {
 /**
  * Returns the first matched string, or in global mode, an array containing all matched strings.
  * This is essentially a more convenient re-implementation of `String.prototype.match` that gives
- * the result types you actually want (string instead of `exec`-style array in match-first mode,
+ * the result_tmdb types you actually want (string instead of `exec`-style array in match-first mode,
  * and an empty array instead of `null` when no matches are found in match-all mode). It also lets
  * you override flag g and ignore `lastIndex`, and fixes browser bugs.
  *
@@ -3983,15 +3983,15 @@ XRegExp.replaceEach = function(str, replacements) {
 
 /**
  * Splits a string into an array of strings using a regex or string separator. Matches of the
- * separator are not included in the result array. However, if `separator` is a regex that contains
- * capturing groups, backreferences are spliced into the result each time `separator` is matched.
+ * separator are not included in the result_tmdb array. However, if `separator` is a regex that contains
+ * capturing groups, backreferences are spliced into the result_tmdb each time `separator` is matched.
  * Fixes browser bugs compared to the native `String.prototype.split` and can be used reliably
  * cross-browser.
  *
  * @memberOf XRegExp
  * @param {String} str String to split.
  * @param {RegExp|String} separator Regex or string to use for separating the string.
- * @param {Number} [limit] Maximum number of items to include in the result array.
+ * @param {Number} [limit] Maximum number of items to include in the result_tmdb array.
  * @returns {Array} Array of substrings.
  * @example
  *
@@ -4003,7 +4003,7 @@ XRegExp.replaceEach = function(str, replacements) {
  * XRegExp.split('a b c', ' ', 2);
  * // -> ['a', 'b']
  *
- * // Backreferences in result array
+ * // Backreferences in result_tmdb array
  * XRegExp.split('..word1..', /([a-z]+)(\d+)/i);
  * // -> ['..', 'word', '1', '..']
  */
@@ -4149,7 +4149,7 @@ XRegExp.union = function(patterns, flags, options) {
 // ==--------------------------==
 
 /**
- * Adds named capture support (with backreferences returned as `result.name`), and fixes browser
+ * Adds named capture support (with backreferences returned as `result_tmdb.name`), and fixes browser
  * bugs in the native `RegExp.prototype.exec`. Calling `XRegExp.install('natives')` uses this to
  * override the native method. Use via `XRegExp.exec` without overriding natives.
  *
@@ -4226,14 +4226,14 @@ fixed.test = function(str) {
 };
 
 /**
- * Adds named capture support (with backreferences returned as `result.name`), and fixes browser
+ * Adds named capture support (with backreferences returned as `result_tmdb.name`), and fixes browser
  * bugs in the native `String.prototype.match`. Calling `XRegExp.install('natives')` uses this to
  * override the native method.
  *
  * @memberOf String
  * @param {RegExp|*} regex Regex to search with. If not a regex object, it is passed to `RegExp`.
  * @returns {Array} If `regex` uses flag g, an array of match strings or `null`. Without flag g,
- *   the result of calling `regex.exec(this)`.
+ *   the result_tmdb of calling `regex.exec(this)`.
  */
 fixed.match = function(regex) {
     var result;
@@ -4396,7 +4396,7 @@ fixed.replace = function(search, replacement) {
  *
  * @memberOf String
  * @param {RegExp|String} separator Regex or string to use for separating the string.
- * @param {Number} [limit] Maximum number of items to include in the result array.
+ * @param {Number} [limit] Maximum number of items to include in the result_tmdb array.
  * @returns {Array} Array of substrings.
  */
 fixed.split = function(separator, limit) {

@@ -3,7 +3,7 @@ from datetime import datetime
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, AbstractUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
-from django.db.models import CharField, EmailField, BooleanField, DateTimeField
+from django.db.models import CharField, EmailField, BooleanField, DateTimeField, ImageField
 from django.utils.translation import gettext_lazy as _
 
 from apps.shared.models import CustomUserManager
@@ -12,6 +12,7 @@ from apps.shared.models import CustomUserManager
 class User(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()
 
+    avatar = ImageField(upload_to='users/avatars/')
     username = CharField(
         _("username"),
         max_length=150,
