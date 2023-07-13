@@ -14,7 +14,7 @@ def register_view(request):
     if request.method == 'POST':
         forms = RegisterForm(request.POST)
         if forms.is_valid():
-            send_email.delay(protocol, domain, forms.data.get('email'), type_='register')
+            # send_email.delay(protocol, domain, forms.data.get('email'), type_='register')
             forms.save()
             return redirect('login')
         else:

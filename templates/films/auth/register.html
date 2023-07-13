@@ -1,60 +1,18 @@
 {% extends 'films/auth/base.html' %}
-{% load static %}
-
-
+{% block title %}Регистрация{% endblock %}
 {% block main_content %}
-
-    <div class="sign section--bg" data-bg="{% static 'img/section' %}/section.jpg">
+    <div class="wrapper">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="sign__content">
-                        <!-- registration form -->
-                        <form action="{% url 'register' %}" method="post" class="sign__form">
-                        {% csrf_token %}
-                            {% if errors %}
-                                <div class="alert alert-danger">
-                                    {% for error in errors.values %}
-                                        {{ error }}
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                            <a href="{% url 'film-list' %}" class="sign__logo">
-                                <img src="{% static 'images/logo1.png' %}" alt="">
-                            </a>
-
-                            <div class="sign__group">
-                                <input type="text" class="sign__input" placeholder="Username" name="username">
-                            </div>
-
-                            <div class="sign__group">
-                                <input type="email" class="sign__input" placeholder="Email" name="email">
-                            </div>
-
-                            <div class="sign__group">
-                                <input type="password" class="sign__input" placeholder="Password" name="password">
-                            </div>
-
-                            <div class="sign__group">
-                                <input type="password" class="sign__input" placeholder="Confirm Password"
-                                       name="confirm_password">
-                            </div>
-
-                            {#                            <div class="sign__group sign__group--checkbox">#}
-                            {#                                <input id="remember" name="remember" type="checkbox" checked="checked">#}
-                            {#                                <label for="remember">I agree to the <a href="#">Privacy Policy</a></label>#}
-                            {#                            </div>#}
-
-                            <button class="sign__btn" type="submit">Sign up</button>
-
-                            <span class="sign__text">Already have an account? <a
-                                    href="{% url 'login' %}">Sign in!</a></span>
-                        </form>
-                        <!-- registration form -->
-                    </div>
-                </div>
-            </div>
+            <h1 class="title center">Добро пожаловать в DIDO CINEMA</h1>
+            <form method="post" action="{% url 'register' %}" class="form__control">
+                {% csrf_token %}
+                <input type="text" class="input-dark" placeholder="Логин" name="username">
+                <input type="email" class="input-dark" placeholder="E-mail" name="email">
+                <input type="password" class="input-dark" placeholder="Пароль" name="password">
+                <input type="password" class="input-dark" placeholder="Подвердить пароль" name="confirm_password">
+                <button class="btn-primary mt-15" type="submit">Зарегистрироваться</button>
+                <a href="{% url 'login' %}" class="link-dark mt-5 center">У меня уже есть аккаунт</a>
+            </form>
         </div>
     </div>
-
 {% endblock %}

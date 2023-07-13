@@ -1,114 +1,244 @@
 {% extends 'films/main_content/base.html' %}
-{% load static %}
 
+{% block main_content %}
 
-{% block main_block %}
-    <div class="hero user-hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="hero-ct">
-                        <h1>{{ user.username }}’s profile</h1>
-                    </div>
+    <div class="category__container">
+        <div class="main__container">
+
+            <div class="profile__inner">
+                <div class="profile-item">
+                    <img src="{{ user.avatar.url }}" class="profile__user-img">
+                    <button class="profile__btn mt-15">Изминить картинку</button>
+                </div>
+                <div class="profile-item ml-15">
+                    <h1 class="profile__user-title">
+                        {{ user.username }}
+                    </h1>
+                    <ul class="profile__user-menu">
+                        <li>
+                            Дата регистрация: {{ user.date_joined|date:"d F Y" }}
+                        </li>
+                        <li>
+                            E-mail: {{ user.email }}
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+            <h2 class="category-txt mt-5">
+                Просмотрели 8 фильмов. Спасибо что выбрали Kinogo
+            </h2>
+
+            <button class="profile__btn mt-15">Сохранить</button>
         </div>
     </div>
-    <div class="page-single">
-        <div class="container">
-            <div class="row ipad-width">
-                <div class="col-md-3 col-sm-12 col-xs-12">
-                    <div class="user-information">
-                        <div class="user-img">
-                            <a href="#"><img src="{{ user.avatar.url }}" alt=""><br></a>
-                            <a href="#" class="redbtn">Change avatar</a>
-                        </div>
-                        <div class="user-fav">
-                            <p>Account Details</p>
-                            <ul>
-                                <li class="active"><a href="userprofile.html">Profile</a></li>
-                                <li><a href="userfavoritelist.html">Favorite movies</a></li>
-                                <li><a href="userrate.html">Rated movies</a></li>
-                            </ul>
-                        </div>
-                        <div class="user-fav">
-                            <p>Others</p>
-                            <ul>
-                                <li><a href="#">Change password</a></li>
-                                <li><a href="{% url 'logout' %}">Log out</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="form-style-1 user-pro" action="#">
-                        <form method="post" action="{% url 'user_profile' %}" class="user">
-                            {% csrf_token %}
 
-                            <h4>01. Profile details</h4>
-                            {% if errors_userprofile %}
-                                <div class="alert alert-danger">
-                                    {% for error in errors_userprofile.values %}
-                                        {{ error }}
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                            <div class="row">
-                                <div class="col-md-6 form-it">
-                                    <label>Username</label>
-                                    <input type="text" placeholder="{{ user.username }}" name="username">
-                                </div>
-                                <div class="col-md-6 form-it">
-                                    <label>Email Address</label>
-                                    <input type="email" placeholder="{{ user.email }}" name="email">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <input class="submit" type="submit" value="save">
-                                </div>
-                            </div>
-                        </form>
-                        <form method="post" action="{% url 'change_profile_password' %}" class="password">
-                            {% csrf_token %}
-                            <h4>02. Change password</h4>
-                            {% if errors %}
-                                <div class="alert alert-danger">
-                                    {% for error in errors.values %}
-                                        {{ error }}
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                            <div class="row">
-                                <div class="col-md-6 form-it">
-                                    <label>Old Password</label>
-                                    <input type="password" placeholder="********" name="old_password">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 form-it">
-                                    <label>New Password</label>
-                                    <input type="password" placeholder="********" name="password">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 form-it">
-                                    <label>Confirm New Password</label>
-                                    <input type="password" placeholder="********" name="confirm_password">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <input class="submit" type="submit" value="change">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+    <div class="main__container">
+        <h2 class="category-txt">
+            Истроия:
+        </h2>
+        <div class="profile__container mt-15">
+
+            <div class="profile__item">
+                <a href="#" class="profile-product__img">
+                    <img src="../../static/img//products/15.jpg">
+                </a>
+                <div class="profile-product__navs">
+                    <a href="#" class="profile-product__name">Моана</a>
+                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
+                    <ul class="profile-product__list">
+                        <li>
+                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
+                        </li>
+                        <li>
+                            Страна: <a href="#" class="profile-product__link">США</a>
+                        </li>
+                        <li>
+                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
+                                                                                                class="profile-product__link">Семейные</a>
+                        </li>
+                        <li>
+                            Серия: нет серий
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+            <div class="profile__item">
+                <a href="#" class="profile-product__img">
+                    <img src="../../static/img//products/12.jpg">
+                </a>
+                <div class="profile-product__navs">
+                    <a href="#" class="profile-product__name">Красавица и Чудовище</a>
+                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
+                    <ul class="profile-product__list">
+                        <li>
+                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
+                        </li>
+                        <li>
+                            Страна: <a href="#" class="profile-product__link">США</a>
+                        </li>
+                        <li>
+                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
+                                                                                                class="profile-product__link">Семейные</a>
+                        </li>
+                        <li>
+                            Серия: 202 серий
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile__item">
+                <a href="#" class="profile-product__img">
+                    <img src="../../static/img//products/1.jpg">
+                </a>
+                <div class="profile-product__navs">
+                    <a href="#" class="profile-product__name">Бладшот</a>
+                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
+                    <ul class="profile-product__list">
+                        <li>
+                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
+                        </li>
+                        <li>
+                            Страна: <a href="#" class="profile-product__link">США</a>
+                        </li>
+                        <li>
+                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
+                                                                                                class="profile-product__link">Семейные</a>
+                        </li>
+                        <li>
+                            Серия: 202 серий
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile__item">
+                <a href="#" class="profile-product__img">
+                    <img src="../../static/img//products/6.jpg">
+                </a>
+                <div class="profile-product__navs">
+                    <a href="#" class="profile-product__name">Человек-Паук: Вдали от дома</a>
+                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
+                    <ul class="profile-product__list">
+                        <li>
+                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
+                        </li>
+                        <li>
+                            Страна: <a href="#" class="profile-product__link">США</a>
+                        </li>
+                        <li>
+                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
+                                                                                                class="profile-product__link">Семейные</a>
+                        </li>
+                        <li>
+                            Серия: 202 серий
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile__item">
+                <a href="#" class="profile-product__img">
+                    <img src="../../static/img//products/7.jpg">
+                </a>
+                <div class="profile-product__navs">
+                    <a href="#" class="profile-product__name">Мстители Финал</a>
+                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
+                    <ul class="profile-product__list">
+                        <li>
+                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
+                        </li>
+                        <li>
+                            Страна: <a href="#" class="profile-product__link">США</a>
+                        </li>
+                        <li>
+                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
+                                                                                                class="profile-product__link">Семейные</a>
+                        </li>
+                        <li>
+                            Серия: 202 серий
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile__item">
+                <a href="#" class="profile-product__img">
+                    <img src="../../static/img//products/9.jpg">
+                </a>
+                <div class="profile-product__navs">
+                    <a href="#" class="profile-product__name">Холодное сердце 2</a>
+                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
+                    <ul class="profile-product__list">
+                        <li>
+                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
+                        </li>
+                        <li>
+                            Страна: <a href="#" class="profile-product__link">США</a>
+                        </li>
+                        <li>
+                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
+                                                                                                class="profile-product__link">Семейные</a>
+                        </li>
+                        <li>
+                            Серия: 202 серий
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile__item">
+                <a href="#" class="profile-product__img">
+                    <img src="../../static/img//products/10.jpeg">
+                </a>
+                <div class="profile-product__navs">
+                    <a href="#" class="profile-product__name">Джек покоритель Великанов</a>
+                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
+                    <ul class="profile-product__list">
+                        <li>
+                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
+                        </li>
+                        <li>
+                            Страна: <a href="#" class="profile-product__link">США</a>
+                        </li>
+                        <li>
+                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
+                                                                                                class="profile-product__link">Семейные</a>
+                        </li>
+                        <li>
+                            Серия: 202 серий
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile__item">
+                <a href="#" class="profile-product__img">
+                    <img src="../../static/img//products/13.jpg">
+                </a>
+                <div class="profile-product__navs">
+                    <a href="#" class="profile-product__name">Тор: Рагнарек</a>
+                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
+                    <ul class="profile-product__list">
+                        <li>
+                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
+                        </li>
+                        <li>
+                            Страна: <a href="#" class="profile-product__link">США</a>
+                        </li>
+                        <li>
+                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
+                                                                                                class="profile-product__link">Семейные</a>
+                        </li>
+                        <li>
+                            Серия: 202 серий
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 {% endblock %}
-
-<!-- userprofile14:04-->
-</html>

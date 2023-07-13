@@ -9,13 +9,17 @@ class Movie(Model):
     ru_title = CharField(max_length=255)
     orig_title = CharField(max_length=255)
     description = TextField()
+    runtime = PositiveIntegerField()
     vote = FloatField()
     vote_count = PositiveIntegerField()
     release_date = CharField(max_length=15, null=True, blank=True)
     iframe_src = CharField(max_length=255, unique=True)
+    translate = CharField(max_length=255, null=True, blank=True)
+    max_quality = PositiveIntegerField(null=True, blank=True)
     imdb_id = CharField(max_length=25)
     kinopoisk_id = CharField(max_length=25)
     genre = ManyToManyField('movies.Genre', 'genre', blank=True)
+    country = CharField(max_length=255, null=True, blank=True)
     slug_link = AutoSlugField(populate_from='ru_title',
                               unique_with=['ru_title'])
 

@@ -1,0 +1,402 @@
+{% extends 'films/main_content/base.html' %}
+{% load static %}
+
+{% block main_content %}
+    <div class="product-show">
+    <div class="">
+        <div class="product__hide-navs">
+            <div class="bg__shadow"></div>
+            <img src="https://image.tmdb.org/t/p/original/{{ movie.background_poster }}">
+        </div>
+
+        <div class="product__inner container">
+            <div class="product__navs">
+                {% if movie.poster %}
+                    <img src="https://image.tmdb.org/t/p/original/{{ movie.poster }}" class="product__img">
+
+                {% else %}
+                    <img src="{% static 'img/products/No_image_poster.png' %}" class="product__img">
+                {% endif %}
+
+
+                <div class="product__nav-images">
+                    <button class="btn-product__show">Добавить в закладки</button>
+                </div>
+
+                <div class="product__ad">
+
+                </div>
+            </div>
+
+            <div class="product__body">
+                <div class="product__body-container">
+
+                    <div class="product__container-head">
+                        <img src="../../../static/img/products/12.jpg" alt="" class="product__img-mobile">
+                    </div>
+
+                    <div class="product__container-body">
+                        <div class="product__body-inner">
+                            <h1 class="product-title">{{ movie.ru_title }}</h1>
+                            <div class="product__body-navs">
+                                <div class="product__quality">FullHD</div>
+                            </div>
+                        </div>
+
+                        <div class="product__body-content">
+                            <ul class="product__menu">
+                                <li>
+                                    Год выпуска: <a href="#">{{ movie.release_date }}</a>
+                                </li>
+                                <li>
+                                    Жанры:
+                                    {% for genre in movie.genre.all|slice:":2" %}
+                                        <a href="#">{{ genre }}, </a>
+                                    {% endfor %}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="product__body-inner">
+                            <ul class="product__actors">
+                                <ul class="product__menu">
+
+                                    <li>
+                                        Перевод: <a href="#">{{ movie.translate }}</a>
+                                    </li>
+                                    <li>
+                                        Длительность: {{ movie.runtime }} мин
+                                    </li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product__body-container only__mobile">
+                    <div class="product__container-head">
+                        <button class="btn"><i class="fas fa-play"></i>Смотреть</button>
+                    </div>
+                    <div class="product__container-body float-right">
+                        <button class="btn__squard"><i class="fas fa-paperclip"></i></button>
+                        <button class="btn__squard active-red"><i class="fas fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <div class="product__body-content">
+                    <div class="product__description">
+                        <p class="product-show__txt">
+                            {{ movie.description }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product__body-content">
+                    <div class="product__body-inner">
+                        <div class="product__item">
+                            <p class="product-show__txt">Доступно на устройствах</p>
+                            <div class="product__diveses">
+                                <div class="product__diveses-item">
+                                    <i class="fab fa-apple"></i>
+                                    <p>IOS</p>
+                                </div>
+                                <div class="product__diveses-item">
+                                    <i class="fab fa-android"></i>
+                                    <p>Android</p>
+                                </div>
+                                <div class="product__diveses-item">
+                                    <i class="fas fa-tv"></i>
+                                    <p>Smart TV</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product__item">
+                            <p class="product-show__txt">Поделиться с друзьями</p>
+                            <div class="product__contacts">
+                                <div class="contact__item bg-purple">
+                                    <i class="fab fa-facebook-f"></i>
+                                </div>
+                                <div class="contact__item bg-brightblue">
+                                    <i class="fab fa-twitter"></i>
+                                </div>
+                                <div class="contact__item bg-blue">
+                                    <i class="fab fa-vk"></i>
+                                </div>
+                                <div class="contact__item bg-orange">
+                                    <i class="fab fa-odnoklassniki"></i>
+                                </div>
+                                <div class="contact__item bg-red">
+                                    <i class="fab fa-google-plus-g"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player -->
+                {#                    <div class="product__player">#}
+                {#                        <iframe id="cdn-player" class="product__player"#}
+                {#                                src="https://voidboost.net/embed/744987?partner=gidonline&amp;t=21&amp;vstop=5&amp;df=1&amp;vsright=107&amp;block=jp,mx,us,au,br,in,cn,ch,be,kp,sg,ca,kr,hk"#}
+                {#                                allowfullscreen=""></iframe>#}
+                <iframe id="cdn-player" class="product__player"
+                        src="{{ movie.iframe_src }}"
+                        allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reccomend Products -->
+    <div class="reccomend__products container">
+        <div class="title m-none">
+            <h1>Рекомендуем посмотреть</h1>
+            <i class="fas fa-heart"></i>
+        </div>
+
+        <div class="reccomend__products-grid">
+            {% for suggest in suggest %}
+                <div class="content__product">
+                    <a href="#" class="content__product-img reccomend__product-img">
+                        <img src="https://image.tmdb.org/t/p/original/{{ suggest.poster }}">
+                        <i class="fas fa-play"></i>
+                    </a>
+
+                    <a href="#" class="content__product-name">{{ suggest.ru_title }}</a>
+
+                    <ul class="content__product-menu">
+                        <li>
+                            <a href="#" class="content__product-category">Прикльючение</a>
+                        </li>
+                        <li>
+                            <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                        </li>
+                    </ul>
+
+                    <!-- Stars -->
+                    <ul class="content__product-stars">
+                        <li class="active">
+                            {{ suggest.vote }}/10
+                        </li>
+
+                    </ul>
+
+                    <div class="content__product-navs">
+                        <button class="btn-primary">FulHD</button>
+                        <button class="btn-primary">Дуб.</button>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="product__body-inner">
+            <div class="title m-none">
+                <h1>Комментарии к фильму</h1>
+                <i class="fas fa-comment-alt"></i>
+            </div>
+            <button class="btn-product__show btn-product">Добавить в закладки</button>
+        </div>
+
+        <!-- Comments -->
+        <div class="product__commnets">
+            <div class="product__comment-item">
+                <div class="comment__navs">
+                    <img src="../../../static/img/default/avatar.jpg" alt="" class="comment__img">
+                    <div class="product__flex">
+                        <button class="product__btn"><span class="cl-red">-</span> 2</button>
+                        <button class="product__btn"><span class="cl-green">+</span> 8</button>
+                    </div>
+                </div>
+                <div class="comment__body">
+                    <div class="product__flex">
+                        <h1 class="comment__username">Elena</h1>
+                        <p class="product__time">5 октября 2021 / 20:47</p>
+                    </div>
+                    <p class="comment__txt">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat tenetur ab labore
+                        voluptates, earum praesentium distinctio odit quas, placeat quaerat delectus, ad natus
+                        aspernatur officiis ut id. Beatae atque nihil nisi quam harum reprehenderit quos a
+                        cupiditate ducimus, soluta sit ullam dolore! Totam, molestias dolorum? Suscipit aperiam
+                        velit iste nisi.
+                    </p>
+                </div>
+            </div>
+
+            <div class="product__comment-item">
+                <div class="comment__navs">
+                    <img src="../../../static/img/default/avatar.jpg" alt="" class="comment__img">
+                    <div class="product__flex">
+                        <button class="product__btn"><span class="cl-red">-</span> 2</button>
+                        <button class="product__btn"><span class="cl-green">+</span> 8</button>
+                    </div>
+                </div>
+                <div class="comment__body">
+                    <div class="product__flex">
+                        <h1 class="comment__username">Максим</h1>
+                        <p class="product__time">5 октября 2021 / 20:47</p>
+                    </div>
+                    <p class="comment__txt">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat tenetur ab labore
+                        voluptates, earum praesentium distinctio odit quas, placeat quaerat delectus, ad natus
+                        aspernatur officiis ut id. Beatae atque nihil nisi quam harum reprehenderit quos a
+                        cupiditate ducimus, soluta sit ullam dolore! Totam, molestias dolorum? Suscipit aperiam
+                        velit iste nisi.
+                    </p>
+                </div>
+            </div>
+
+            <div class="product__comment-item">
+                <div class="comment__navs">
+                    <img src="../../../static/img/default/avatar.jpg" alt="" class="comment__img">
+                    <div class="product__flex">
+                        <button class="product__btn"><span class="cl-red">-</span> 2</button>
+                        <button class="product__btn"><span class="cl-green">+</span> 8</button>
+                    </div>
+                </div>
+                <div class="comment__body">
+                    <div class="product__flex">
+                        <h1 class="comment__username">Александр</h1>
+                        <p class="product__time">5 октября 2021 / 20:47</p>
+                    </div>
+                    <p class="comment__txt">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat tenetur ab labore
+                        voluptates, earum praesentium distinctio odit quas, placeat quaerat delectus, ad natus
+                        aspernatur officiis ut id. Beatae atque nihil nisi quam harum reprehenderit quos a
+                        cupiditate ducimus, soluta sit ullam dolore! Totam, molestias dolorum? Suscipit aperiam
+                        velit iste nisi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main_footer %}
+    <!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__inner">
+
+            <div class="footer__item">
+                <h1 class="footer__title">Основные разделы</h1>
+
+                <!-- Footer Menu -->
+                <ul class="footer__menu">
+                    <li>
+                        <a href="{% url 'film-list' %}" class="footer__link">Главная</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Новинки</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Стол Заказов</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Помощь</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Конакты</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer__item">
+                <h1 class="footer__title">Последние коментарии</h1>
+                <div class="footer__product">
+                    <a href="#" class="footer__product-img">
+                        <img src="{% static 'img/products/13.jpg' %}">
+                    </a>
+                    <div class="footer__product-navs">
+                        <div class="footer__product-inner">
+                            <a href="#" class="footer__product-name">Тор: Рагнарёк</a>
+                            <p class="footer__product-time">17:13</p>
+                        </div>
+                        <p class="footer__product-user">Don Man</p>
+                        <p class="footer__product-text">Сначала вроде бы ничего такой, а потом все окончательно
+                            испортилось...</p>
+                    </div>
+                </div>
+
+                <div class="footer__product">
+                    <a href="#" class="footer__product-img">
+                        <img src="{% static 'img/products/6.jpg' %}">
+                    </a>
+                    <div class="footer__product-navs">
+                        <div class="footer__product-inner">
+                            <a href="#" class="footer__product-name">Человек-Паук: Вдали от дома</a>
+                            <p class="footer__product-time">10:48</p>
+                        </div>
+                        <p class="footer__product-user">Leno4ka</p>
+                        <p class="footer__product-text">Все говорили что фильм не очень, а мне очень даже
+                            понравился.
+                            Особенно...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__item">
+                <h1 class="footer__title">Следите за нами</h1>
+                <ul class="footer__flex-menu">
+                    <li>
+                        <a href="#" class="footer__link">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Footer Logo -->
+                <a href="{% url 'film-list' %}" class="footer__logo">
+                    Dido Cinema
+                    <span>online cinema</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Mobile Footer -->
+<footer class="mobile-footer">
+    <div class="main__container">
+        <ul class="mobile-footer__menu">
+            <li>
+                <a href="{% url 'film-list' %}" class="mobile-footer__link active">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-footer__link">
+                    <i class="fas fa-heart"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'user_profile' %}" class="mobile-footer__link">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+<div class="footer__copyright">
+    <div class="container">
+        @2023 Dido Cinema Online Cinema. All Rights Reserved.
+    </div>
+</div>
+{% endblock %}

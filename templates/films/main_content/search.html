@@ -1,70 +1,246 @@
 {% extends 'films/main_content/base.html' %}
 {% load static %}
-{% block page_name %}
-    <div class="hero common-hero">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="hero-ct">
-                    <h1>SEARCH</h1>
-                </div>
-            </div>
+
+{% block main_content %}
+
+    <div class="main__menu" id="main__menu">
+        <div class="main__container">
+            <ul class="main__menu-list">
+                <li>
+                    <a href="#" class="main__menu-link">Главная</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Категорий</a>
+                    <span class="is__parent" id="is__parent"></span>
+                    <ul class="main__dropdown" id="main__dropdown">
+                        <li>
+                            <a href="#" class="main__dropdown-link">Биография</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Боевики</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Военные</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Детективы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Документальные</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Драмы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Исторические</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Комедии</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Криминал</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Мелодрамы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Мультфильмы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Прикльючения</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Семейные</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Триллеры</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Ужасы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Фантастика</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Новинки</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Стол Заказов</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Помощь</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Конакты</a>
+                </li>
+            </ul>
         </div>
     </div>
-</div>
-
-{% endblock %}
-{% block main_block %}
-    <div class="page-single">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="topbar-filter fw">
-                        <p>Found <span>{{ total_count_movie }} movies</span> in total</p>
-                    </div>
-                    <div class="flex-wrap-movielist mv-grid-fw">
-                        {% for movie in page_obj %}
-                            <div class="movie-item-style-2 movie-item-style-1">
-                                {% if movie.poster %}
-                                    <img src="https://image.tmdb.org/t/p/original/{{ movie.poster }}" alt="">
-                                {% else %}
-                                    <img src="{% static 'images/no_poster.png' %}" alt="">
-                                {% endif %}
-                                <div class="hvr-inner">
-                                    <a href="{% url 'film-detail' slug=movie.slug_link %}"> Read more <i
-                                            class="ion-android-arrow-dropright"></i> </a>
-                                </div>
-                                <div class="mv-item-infor">
-                                    <h6><a href="{% url 'film-detail' slug=movie.slug_link %}">{{ movie.ru_title }}</a></h6>
-                                    <p class="rate"><i class="ion-android-star"></i><span>{{ movie.vote }}</span> /10</p>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <div class="topbar-filter">
-                        <label>Movies per page:</label>
 
 
-                        <option value="saab">{{ total_count_movie }} Movies</option>
+    <!-- Content -->
+    <div class="main__container">
+        <div class="content">
+            <!-- Content Navs -->
+
+            <!-- Content Body -->
+            <div class="content__body">
+                <div class="content__inner">
 
 
-                        <div class="pagination2">
-                            <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}:</span>
-                            {% if page_obj.has_previous %}
-                                 <a href="?page={{ page_obj.previous_page_number }}"><i class="ion-arrow-left-b"></i></a>
-                            {% endif %}
-                            {% if  page_obj.number %}
-                                <a class="active">{{ page_obj.number }}</a>
-                            {% endif %}
-                            {% if page_obj.has_next %}
-                                <a href="?page={{ page_obj.next_page_number }}"><i class="ion-arrow-right-b"></i></a>
-                            {% endif %}
-
-
+                    <div class="content__item">
+                        <div class="title">
+                            <h1>Мы соц.сетях</h1>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-vk"></i>
+                            </a>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
+
+                <div class="content__products">
+                    {% for movie in page_obj %}
+                        <div class="content__product">
+                            <a href="{% url 'film-detail' slug=movie.slug_link %}" class="content__product-img">
+
+
+                                {% if movie.poster %}
+                                    <img src="https://image.tmdb.org/t/p/original/{{ movie.poster }}"
+                                         class="product__img">
+
+                                {% else %}
+                                    <img src="{% static 'img/products/No_image_poster.png' %}" class="product__img">
+                                {% endif %}
+
+                                <i class="fas fa-play"></i>
+                            </a>
+
+                            <a href="{% url 'film-detail' slug=movie.slug_link %}"
+                               class="content__product-name">{{ movie.ru_title }}</a>
+
+                            <ul class="content__product-menu">
+                                <li>
+                                    <a href="#" class="content__product-category">{{ movie.genre.all.1.name }}</a>
+                                </li>
+                            </ul>
+
+                            <!-- Stars -->
+                            <ul class="content__product-stars">
+                                <li class="active">
+                                    {{ movie.vote }}/10
+                                </li>
+                            </ul>
+
+                            <div class="content__product-navs">
+                                <button class="btn-primary">FullHD</button>
+                                <button class="btn-primary">Дуб.</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Pagination -->
+    <div class="main__container">
+        <ul class="pagination">
+            <li>
+                <a href="#" class="pagination__link pagination__arrow">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link">
+                    1
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    13
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    14
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link pagination__link-active">
+                    15
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link">
+                    16
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    17
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    94
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link pagination__arrow">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Mobile Footer -->
+    <footer class="mobile-footer">
+        <div class="main__container">
+            <ul class="mobile-footer__menu">
+                <li>
+                    <a href="#" class="mobile-footer__link active">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-footer__link">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-footer__link">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="new__messages"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
 {% endblock %}

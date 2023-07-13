@@ -1,0 +1,102 @@
+.main__menu {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #12141E;
+    overflow: auto;
+    padding-bottom: 120px;
+    transition: 0.3s ease all;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 20;
+}
+.main__menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+.main__menu-list {
+    width: 100%;
+    height: auto;
+    list-style: none;
+    padding-top: 15px;
+    transition: 0.3s ease all;
+}
+.main__menu-list > li {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    position: relative;
+    transition: 0.3s ease all;
+}
+.main__menu-link {
+    text-decoration: none;
+    color: #434859;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s ease all;
+}
+.main__menu-link:hover {
+    color: #e3e3e3;
+}
+.is__parent {
+    position: absolute;
+    right: 0;
+    border: 10px solid transparent; 
+    border-top: 12px solid #434859;
+    transition: 0.3s ease all;
+    cursor: pointer;
+}
+.is__parent:hover {
+    border-top: 12px solid #e3e3e3;
+}
+.is__parent.active {
+    transform: rotate(180deg);
+    border-top: 12px solid #e3e3e3;
+}
+/* Main DropDown */
+.main__dropdown {
+    width: 100%;
+    background-color: #e3e3e3;
+    list-style: none;
+    padding: 10px 10px;
+    margin: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    overflow: auto;
+    transition: 0.3s ease all;
+}
+.main__dropdown.active {
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+.main__dropdown > li:first-child {
+    margin-top: 0;
+}
+.main__dropdown > li {
+    margin-top: 5px;
+}
+.main__dropdown-link {
+    text-decoration: none;
+    color: #202020;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    transition: 0.3s ease all;
+}
+.main__dropdown-link:hover {
+    color: #297FD7;
+}
+
+/* ==================== Media ==================== */
+@media(max-width: 767px) {
+    .main__menu {
+        top: 50px;
+    }
+}

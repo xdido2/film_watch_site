@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main Css -->
+    <link rel="stylesheet" href="../../static/css/main.css">
+    <!-- Header Css -->
+    <link rel="stylesheet" href="../../static/css/header.css">
+    <!-- Main Menu -->
+    <link rel="stylesheet" href="../../static/css/mainmenu.css">
+    <!-- Full Search Css -->
+    <link rel="stylesheet" href="../../static/css/full-search.css">
+    <!-- Mobile Footer -->
+    <link rel="stylesheet" href="../../static/css/mobile-footer.css">
+    <!-- Slider Css -->
+    <link rel="stylesheet" href="../../static/css/slider.css">
+    <!-- Content Css -->
+    <link rel="stylesheet" href="../../static/css/content.css">
+    <!-- Pagination Css -->
+    <link rel="stylesheet" href="../../static/css/pagination.css">
+    <!-- Footer Css -->
+    <link rel="stylesheet" href="../../static/css/footer.css">
+    <!-- Category Css -->
+    <link rel="stylesheet" href="../../static/css/category.css">
+    <!-- Product Show Css -->
+    <link rel="stylesheet" href="../../static/css/product-show.css">
+    <!-- Profile Css -->
+    <link rel="stylesheet" href="../../static/css/profile.css">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <title>Kinogo</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="main__container">
+            <div class="header__inner">
+                
+                <div class="header__main">
+                    <!-- Header Burger -->
+                    <div class="header__burger" id="header__burger">
+                        <span></span>
+                    </div>
+
+                    <!-- Header Logo -->
+                    <a href="#" class="header__logo">
+                        Kinogo
+                    </a>
+
+                    <!-- Search only for mobile device -->
+                    <button class="header__mobile-search" id="header__mobile-search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <form action="#" class="header__search">
+                    <input type="text" placeholder="Пираты Карибского моря 2">
+                    <button><i class="fas fa-search"></i></button>
+                </form>
+
+                <div class="header__navs">
+                    <a href="#" class="header__link">
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <a href="#" class="header__link">
+                        <i class="fas fa-bell"></i>
+                        <span class="new__messages"></span>
+                    </a>
+                    <img src="../../static/img/default/avatar.jpg" class="header__nav-img">
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Menu -->
+    <div class="main__menu" id="main__menu">
+        <div class="main__container">
+            <ul class="main__menu-list">
+                <li>
+                    <a href="#" class="main__menu-link">Главная</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Категорий</a>
+                    <span class="is__parent" id="is__parent"></span>
+                    <ul class="main__dropdown" id="main__dropdown">
+                        <li>
+                            <a href="#" class="main__dropdown-link">Биография</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Боевики</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Военные</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Детективы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Документальные</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Драмы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Исторические</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Комедии</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Криминал</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Мелодрамы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Мультфильмы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Прикльючения</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Семейные</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Триллеры</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Ужасы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Фантастика</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Новинки</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Стол Заказов</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Помощь</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Конакты</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Full Search Window -->
+    <div class="full__search" id="full__search">
+        <div class="container">
+
+            <div class="search__inner">
+                <!-- Close Full Search Window Btn -->
+                <button class="search__close-btn" id="search__window-close">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            </div>
+
+            <form action="#" class="search__form">
+                <input type="text" placeholder="Поиск..." id="full-search__input">
+                <button class="btn-clear"><i class="fas fa-backspace"></i></button>
+                <button class="full__search-btn"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="search__products">
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Пираты Карибского моря 2
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Меч короля Артура
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Гадкий я 3
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Тор Рагнарёк
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Бладшот
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Райя и последний Дракон
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Красавица и Чудовище
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Варкрафт
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Моана
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Человек-Паук: Вдали от дома
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Черепашки-ниндзя
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Последний богатырь
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Принц Персии
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Тачки 3
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Вперёд
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Туннель: Опасно для жизни
+                    </a>
+                </div>
+
+                <div class="search__product-item">
+                    <i class="fas fa-video"></i>
+                    <a href="#" class="search__product-title">
+                        Мулан
+                    </a>
+                </div>
+
+            </div>
+
+            <h1 class="filter__title">Жанры</h1>
+            <div class="filter__container">
+                <a href="#" class="filter__item active">Боевики</a>
+                <a href="#" class="filter__item">Прикльючение</a>
+                <a href="#" class="filter__item">Фантастика</a>
+                <a href="#" class="filter__item">Детективы</a>
+            </div>
+
+            <h1 class="filter__title">Сортировка</h1>
+            <div class="filter__container">
+                <a href="#" class="filter__item">Новинки</a>
+                <a href="#" class="filter__item">Популярные</a>
+                <a href="#" class="filter__item">Последние</a>
+            </div>
+
+            <h1 class="filter__title">Качество</h1>
+            <div class="filter__container">
+                <a href="#" class="filter__item">4K</a>
+                <a href="#" class="filter__item">FullHD</a>
+                <a href="#" class="filter__item">HD</a>
+                <a href="#" class="filter__item">HDRip</a>
+            </div>
+
+            <h1 class="filter__title">Год выпуска:</h1>
+            <div class="filter__container">
+                <a href="#" class="filter__item">1995</a>
+                <a href="#" class="filter__item">1996</a>
+                <a href="#" class="filter__item">1997</a>
+                <a href="#" class="filter__item">1998</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Slider -->
+    <div class="slider"> 
+        <div class="slider__item">
+            <img src="../../static/img/slides/1.png" class="slider__img">
+            <div class="slider__navs">
+                <a href="#" class="slider__play-btn">
+                    <i class="far fa-play-circle"></i>
+                </a>
+                <div class="slider__body">
+                    <p class="slider__status">8.4</p>
+                    <a href="#" class="slider__name">Мортал Комабат</a>
+                    <p class="slider__quality">Hd</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider__item">
+            <img src="../../static/img/slides/2.png" class="slider__img">
+            <div class="slider__navs">
+                <a href="#" class="slider__play-btn">
+                    <i class="far fa-play-circle"></i>
+                </a>
+                <div class="slider__body">
+                    <p class="slider__status" id="slider__status">8.4</p>
+                    <a href="#" class="slider__name">Конг против Годзила</a>
+                    <p class="slider__quality">Hd</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider__item">
+            <img src="../../static/img/slides/3.png" class="slider__img">
+            <div class="slider__navs">
+                <a href="#" class="slider__play-btn">
+                    <i class="far fa-play-circle"></i>
+                </a>
+                <div class="slider__body">
+                    <p class="slider__status">8.4</p>
+                    <a href="#" class="slider__name">Мортал Комабат</a>
+                    <p class="slider__quality">Hd</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider__item">
+            <img src="../../static/img/slides/4.png" class="slider__img">
+            <div class="slider__navs">
+                <a href="#" class="slider__play-btn">
+                    <i class="far fa-play-circle"></i>
+                </a>
+                <div class="slider__body">
+                    <p class="slider__status">8.4</p>
+                    <a href="#" class="slider__name">Мортал Комабат</a>
+                    <p class="slider__quality">Hd</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider__item">
+            <img src="../../static/img/slides/5.png" class="slider__img">
+            <div class="slider__navs">
+                <a href="#" class="slider__play-btn">
+                    <i class="far fa-play-circle"></i>
+                </a>
+                <div class="slider__body">
+                    <p class="slider__status">8.4</p>
+                    <a href="#" class="slider__name">Мортал Комабат</a>
+                    <p class="slider__quality">Hd</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider__item">
+            <img src="../../static/img/slides/6.png" class="slider__img">
+            <div class="slider__navs">
+                <a href="#" class="slider__play-btn">
+                    <i class="far fa-play-circle"></i>
+                </a>
+                <div class="slider__body">
+                    <p class="slider__status">8.4</p>
+                    <a href="#" class="slider__name">Мортал Комабат</a>
+                    <p class="slider__quality">Hd</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="main__container">
+        <div class="content">
+            <!-- Content Navs -->
+            <div class="content__navs">
+                <div class="title">
+                    <h1>Выбор жанра</h1>
+                    <i class="fas fa-list-ul"></i>
+                </div>
+
+                <!-- Content Menu -->
+                <ul class="content__menu">
+                    <li>
+                        <a href="#" class="content__link active">Все</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Биография</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Боевики</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Военные</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Документальные</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Драмы</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Исторические</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Комедии</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Криминал</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Мелодрамы</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Мультфильмы</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Прикльючение</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Семейные</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Триллеры</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Ужасы</a>
+                    </li>
+                    <li>
+                        <a href="#" class="content__link">Фантастика</a>
+                    </li>
+                </ul> 
+
+                <div class="title">
+                    <h1>Скоро на сайте</h1>
+                    <i class="fas fa-clock"></i>
+                </div>
+
+                <div class="content__product">
+                    <a href="#" class="content__product-img soon__product-img">
+                        <img src="../../static/img/products/soon/1.jpg">
+                        <i class="fas fa-play"></i>
+                        <span class="is__new">
+                            Новинки
+                        </span>
+                    </a>
+
+                    <a href="#" class="content__product-name">Тор: Рагнарёк</a>
+                        
+                    <ul class="content__product-menu">
+                        <li>
+                            <a href="#" class="content__product-category">Фантастика</a>
+                        </li>
+                        <li>
+                            <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                        </li>
+                    </ul>
+
+                    <div class="content__product-navs">
+                        <button class="btn-primary">с 19.10.21</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Body -->
+            <div class="content__body">
+                <div class="content__inner">
+                    <div class="content__item">
+                        <div class="subtitle">
+                            <p class="subtitle-desc">Год выпуска:</p>
+                            <button class="subtitle-btn">
+                                <div class="subtitle-name">2021</div>
+                                <div class="subtitle-icon no-rotate"><i class="far fa-calendar-alt"></i></div>
+
+                                <div class="subtitle__dropdown">
+                                    <ul class="subtitle__dropdown-box">
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2021</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2020</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2019</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2018</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2017</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2016</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2015</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2014</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2013</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2012</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2011</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2010</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2009</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2008</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2007</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2006</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2005</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2004</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2003</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2002</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2001</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">2000</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">1999</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">1998</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">1997</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">1996</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
+    
+                        <div class="subtitle">
+                            <p class="subtitle-desc">Качество видео:</p>
+                            <button class="subtitle-btn">
+                                <div class="subtitle-name">FULLHD</div>
+                                <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>
+
+                                <div class="subtitle__dropdown">
+                                    <ul class="subtitle__dropdown-box">
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">FULLHD</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">HDRip</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">SD</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">4K</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">FullHD 1080p</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">1080p</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">720p</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">480p</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">360p</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">240p</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
+    
+                        <div class="subtitle">
+                            <p class="subtitle-desc">Сортировка:</p>
+                            <button class="subtitle-btn">
+                                <div class="subtitle-name">Новинки</div>
+                                <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>
+
+                                <div class="subtitle__dropdown">
+                                    <ul class="subtitle__dropdown-box">
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">Новинки</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">Популярные</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">От А до Я</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">От Я до А</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sutitle__dropdown-link">Последние</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="content__item">
+                        <div class="title">
+                            <h1>Мы соц.сетях</h1>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-vk"></i>
+                            </a>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content__products">
+
+                    <div class="content__product">
+                        <a href="../films/main_content/movie-detail.html" class="content__product-img">
+                            <img src="../../static/img/products/12.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Красавица и Чудовище</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Фантастика</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/6.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Человек-Паук: Вдали ...</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Прикльючение</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">4K</button>
+                            <button class="btn-primary">Дуб.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/8.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Райя и последний Др...</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Мультфильмы</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Дуб.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/10.jpeg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Джек покоритель Ве...</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Фантастика</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/13.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Тор: Рагнарёк</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Фантастика</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/9.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Холодное сердце 2</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Мультфильмы</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/14.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Варкрафт</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Фантастика</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/15.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Моана</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Фантастика</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/19.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Принц Персии</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Фантастика</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/21.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Вперёд</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Мультфильмы</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/23.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Мулан</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Мультфильмы</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/22.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Туннель Опасно для ...</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Мультфильмы</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/1.jpg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Бладшот</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Мультфильмы</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/2.jpeg">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Последний богатырь ...</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Мультфильмы</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                    <div class="content__product">
+                        <a href="#" class="content__product-img">
+                            <img src="../../static/img/products/16.png">
+                            <i class="fas fa-play"></i>
+                        </a>
+    
+                        <a href="#" class="content__product-name">Черепашки-ниндзя</a>
+                            
+                        <ul class="content__product-menu">
+                            <li>
+                                <a href="#" class="content__product-category">Мультфильмы</a>
+                            </li>
+                            <li>
+                                <a href="#" class="content__product-category"><i class="fas fa-ellipsis-h"></i></a>
+                            </li>
+                        </ul>
+
+                        <!-- Stars -->
+                        <ul class="content__product-stars">
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li class="active">
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <div class="content__product-navs">    
+                            <button class="btn-primary">HD</button>
+                            <button class="btn-primary">Проф.</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>  
+    </div>
+
+    <!-- Pagination -->
+    <div class="main__container">
+        <ul class="pagination">
+            <li>
+                <a href="#" class="pagination__link pagination__arrow">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link">
+                    1
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    13
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    14
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link pagination__link-active">
+                    15
+                </a>
+            </li>
+            
+            <li>
+                <a href="#" class="pagination__link">
+                    16
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    17
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    94
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link pagination__arrow">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Mobile Footer -->
+    <footer class="mobile-footer">
+        <div class="main__container">
+            <ul class="mobile-footer__menu">
+                <li>
+                    <a href="#" class="mobile-footer__link active">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-footer__link">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-footer__link">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="new__messages"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>   
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+
+                <div class="footer__item">
+                    <h1 class="footer__title">Основные разделы</h1>
+
+                    <!-- Footer Menu -->
+                    <ul class="footer__menu">
+                        <li>
+                            <a href="#" class="footer__link">Главная</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">Новинки</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">Стол Заказов</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">Помощь</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">Конакты</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer__item">
+                    <h1 class="footer__title">Последние коментарии</h1>
+                    <div class="footer__product">
+                        <a href="#" class="footer__product-img">
+                            <img src="../../static/img/products/13.jpg">
+                        </a>
+                        <div class="footer__product-navs">
+                            <div class="footer__product-inner">
+                                <a href="#" class="footer__product-name">Тор: Рагнарёк</a>
+                                <p class="footer__product-time">17:13</p>
+                            </div>
+                            <p class="footer__product-user">Don Man</p>
+                            <p class="footer__product-text">Сначала вроде бы ничего такой, а потом все окончательно испортилось...</p>
+                        </div>
+                    </div>
+
+                    <div class="footer__product">
+                        <a href="#" class="footer__product-img">
+                            <img src="../../static/img/products/6.jpg">
+                        </a>
+                        <div class="footer__product-navs">
+                            <div class="footer__product-inner">
+                                <a href="#" class="footer__product-name">Человек-Паук: Вдали от дома</a>
+                                <p class="footer__product-time">10:48</p>
+                            </div>
+                            <p class="footer__product-user">Leno4ka</p>
+                            <p class="footer__product-text">Все говорили что фильм не очень, а мне очень даже понравился. Особенно...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer__item">
+                    <h1 class="footer__title">Следите за нами</h1>
+                    <ul class="footer__flex-menu">
+                        <li>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-vk"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Footer Logo -->
+                    <a href="#" class="footer__logo">
+                        Kinogo
+                        <span>online cinema</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer__copyright">
+        <div class="container">
+            @2021 Kinogo Online Cinema. All Rights Reserved.
+        </div>
+    </div>
+    
+    
+
+    <!-- Header JS -->
+    <script src="../../static/js/header.js"></script>
+    <!-- Full Window Search JS -->
+    <script src="../../static/js/fullsearch.js"></script>
+    <!-- JQuery -->
+    <script src="../../static/js/jquery.min.js"></script>
+    <!-- Slick Slider Js -->
+    <script src="../../static/js/slick.min.js"></script>
+    <!-- Slider JS -->
+    <script src="../../static/js/slider.js"></script>
+    <!-- Content JS -->
+    <script src="../../static/js/content.js"></script>
+</body>
+</html>

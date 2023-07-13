@@ -1,0 +1,38 @@
+.mobile-footer {
+    width: 100%;
+    background-color: #12141E;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: none;
+    padding: 0 40px;
+    z-index: 2;
+}
+.mobile-footer__menu {
+    list-style: none;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mobile-footer__link {
+    text-decoration: none;
+    color: #434859;
+    font-size: 25px;
+    transition: 0.3s ease all;
+    position: relative;
+}
+.mobile-footer__link:hover {
+    color: #297FD7;
+}
+.mobile-footer__link.active {
+    color: #e3e3e3;
+}
+
+/* ====================== Media ====================== */
+@media(max-width:767px) {
+    .mobile-footer {
+        display: block;
+    }
+}

@@ -1,0 +1,221 @@
+.header {
+    width: 100%;
+    height: 100px;
+    background-color: #03050B;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+/* Header Inner */
+.header__inner {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ==================== Header Main ==================== */
+.header__main {
+    display: flex;
+    align-items: center;
+}
+/* Header Burger */
+.header__burger {
+    width: 24px;
+    height: 16px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+    transition: 0.3s ease all;
+}
+.header__burger:before,
+.header__burger:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    height: 2px;
+    background-color: #434859;
+    transition: 0.3s ease all;
+}
+.header__burger:before {
+    top: 0;
+    width: 100%;
+}
+.header__burger:after {
+    bottom: 0;
+    width: 60%;
+}
+.header__burger > span {
+    width: 80%;
+    height: 2px;
+    background: #434859;
+    transition: 0.3s ease all;
+}
+.header__burger.active:before {
+    width: 100%;
+    top: 7px;
+    transform: rotate(45deg);
+}
+.header__burger.active:after {
+    width: 100%;
+    bottom: 7px;
+    transform: rotate(-45deg);
+}
+.header__burger.active > span {
+    opacity: 0;
+}
+
+/* Header Logo */
+.header__logo {
+    text-decoration: none;
+    color: #e3e3e3;
+    font-size: 28px;
+    cursor: pointer;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+/* ==================== Header Search ==================== */
+.header__search {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.header__search > input {
+    background: #12141E;
+    border: none;
+    border-radius: 2px;
+    padding: 10px 10px;
+    text-align: center;
+    width: 600px;
+    color: #e3e3e3;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+}
+.header__search > button {
+    position: absolute;
+    right: 0;
+    height: 38px;
+    width: 38px;
+    background: #12141E;
+    border: none;
+    color: #434859;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease all;
+}
+.header__search > button:hover {
+    color: #e3e3e3;
+}
+
+/* ==================== Header Navs ==================== */
+.header__navs {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.header__link {
+    text-decoration: none;
+    color: #434859;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 20px;
+    position: relative;
+    transition: 0.3s ease all;
+}
+.header__link:hover {
+    color: #e3e3e3;
+}
+.header__nav-img {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Header Mobile Search */
+.header__mobile-search {
+    text-decoration: none;
+    color: #e3e3e3;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    background: none;
+    border: none;
+    display: none;
+}
+
+/* ==================== Media ==================== */
+@media(max-width: 1150px) {
+    .main__container {
+        padding: 0 20px;
+    }
+    /* Header Burger */
+    .header__burger {
+        margin-right: 20px;
+    }
+    /* Header Search */
+    .header__search > input {
+        width: 350px;
+    }
+    /* Header Navs */
+    .header__nav-img {
+        margin-left: 0;
+    }
+}
+@media(max-width:767px) {
+    .main__container {
+        padding: 0 12px;
+    }
+    .header {
+        height: 50px;
+    }
+    
+    /* Header Inner */
+    .header__inner {
+        height: 50px;
+    }
+
+    /* Header Main */
+    .header__main {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    /* Header Burger */
+    .header__burger {
+        margin-right: 0;
+    }
+    .header__burger:before,
+    .header__burger:after {
+        background-color: #e3e3e3;
+        border-radius: 50px;
+    }
+    .header__burger > span {
+        background: #e3e3e3;
+        border-radius: 50px;
+    }
+    /* Header Search */
+    .header__search {
+        display: none;
+    }
+    /* Header Navs */
+    .header__navs {
+        display: none;
+    }
+
+    /* Header Search Mobile */
+    .header__mobile-search {
+        display: block;
+    }
+}
