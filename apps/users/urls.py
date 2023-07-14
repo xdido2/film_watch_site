@@ -1,12 +1,12 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 
-from apps.users.views.forgot_password import forgot_pass_send_email
-from apps.users.views.login import login_view
-from apps.users.views.register import register_view
-from apps.users.views.user_activation import activate
-from apps.users.views.user_profile import user_profile_view
-from apps.users.views.forgot_password import change_profile_password
+from apps.users.views.auth.forgot_password import forgot_pass_send_email
+from apps.users.views.auth.login import login_view
+from apps.users.views.auth.register import register_view
+from apps.users.views.auth.user_activation import activate
+from apps.users.views.user.user_profile import user_profile_view
+from apps.users.views.auth.forgot_password import change_profile_password
 
 urlpatterns = [
     path('user-profile', user_profile_view, name='user_profile'),

@@ -1,35 +1,53 @@
 {% extends 'films/main_content/base.html' %}
+{% load static %}
 
 {% block main_content %}
 
     <div class="category__container">
         <div class="main__container">
+            <form method="post" action="{% url 'user_profile' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="profile__inner">
 
-            <div class="profile__inner">
-                <div class="profile-item">
-                    <img src="{{ user.avatar.url }}" class="profile__user-img">
-                    <button class="profile__btn mt-15">Изминить картинку</button>
+                    <div class="profile-item">
+                        <img src="{{ user.avatar.url }}" class="profile__user-img">
+                        <label for="file-input" class="profile__btn mt-15">Изменить картинку</label>
+                        <input type="file" id="file-input" style="display: none;" name="avatar">
+                    </div>
+
+
+                    <div class="profile-item ml-15">
+                        <h1 class="profile__user-title">
+                            {{ user.username }}
+                        </h1>
+                        <ul class="profile__user-menu">
+                            <li>
+                                Дата регистрация: {{ user.date_joined|date:"d F Y" }}
+                            </li>
+                            <li>
+                                E-mail: {{ user.email }}
+                            </li>
+                            <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+                            <div class="wrapper">
+                                <div class="container">
+                                    <input type="email" class="input-dark" placeholder="E-mail" name="email">
+                                    <input type="password" class="input-dark" placeholder="Пароль" name="password">
+
+                                </div>
+                            </div>
+
+                        </ul>
+                    </div>
                 </div>
-                <div class="profile-item ml-15">
-                    <h1 class="profile__user-title">
-                        {{ user.username }}
-                    </h1>
-                    <ul class="profile__user-menu">
-                        <li>
-                            Дата регистрация: {{ user.date_joined|date:"d F Y" }}
-                        </li>
-                        <li>
-                            E-mail: {{ user.email }}
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
-            <h2 class="category-txt mt-5">
-                Просмотрели 8 фильмов. Спасибо что выбрали Kinogo
-            </h2>
+                <h2 class="category-txt mt-5">
+                    Просмотрели {{ history.count }} фильмов. Спасибо что выбрали Dido Cinema
+                </h2>
 
-            <button class="profile__btn mt-15">Сохранить</button>
+                <button class="profile__btn mt-15">Сохранить</button>
+            </form>
+
         </div>
     </div>
 
@@ -38,206 +56,34 @@
             Истроия:
         </h2>
         <div class="profile__container mt-15">
-
-            <div class="profile__item">
-                <a href="#" class="profile-product__img">
-                    <img src="../../static/img//products/15.jpg">
-                </a>
-                <div class="profile-product__navs">
-                    <a href="#" class="profile-product__name">Моана</a>
-                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
-                    <ul class="profile-product__list">
-                        <li>
-                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
-                        </li>
-                        <li>
-                            Страна: <a href="#" class="profile-product__link">США</a>
-                        </li>
-                        <li>
-                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
-                                                                                                class="profile-product__link">Семейные</a>
-                        </li>
-                        <li>
-                            Серия: нет серий
-                        </li>
-                    </ul>
+            {% for history in history %}
+                <div class="profile__item">
+                    <a href="{% url 'film-detail' slug=history.movie.slug_link %}" class="profile-product__img">
+                        <img src="https://image.tmdb.org/t/p/original/{{ history.movie.poster }}">
+                    </a>
+                    <div class="profile-product__navs">
+                        <a href="#" class="profile-product__name">{{ history.movie.ru_title }}</a>
+                        <p class="profile-product__time">{{ history.view_at|date:"d F Y / H:m" }}</p>
+                        <ul class="profile-product__list">
+                            <li>
+                                Год выпуска: <a href="#"
+                                                class="profile-product__link">{{ history.movie.release_date|slice:4 }}</a>
+                            </li>
+                            <li>
+                                Страна: <a href="#" class="profile-product__link">{{ history.movie.country }}</a>
+                            </li>
+                            <li>
+                                Жанры: <a href="#"
+                                          class="profile-product__link">{{ history.movie.genre.all.0.name }}, {{ history.movie.genre.all.1.name }}</a>
+                            </li>
+                            {#                            <li>#}
+                            {#                                Серия: нет серий#}
+                            {#                            </li>#}
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
 
-            <div class="profile__item">
-                <a href="#" class="profile-product__img">
-                    <img src="../../static/img//products/12.jpg">
-                </a>
-                <div class="profile-product__navs">
-                    <a href="#" class="profile-product__name">Красавица и Чудовище</a>
-                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
-                    <ul class="profile-product__list">
-                        <li>
-                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
-                        </li>
-                        <li>
-                            Страна: <a href="#" class="profile-product__link">США</a>
-                        </li>
-                        <li>
-                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
-                                                                                                class="profile-product__link">Семейные</a>
-                        </li>
-                        <li>
-                            Серия: 202 серий
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="profile__item">
-                <a href="#" class="profile-product__img">
-                    <img src="../../static/img//products/1.jpg">
-                </a>
-                <div class="profile-product__navs">
-                    <a href="#" class="profile-product__name">Бладшот</a>
-                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
-                    <ul class="profile-product__list">
-                        <li>
-                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
-                        </li>
-                        <li>
-                            Страна: <a href="#" class="profile-product__link">США</a>
-                        </li>
-                        <li>
-                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
-                                                                                                class="profile-product__link">Семейные</a>
-                        </li>
-                        <li>
-                            Серия: 202 серий
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="profile__item">
-                <a href="#" class="profile-product__img">
-                    <img src="../../static/img//products/6.jpg">
-                </a>
-                <div class="profile-product__navs">
-                    <a href="#" class="profile-product__name">Человек-Паук: Вдали от дома</a>
-                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
-                    <ul class="profile-product__list">
-                        <li>
-                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
-                        </li>
-                        <li>
-                            Страна: <a href="#" class="profile-product__link">США</a>
-                        </li>
-                        <li>
-                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
-                                                                                                class="profile-product__link">Семейные</a>
-                        </li>
-                        <li>
-                            Серия: 202 серий
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="profile__item">
-                <a href="#" class="profile-product__img">
-                    <img src="../../static/img//products/7.jpg">
-                </a>
-                <div class="profile-product__navs">
-                    <a href="#" class="profile-product__name">Мстители Финал</a>
-                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
-                    <ul class="profile-product__list">
-                        <li>
-                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
-                        </li>
-                        <li>
-                            Страна: <a href="#" class="profile-product__link">США</a>
-                        </li>
-                        <li>
-                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
-                                                                                                class="profile-product__link">Семейные</a>
-                        </li>
-                        <li>
-                            Серия: 202 серий
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="profile__item">
-                <a href="#" class="profile-product__img">
-                    <img src="../../static/img//products/9.jpg">
-                </a>
-                <div class="profile-product__navs">
-                    <a href="#" class="profile-product__name">Холодное сердце 2</a>
-                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
-                    <ul class="profile-product__list">
-                        <li>
-                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
-                        </li>
-                        <li>
-                            Страна: <a href="#" class="profile-product__link">США</a>
-                        </li>
-                        <li>
-                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
-                                                                                                class="profile-product__link">Семейные</a>
-                        </li>
-                        <li>
-                            Серия: 202 серий
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="profile__item">
-                <a href="#" class="profile-product__img">
-                    <img src="../../static/img//products/10.jpeg">
-                </a>
-                <div class="profile-product__navs">
-                    <a href="#" class="profile-product__name">Джек покоритель Великанов</a>
-                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
-                    <ul class="profile-product__list">
-                        <li>
-                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
-                        </li>
-                        <li>
-                            Страна: <a href="#" class="profile-product__link">США</a>
-                        </li>
-                        <li>
-                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
-                                                                                                class="profile-product__link">Семейные</a>
-                        </li>
-                        <li>
-                            Серия: 202 серий
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="profile__item">
-                <a href="#" class="profile-product__img">
-                    <img src="../../static/img//products/13.jpg">
-                </a>
-                <div class="profile-product__navs">
-                    <a href="#" class="profile-product__name">Тор: Рагнарек</a>
-                    <p class="profile-product__time">5 октября 2021 / 20:47</p>
-                    <ul class="profile-product__list">
-                        <li>
-                            Год выпуска: <a href="#" class="profile-product__link">2017</a>
-                        </li>
-                        <li>
-                            Страна: <a href="#" class="profile-product__link">США</a>
-                        </li>
-                        <li>
-                            Жанры: <a href="#" class="profile-product__link">Мультфильмы</a> <a href="#"
-                                                                                                class="profile-product__link">Семейные</a>
-                        </li>
-                        <li>
-                            Серия: 202 серий
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
         </div>
     </div>

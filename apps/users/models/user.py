@@ -1,9 +1,10 @@
 from datetime import datetime
 
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin, AbstractUser
+from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
-from django.db.models import CharField, EmailField, BooleanField, DateTimeField, ImageField
+from django.db.models import CharField, EmailField, BooleanField, DateTimeField, ImageField, ForeignKey, CASCADE, \
+    ManyToManyField
 from django.utils.translation import gettext_lazy as _
 
 from apps.shared.models import CustomUserManager
