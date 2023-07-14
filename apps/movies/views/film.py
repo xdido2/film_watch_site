@@ -25,12 +25,13 @@ def film_detail_view(request, slug):
     suggest_movies = Movie.objects.filter(vote__gt=6.0, poster__isnull=False)[:4]
     movie_id = movie.id
     user = request.user
-    if not History.objects.filter(user_id=user.pk, movie_id=movie_id).exists():
+    if user.id:
+        if not History.objects.filter(user_id=user.pk, movie_id=movie_id).exists():
+            history = History.objects.create(user_id=user.pk, movie_id=movie_id)
+            history.save()
+        History.objects.filter(user_id=user.pk, movie_id=movie_id).delete()
         history = History.objects.create(user_id=user.pk, movie_id=movie_id)
         history.save()
-    History.objects.filter(user_id=user.pk, movie_id=movie_id).delete()
-    history = History.objects.create(user_id=user.pk, movie_id=movie_id)
-    history.save()
 
     context = {
         'movie': movie,
