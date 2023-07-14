@@ -32,7 +32,13 @@
                 <div class="product__body-container">
 
                     <div class="product__container-head">
-                        <img src="../../../static/img/products/12.jpg" alt="" class="product__img-mobile">
+                        {% if movie.poster %}
+                            <img src="https://image.tmdb.org/t/p/original/{{ movie.poster }}"
+                                 class="product__img-mobile">
+
+                        {% else %}
+                            <img src="{% static 'img/products/No_image_poster.png' %}" class="product__img-mobile">
+                        {% endif %}
                     </div>
 
                     <div class="product__container-body">
