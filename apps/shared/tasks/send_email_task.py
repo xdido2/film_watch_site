@@ -27,7 +27,7 @@ def send_email(protocol, domain, email, type_):
         send_mail(subject, message, from_email, recipient_list)
 
     elif type_ == 'forgot_password':
-        message = render_to_string('films/auth/activate-account-for-forgot-password.html', {
+        message = render_to_string('email/activate-account-for-forgot-password.html', {
             'user': user,
             'protocol': protocol,
             'domain': domain,

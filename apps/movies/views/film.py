@@ -11,6 +11,7 @@ from apps.movies.models.movie import Movie, Genre
 
 def film_list_view(request):
     movies = Movie.objects.all()
+    last_comments = Comment.objects.all()[:2]
     genres = Genre.objects.all()
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
     p = Paginator(movies, 15)
@@ -23,6 +24,7 @@ def film_list_view(request):
 
     context = {
         'slider_movies': slider_movies,
+        'last_comments': last_comments,
         'genres': genres,
         'page_obj': page_obj,
     }
@@ -31,6 +33,7 @@ def film_list_view(request):
 
 def film_detail_view(request, slug):
     movie = get_object_or_404(Movie, slug_link=slug)
+    last_comments = Comment.objects.all()[:2]
     comments = Comment.objects.filter(movie=movie)
     suggest_movies = Movie.objects.filter(vote__gt=6.0, poster__isnull=False)[:4]
     is_favourite = False
@@ -56,6 +59,7 @@ def film_detail_view(request, slug):
 
     context = {
         'movie': movie,
+        'last_comments': last_comments,
         'suggest': suggest_movies,
         'comments': comments,
         'is_favourite': is_favourite,

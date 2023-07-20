@@ -142,7 +142,87 @@
 {% block main_content %}{% endblock %}
 
 
-{% block main_footer %}{% endblock %}
+<footer class="footer">
+    <div class="container">
+        <div class="footer__inner">
+
+            <div class="footer__item">
+                <h1 class="footer__title">Основные разделы</h1>
+
+                <!-- Footer Menu -->
+                <ul class="footer__menu">
+                    <li>
+                        <a href="{% url 'film-list' %}" class="footer__link">Главная</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Новинки</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Стол Заказов</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Помощь</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Конакты</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer__item">
+                <h1 class="footer__title">Последние коментарии</h1>
+                {% for comment in last_comments %}
+                    <div class="footer__product">
+                        <a href="{% url 'film-detail' slug=comment.movie.slug_link%}" class="footer__product-img">
+                            <img src="https://image.tmdb.org/t/p/original/{{ comment.movie.poster }}">
+                        </a>
+                        <div class="footer__product-navs">
+                            <div class="footer__product-inner">
+                                <a href="{% url 'film-detail' slug=comment.movie.slug_link %}"
+                                   class="footer__product-name">{{ comment.movie.ru_title }}</a>
+                                <p class="footer__product-time">{{ comment.created_at|time:"H:i" }}</p>
+                            </div>
+                            <p class="footer__product-user">{{ comment.user.username }}</p>
+                            <p class="footer__product-text">{{ comment.content|truncatechars:100 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="footer__item">
+                <h1 class="footer__title">Следите за нами</h1>
+                <ul class="footer__flex-menu">
+                    <li>
+                        <a href="#" class="footer__link">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Footer Logo -->
+                <a href="{% url 'film-list' %}" class="footer__logo">
+                    Dido Cinema
+                    <span>online cinema</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
 <footer class="mobile-footer">
     <div class="main__container">
         <ul class="mobile-footer__menu">

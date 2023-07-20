@@ -9,10 +9,11 @@ from apps.users.forms.reset_password import ResetPasswordEmail
 def forgot_pass_send_email(request):
     context = {}
     domain = get_current_site(request).domain
+    protocol = request.scheme
     if request.method == 'POST':
         forms = ResetPasswordEmail(request.POST)
         if forms.is_valid():
-            send_email.delay(domain, forms.data.get('email'), type_='forgot_password')
+            send_email.delay(protocol, domain, forms.data.get('email'), type_='forgot_password')
             return redirect('login')
         else:
             context['errors'] = forms.errors

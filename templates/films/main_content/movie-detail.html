@@ -59,7 +59,7 @@
                         <div class="product__body-content">
                             <ul class="product__menu">
                                 <li>
-                                    Год выпуска: <a href="#">{{ movie.release_date }}</a>
+                                    Год выпуска: <a href="#">{{ movie.release_date|slice:":4" }}</a>
                                 </li>
                                 <li>
                                     Жанры:
@@ -176,12 +176,13 @@
         <div class="reccomend__products-grid">
             {% for suggest in suggest %}
                 <div class="content__product">
-                    <a href="{% url 'film-detail' slug=suggest.slug_link %}" class="content__product-img reccomend__product-img">
+                    <a href="{% url 'film-detail' slug=suggest.slug_link %}"
+                       class="content__product-img reccomend__product-img">
                         <img src="https://image.tmdb.org/t/p/original/{{ suggest.poster }}">
                         <i class="fas fa-play"></i>
                     </a>
 
-                    <a href="#" class="content__product-name">{{ suggest.ru_title }}</a>
+                    <a href="{% url 'film-detail' slug=suggest.slug_link %}" class="content__product-name">{{ suggest.ru_title }}</a>
 
                     <ul class="content__product-menu">
                         <li>
@@ -232,9 +233,15 @@
                             placeholder="Add your comments here" name="content"></textarea>
 
                     <div class="flex justify-between mt-2">
-                        <button class="h-12 w-[150px] bg-blue-400 text-sm text-white rounded-lg transition-all cursor-pointer hover:bg-blue-600">
-                            Submit comment
-                        </button>
+                        {% if user.is_authenticated %}
+                            <button class="h-12 w-[150px] bg-blue-400 text-sm text-white rounded-lg transition-all cursor-pointer hover:bg-blue-600">
+                                Submit comment
+                            </button>
+                        {% else %}
+                            <h class="h-12 w-[150px] bg-blue-400 text-sm text-white rounded-lg transition-all cursor-pointer hover:bg-blue-600">
+                                Register for submit
+                            </h>
+                        {% endif %}
                         <p class="text-sm text-blue-900 ">Enter atleast 300 characters</p>
                     </div>
                 </div>
@@ -248,7 +255,7 @@
                         <div class="comment__body">
                             <div class="product__flex">
                                 <h1 class="comment__username">{{ comment.user.username }}</h1>
-                                <p class="product__time">{{ comment.created_at|date:"d F Y / H:m" }}</p>
+                                <p class="product__time">{{ comment.created_at|date:"d F Y / H:i" }}</p>
                             </div>
                             <p class="comment__txt">
                                 {{ comment.content }}
@@ -263,104 +270,3 @@
 
 {% endblock %}
 
-{% block main_footer %}
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__inner">
-
-                <div class="footer__item">
-                    <h1 class="footer__title">Основные разделы</h1>
-
-                    <!-- Footer Menu -->
-                    <ul class="footer__menu">
-                        <li>
-                            <a href="{% url 'film-list' %}" class="footer__link">Главная</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer__link">Новинки</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer__link">Стол Заказов</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer__link">Помощь</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer__link">Конакты</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer__item">
-                    <h1 class="footer__title">Последние коментарии</h1>
-                    <div class="footer__product">
-                        <a href="#" class="footer__product-img">
-                            <img src="{% static 'img/products/13.jpg' %}">
-                        </a>
-                        <div class="footer__product-navs">
-                            <div class="footer__product-inner">
-                                <a href="#" class="footer__product-name">Тор: Рагнарёк</a>
-                                <p class="footer__product-time">17:13</p>
-                            </div>
-                            <p class="footer__product-user">Don Man</p>
-                            <p class="footer__product-text">Сначала вроде бы ничего такой, а потом все окончательно
-                                испортилось...</p>
-                        </div>
-                    </div>
-
-                    <div class="footer__product">
-                        <a href="#" class="footer__product-img">
-                            <img src="{% static 'img/products/6.jpg' %}">
-                        </a>
-                        <div class="footer__product-navs">
-                            <div class="footer__product-inner">
-                                <a href="#" class="footer__product-name">Человек-Паук: Вдали от дома</a>
-                                <p class="footer__product-time">10:48</p>
-                            </div>
-                            <p class="footer__product-user">Leno4ka</p>
-                            <p class="footer__product-text">Все говорили что фильм не очень, а мне очень даже
-                                понравился.
-                                Особенно...</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer__item">
-                    <h1 class="footer__title">Следите за нами</h1>
-                    <ul class="footer__flex-menu">
-                        <li>
-                            <a href="#" class="footer__link">
-                                <i class="fab fa-vk"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer__link">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer__link">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer__link">
-                                <i class="fab fa-telegram-plane"></i>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <!-- Footer Logo -->
-                    <a href="{% url 'film-list' %}" class="footer__logo">
-                        Dido Cinema
-                        <span>online cinema</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Mobile Footer -->
-
-{% endblock %}
