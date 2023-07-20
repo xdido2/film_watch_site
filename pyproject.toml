@@ -45,6 +45,7 @@ pytils = "^0.4.1"
 django-storages = "^1.13.2"
 urllib3 = "1.25.4"
 boto3 = "^1.28.2"
+django-filter = "^23.2"
 
 [tool.poetry.dev-dependencies]
 

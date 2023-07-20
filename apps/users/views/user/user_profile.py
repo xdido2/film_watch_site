@@ -1,7 +1,7 @@
 from django.core.files.storage import default_storage
 from django.shortcuts import render
 
-from apps.users.models.history import History
+from apps.movies.models.history import History
 
 
 def user_profile_view(request):

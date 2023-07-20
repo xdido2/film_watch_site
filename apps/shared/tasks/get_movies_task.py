@@ -25,23 +25,6 @@ batch_size = 10
 
 
 @shared_task
-def get_genres_from_api():
-    from apps.movies.models.movie import Genre
-
-    url = "https://api.themoviedb.org/3/genre/movie/list?language=ru"
-    response = requests.get(url, headers=headers).json()
-    genres = response.get('genres', [])
-    existing_genres = Genre.objects.filter(name__in=[genre['name'] for genre in genres])
-    existing_genre_names = set(genre.name for genre in existing_genres)
-    new_genres = [
-        Genre(id=genre['id'], name=genre['name'])
-        for genre in genres
-        if genre['name'] not in existing_genre_names
-    ]
-    Genre.objects.bulk_create(new_genres)
-
-
-@shared_task
 def get_movies_from_api():
     from apps.movies.models.movie import Movie
 

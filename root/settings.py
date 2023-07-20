@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # Third party apps
     'django_elasticsearch_dsl',
     'storages',
+    'django_filters',
 
 ]
 
@@ -92,7 +93,7 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'en-US'
 
 TIME_ZONE = 'Asia/Tashkent'
 
@@ -119,7 +120,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
-CELERY_BROKER_URL = f'amqp://{os.getenv("RABBITMQ_USER")}:{os.getenv("RABBITMQ_PASSWORD")}@localhost/'
+CELERY_BROKER_URL = f'amqp://{os.getenv("RABBITMQ_USER")}:{os.getenv("RABBITMQ_PASSWORD")}@localhost:5672/'
 
 CELERY_TIMEZONE = 'Asia/Tashkent'
 CELERY_ENABLE_UTC = False

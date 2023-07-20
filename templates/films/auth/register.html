@@ -4,6 +4,10 @@
     <div class="wrapper">
         <div class="container">
             <h1 class="title center">Добро пожаловать в DIDO CINEMA</h1>
+            {% for key, value in errors.items %}
+                <div class="p-2 mb-5 bg-danger text-white">{{ value }}</div>
+
+            {% endfor %}
             <form method="post" action="{% url 'register' %}" class="form__control">
                 {% csrf_token %}
                 <input type="text" class="input-dark" placeholder="Логин" name="username">

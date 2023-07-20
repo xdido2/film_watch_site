@@ -12,15 +12,25 @@ class RegisterForm(ModelForm):
         model = User
         fields = ('username', 'email', 'password')
 
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        if username and self._meta.model.objects.filter(username=username).exists():
+            self._update_errors(
+                ValidationError(
+                    {
+                        "username": 'Пользователь с таким никнеймом уже есть!'
+                    }
+                )
+            )
+        return username
+
     def clean_email(self):
         email = self.cleaned_data.get("email")
         if email and self._meta.model.objects.filter(email__iexact=email).exists():
             self._update_errors(
                 ValidationError(
                     {
-                        "email": self.instance.unique_error_message(
-                            self._meta.model, ["email"]
-                        )
+                        "email": 'Пользователь с такой почтой уже есть!'
                     }
                 )
             )

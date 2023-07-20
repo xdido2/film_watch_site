@@ -18,9 +18,16 @@
                     <img src="{% static 'img/products/No_image_poster.png' %}" class="product__img">
                 {% endif %}
 
-
                 <div class="product__nav-images">
-                    <button class="btn-product__show">Добавить в закладки</button>
+                    {% if is_favourite %}
+                        <a href="{% url 'favourite_post' movie_id=movie.id %}" class="btn-product__show">
+                            <button class="btn-product__show">Добавлен в избранные</button>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'favourite_post' movie_id=movie.id %}" class="btn-product__show">
+                            <button class="btn-product__show">Добавить в избранные</button>
+                        </a>
+                    {% endif %}
                 </div>
 
                 <div class="product__ad">
@@ -84,8 +91,16 @@
                         <button class="btn"><i class="fas fa-play"></i>Смотреть</button>
                     </div>
                     <div class="product__container-body float-right">
-                        <button class="btn__squard"><i class="fas fa-paperclip"></i></button>
-                        <button class="btn__squard active-red"><i class="fas fa-heart"></i></button>
+                        {% if is_favourite %}
+                            <a href="{% url 'favourite_post' movie_id=movie.id %}">
+                                <button class="btn__squard active-red"><i class="fas fa-heart"></i></button>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'favourite_post' movie_id=movie.id %}">
+                                <button class="btn__squard "><i class="fas fa-heart"></i></button>
+                            </a>
+                        {% endif %}
+
                     </div>
                 </div>
 
@@ -161,7 +176,7 @@
         <div class="reccomend__products-grid">
             {% for suggest in suggest %}
                 <div class="content__product">
-                    <a href="#" class="content__product-img reccomend__product-img">
+                    <a href="{% url 'film-detail' slug=suggest.slug_link %}" class="content__product-img reccomend__product-img">
                         <img src="https://image.tmdb.org/t/p/original/{{ suggest.poster }}">
                         <i class="fas fa-play"></i>
                     </a>
@@ -207,74 +222,42 @@
 
         <!-- Comments -->
         <div class="product__commnets">
-            <div class="product__comment-item">
-                <div class="comment__navs">
-                    <img src="../../../static/img/default/avatar.jpg" alt="" class="comment__img">
-                    <div class="product__flex">
-                        <button class="product__btn"><span class="cl-red">-</span> 2</button>
-                        <button class="product__btn"><span class="cl-green">+</span> 8</button>
-                    </div>
-                </div>
-                <div class="comment__body">
-                    <div class="product__flex">
-                        <h1 class="comment__username">Elena</h1>
-                        <p class="product__time">5 октября 2021 / 20:47</p>
-                    </div>
-                    <p class="comment__txt">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat tenetur ab labore
-                        voluptates, earum praesentium distinctio odit quas, placeat quaerat delectus, ad natus
-                        aspernatur officiis ut id. Beatae atque nihil nisi quam harum reprehenderit quos a
-                        cupiditate ducimus, soluta sit ullam dolore! Totam, molestias dolorum? Suscipit aperiam
-                        velit iste nisi.
-                    </p>
-                </div>
-            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="h-40 px-1 w-[360px] rounded-[12px] bg-blue-1 p-1">
+                    <p class="text-xl font-semibold text-blue-900 cursor-pointer transition-all hover:text-black">
+                        Add Comment/Questions</p>
+                    <textarea
+                            class="h-30 px-1 w-[360px] rounded-[12px] bg-blue-1 p-1 mt-5 outline-none border-black-300 w-full resize-none border rounded-lg placeholder:text-sm"
+                            placeholder="Add your comments here" name="content"></textarea>
 
-            <div class="product__comment-item">
-                <div class="comment__navs">
-                    <img src="../../../static/img/default/avatar.jpg" alt="" class="comment__img">
-                    <div class="product__flex">
-                        <button class="product__btn"><span class="cl-red">-</span> 2</button>
-                        <button class="product__btn"><span class="cl-green">+</span> 8</button>
+                    <div class="flex justify-between mt-2">
+                        <button class="h-12 w-[150px] bg-blue-400 text-sm text-white rounded-lg transition-all cursor-pointer hover:bg-blue-600">
+                            Submit comment
+                        </button>
+                        <p class="text-sm text-blue-900 ">Enter atleast 300 characters</p>
                     </div>
                 </div>
-                <div class="comment__body">
-                    <div class="product__flex">
-                        <h1 class="comment__username">Максим</h1>
-                        <p class="product__time">5 октября 2021 / 20:47</p>
+            </form>
+            {% if comments %}
+                {% for comment in comments %}
+                    <div class="product__comment-item">
+                        <div class="comment__navs">
+                            <img src="{{ comment.user.avatar.url }}" alt="" class="comment__img">
+                        </div>
+                        <div class="comment__body">
+                            <div class="product__flex">
+                                <h1 class="comment__username">{{ comment.user.username }}</h1>
+                                <p class="product__time">{{ comment.created_at|date:"d F Y / H:m" }}</p>
+                            </div>
+                            <p class="comment__txt">
+                                {{ comment.content }}
+                            </p>
+                        </div>
                     </div>
-                    <p class="comment__txt">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat tenetur ab labore
-                        voluptates, earum praesentium distinctio odit quas, placeat quaerat delectus, ad natus
-                        aspernatur officiis ut id. Beatae atque nihil nisi quam harum reprehenderit quos a
-                        cupiditate ducimus, soluta sit ullam dolore! Totam, molestias dolorum? Suscipit aperiam
-                        velit iste nisi.
-                    </p>
-                </div>
-            </div>
+                {% endfor %}
+            {% endif %}
 
-            <div class="product__comment-item">
-                <div class="comment__navs">
-                    <img src="../../../static/img/default/avatar.jpg" alt="" class="comment__img">
-                    <div class="product__flex">
-                        <button class="product__btn"><span class="cl-red">-</span> 2</button>
-                        <button class="product__btn"><span class="cl-green">+</span> 8</button>
-                    </div>
-                </div>
-                <div class="comment__body">
-                    <div class="product__flex">
-                        <h1 class="comment__username">Александр</h1>
-                        <p class="product__time">5 октября 2021 / 20:47</p>
-                    </div>
-                    <p class="comment__txt">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat tenetur ab labore
-                        voluptates, earum praesentium distinctio odit quas, placeat quaerat delectus, ad natus
-                        aspernatur officiis ut id. Beatae atque nihil nisi quam harum reprehenderit quos a
-                        cupiditate ducimus, soluta sit ullam dolore! Totam, molestias dolorum? Suscipit aperiam
-                        velit iste nisi.
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
 

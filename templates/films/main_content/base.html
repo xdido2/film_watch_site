@@ -35,7 +35,8 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Dido Cinema</title>
 </head>
 <body>
@@ -146,12 +147,12 @@
     <div class="main__container">
         <ul class="mobile-footer__menu">
             <li>
-                <a href="{% url 'film-list' %}" class="mobile-footer__link active">
+                <a href="{% url 'film-list' %}" class="mobile-footer__link">
                     <i class="fas fa-home"></i>
                 </a>
             </li>
             <li>
-                <a href="#" class="mobile-footer__link">
+                <a href="{% url 'favourite_list' %}" class="mobile-footer__link">
                     <i class="fas fa-heart"></i>
                 </a>
             </li>
@@ -187,5 +188,7 @@
 <script src="{% static 'js/slider.js' %}"></script>
 <!-- Content JS -->
 <script src="{% static 'js/content.js' %}"></script>
+<script type="text/javascript" src="https://cdn.tailwindcss.com/3.0.12"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 </body>
 </html>

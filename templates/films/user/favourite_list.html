@@ -1,0 +1,221 @@
+{% extends 'films/main_content/base.html' %}
+{% load static %}
+
+{% block main_content %}
+
+    <div class="main__menu" id="main__menu">
+        <div class="main__container">
+            <ul class="main__menu-list">
+                <li>
+                    <a href="#" class="main__menu-link">Главная</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Категорий</a>
+                    <span class="is__parent" id="is__parent"></span>
+                    <ul class="main__dropdown" id="main__dropdown">
+                        <li>
+                            <a href="#" class="main__dropdown-link">Биография</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Боевики</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Военные</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Детективы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Документальные</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Драмы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Исторические</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Комедии</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Криминал</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Мелодрамы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Мультфильмы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Прикльючения</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Семейные</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Триллеры</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Ужасы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="main__dropdown-link">Фантастика</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Новинки</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Стол Заказов</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Помощь</a>
+                </li>
+                <li>
+                    <a href="#" class="main__menu-link">Конакты</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- Content -->
+    <div class="main__container">
+        <div class="content">
+            <!-- Content Navs -->
+
+            <!-- Content Body -->
+            <div class="content__body">
+                <div class="content__inner">
+
+
+                    <div class="content__item">
+                        <div class="title">
+                            <h1>Мы соц.сетях</h1>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-vk"></i>
+                            </a>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content__products">
+                    {% for movie in favourite_list %}
+                        <div class="content__product">
+                            <a href="{% url 'film-detail' slug=movie.slug_link %}" class="content__product-img">
+
+
+                                {% if movie.poster %}
+                                    <img src="https://image.tmdb.org/t/p/original/{{ movie.poster }}"
+                                         class="product__img">
+
+                                {% else %}
+                                    <img src="{% static 'img/products/No_image_poster.png' %}" class="product__img">
+                                {% endif %}
+
+                                <i class="fas fa-play"></i>
+                            </a>
+
+                            <a href="{% url 'film-detail' slug=movie.slug_link %}"
+                               class="content__product-name">{{ movie.ru_title }}</a>
+
+                            <ul class="content__product-menu">
+                                <li>
+                                    <a href="#" class="content__product-category">{{ movie.genre.all.1.name }}</a>
+                                </li>
+                            </ul>
+
+                            <!-- Stars -->
+                            <ul class="content__product-stars">
+                                <li class="active">
+                                    {{ movie.vote }}/10
+                                </li>
+                            </ul>
+
+                            <div class="content__product-navs">
+                                <button class="btn-primary">FullHD</button>
+                                <button class="btn-primary">Дуб.</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="main__container">
+        <ul class="pagination">
+            <li>
+                <a href="#" class="pagination__link pagination__arrow">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link">
+                    1
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    13
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    14
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link pagination__link-active">
+                    15
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link">
+                    16
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    17
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pagination__link">
+                    94
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="pagination__link pagination__arrow">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

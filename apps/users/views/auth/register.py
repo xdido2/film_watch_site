@@ -2,7 +2,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 
 from apps.shared.decorators import anonymous_required
-from apps.shared.utils.send_to_email import send_email
+from apps.shared.tasks.send_email_task import send_email
 from apps.users.forms.register import RegisterForm
 
 
@@ -14,8 +14,8 @@ def register_view(request):
     if request.method == 'POST':
         forms = RegisterForm(request.POST)
         if forms.is_valid():
-            # send_email.delay(protocol, domain, forms.data.get('email'), type_='register')
             forms.save()
+            send_email.delay(protocol, domain, forms.data.get('email'), type_='register')
             return redirect('login')
         else:
             context['errors'] = forms.errors

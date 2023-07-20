@@ -1,6 +1,8 @@
 from autoslug import AutoSlugField
 from django.db.models import ManyToManyField, TextField, FloatField, PositiveIntegerField
 from django.db.models import Model, CharField
+from django.shortcuts import redirect
+from django.urls import reverse
 
 
 class Movie(Model):
@@ -20,11 +22,15 @@ class Movie(Model):
     kinopoisk_id = CharField(max_length=25)
     genre = ManyToManyField('movies.Genre', 'genre', blank=True)
     country = CharField(max_length=255, null=True, blank=True)
+    favourite = ManyToManyField('users.User', blank=True)
     slug_link = AutoSlugField(populate_from='ru_title',
                               unique_with=['ru_title'])
 
     class Meta:
         unique_together = ['ru_title', 'orig_title']
+
+    def get_absolute_url(self):
+        return reverse('film-detail', args=[str(self.slug_link)])
 
     def __str__(self):
         return self.ru_title

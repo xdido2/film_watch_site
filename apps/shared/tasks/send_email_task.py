@@ -5,19 +5,19 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
-from root.settings import EMAIL_HOST_USER
 from apps.users.models.user import User
 from apps.users.token_gen import account_activation_token
+from root.settings import EMAIL_HOST_USER
 
 
 @shared_task
-def send_email(protocol, domain, email: str, type_):
+def send_email(protocol, domain, email, type_):
     user = get_object_or_404(User, email=email)
     subject = 'Activate your account'
     from_email = EMAIL_HOST_USER
     recipient_list = [email]
     if type_ == 'register':
-        message = render_to_string('films/auth/activate-account-for-register.html', {
+        message = render_to_string('email/activate-account-for-register.html', {
             'user': user.username,
             'protocol': protocol,
             'domain': domain,

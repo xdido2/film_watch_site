@@ -1,9 +1,9 @@
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect
 
-from apps.shared.utils.send_to_email import send_email
-from apps.users.forms.reset_password import ResetPasswordEmail
+from apps.shared.tasks.send_email_task import send_email
 from apps.users.forms.reset_password import ChangeProfilePassword
+from apps.users.forms.reset_password import ResetPasswordEmail
 
 
 def forgot_pass_send_email(request):
@@ -28,5 +28,3 @@ def change_profile_password(request):
         else:
             context['errors'] = forms.errors
     return render(request, 'films/user/user-profile.html', context)
-
-

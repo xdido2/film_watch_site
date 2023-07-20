@@ -115,54 +115,11 @@
 
                 <!-- Content Menu -->
                 <ul class="content__menu">
-                    <li>
-                        <a href="#" class="content__link active">Все</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Биография</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Боевики</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Военные</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Документальные</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Драмы</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Исторические</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Комедии</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Криминал</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Мелодрамы</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Мультфильмы</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Прикльючение</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Семейные</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Триллеры</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Ужасы</a>
-                    </li>
-                    <li>
-                        <a href="#" class="content__link">Фантастика</a>
-                    </li>
+                    {% for genre in genres %}
+                        <li>
+                            <a href="#" class="content__link">{{ genre.name }}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
 
                 <div class="title">
@@ -405,170 +362,151 @@
 
     <!-- Pagination -->
     <div class="main__container">
+        {#    {% if page_obj.has_other_pages %}#}
         <ul class="pagination">
-            <li>
-                <a href="#" class="pagination__link pagination__arrow">
-                    <i class="fas fa-angle-left"></i>
-                </a>
-            </li>
+            {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination__link pagination__arrow">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+            {% endif %}
 
-            <li>
-                <a href="#" class="pagination__link">
-                    1
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    13
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    14
-                </a>
-            </li>
 
-            <li>
-                <a href="#" class="pagination__link pagination__link-active">
-                    15
-                </a>
-            </li>
+            {% for page in page_obj.adjusted_elided_pages %}
+                {% if page_obj.is_ellipsis %}
+                    <li>
+                        <a href="?page={{ page }}" class="pagination__link">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% elif page_obj.number == page %}
+                    <li>
+                        <a href="" class="pagination__link pagination__link-active">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% if page == page_obj.paginator.ELLIPSIS %}#{% else %}?page={{ page }}{% endif %}"
+                           class="pagination__link">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
 
-            <li>
-                <a href="#" class="pagination__link">
-                    16
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    17
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    94
-                </a>
-            </li>
+            {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}" class="pagination__link pagination__arrow">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+            {% endif %}
 
-            <li>
-                <a href="#" class="pagination__link pagination__arrow">
-                    <i class="fas fa-angle-right"></i>
-                </a>
-            </li>
         </ul>
     </div>
-
 
 
 {% endblock %}
 
 {% block main_footer %}
     <!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer__inner">
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
 
-            <div class="footer__item">
-                <h1 class="footer__title">Основные разделы</h1>
+                <div class="footer__item">
+                    <h1 class="footer__title">Основные разделы</h1>
 
-                <!-- Footer Menu -->
-                <ul class="footer__menu">
-                    <li>
-                        <a href="{% url 'film-list' %}" class="footer__link">Главная</a>
-                    </li>
-                    <li>
-                        <a href="#" class="footer__link">Новинки</a>
-                    </li>
-                    <li>
-                        <a href="#" class="footer__link">Стол Заказов</a>
-                    </li>
-                    <li>
-                        <a href="#" class="footer__link">Помощь</a>
-                    </li>
-                    <li>
-                        <a href="#" class="footer__link">Конакты</a>
-                    </li>
-                </ul>
-            </div>
+                    <!-- Footer Menu -->
+                    <ul class="footer__menu">
+                        <li>
+                            <a href="{% url 'film-list' %}" class="footer__link">Главная</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">Новинки</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">Стол Заказов</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">Помощь</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">Конакты</a>
+                        </li>
+                    </ul>
+                </div>
 
-            <div class="footer__item">
-                <h1 class="footer__title">Последние коментарии</h1>
-                <div class="footer__product">
-                    <a href="#" class="footer__product-img">
-                        <img src="{% static 'img/products/13.jpg' %}">
-                    </a>
-                    <div class="footer__product-navs">
-                        <div class="footer__product-inner">
-                            <a href="#" class="footer__product-name">Тор: Рагнарёк</a>
-                            <p class="footer__product-time">17:13</p>
+                <div class="footer__item">
+                    <h1 class="footer__title">Последние коментарии</h1>
+                    <div class="footer__product">
+                        <a href="#" class="footer__product-img">
+                            <img src="{% static 'img/products/13.jpg' %}">
+                        </a>
+                        <div class="footer__product-navs">
+                            <div class="footer__product-inner">
+                                <a href="#" class="footer__product-name">Тор: Рагнарёк</a>
+                                <p class="footer__product-time">17:13</p>
+                            </div>
+                            <p class="footer__product-user">Don Man</p>
+                            <p class="footer__product-text">Сначала вроде бы ничего такой, а потом все окончательно
+                                испортилось...</p>
                         </div>
-                        <p class="footer__product-user">Don Man</p>
-                        <p class="footer__product-text">Сначала вроде бы ничего такой, а потом все окончательно
-                            испортилось...</p>
+                    </div>
+
+                    <div class="footer__product">
+                        <a href="#" class="footer__product-img">
+                            <img src="{% static 'img/products/6.jpg' %}">
+                        </a>
+                        <div class="footer__product-navs">
+                            <div class="footer__product-inner">
+                                <a href="#" class="footer__product-name">Человек-Паук: Вдали от дома</a>
+                                <p class="footer__product-time">10:48</p>
+                            </div>
+                            <p class="footer__product-user">Leno4ka</p>
+                            <p class="footer__product-text">Все говорили что фильм не очень, а мне очень даже
+                                понравился.
+                                Особенно...</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="footer__product">
-                    <a href="#" class="footer__product-img">
-                        <img src="{% static 'img/products/6.jpg' %}">
+                <div class="footer__item">
+                    <h1 class="footer__title">Следите за нами</h1>
+                    <ul class="footer__flex-menu">
+                        <li>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-vk"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Footer Logo -->
+                    <a href="{% url 'film-list' %}" class="footer__logo">
+                        Dido Cinema
+                        <span>online cinema</span>
                     </a>
-                    <div class="footer__product-navs">
-                        <div class="footer__product-inner">
-                            <a href="#" class="footer__product-name">Человек-Паук: Вдали от дома</a>
-                            <p class="footer__product-time">10:48</p>
-                        </div>
-                        <p class="footer__product-user">Leno4ka</p>
-                        <p class="footer__product-text">Все говорили что фильм не очень, а мне очень даже
-                            понравился.
-                            Особенно...</p>
-                    </div>
                 </div>
-            </div>
-
-            <div class="footer__item">
-                <h1 class="footer__title">Следите за нами</h1>
-                <ul class="footer__flex-menu">
-                    <li>
-                        <a href="#" class="footer__link">
-                            <i class="fab fa-vk"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="footer__link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="footer__link">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="footer__link">
-                            <i class="fab fa-telegram-plane"></i>
-                        </a>
-                    </li>
-                </ul>
-
-                <!-- Footer Logo -->
-                <a href="{% url 'film-list' %}" class="footer__logo">
-                    Dido Cinema
-                    <span>online cinema</span>
-                </a>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
 
 {% endblock %}
