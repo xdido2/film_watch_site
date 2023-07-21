@@ -106,25 +106,25 @@
         <form method="get">
             <h1 class="filter__title">Жанры</h1>
             <div class="filter__container">
-                <a href="#" class="filter__item active">Боевики</a>
-                <a href="#" class="filter__item">Прикльючение</a>
-                <a href="#" class="filter__item">Фантастика</a>
-                <a href="#" class="filter__item">Детективы</a>
+                {% for genre in genres %}
+                    <a href="{% url 'genre-list' slug=genre.slug_link %}"
+                       class="filter__item active">{{ genre.name|title }}</a>
+                {% endfor %}
             </div>
 
             <h1 class="filter__title">Сортировка</h1>
             <div class="filter__container">
-                <a href="#" class="filter__item">Новинки</a>
-                <a href="#" class="filter__item">Популярные</a>
-                <a href="#" class="filter__item">Последние</a>
+                <a href="{% url 'new_films-list' %}" class="filter__item">Новинки</a>
+                <a href="{% url 'popular_films-list' %}" class="filter__item">Популярные</a>
+                <a href="{% url 'film-list' %}" class="filter__item">Последние</a>
             </div>
 
             <h1 class="filter__title">Год выпуска:</h1>
             <div class="filter__container">
-                <a href="#" class="filter__item">1995</a>
-                <a href="#" class="filter__item">1996</a>
-                <a href="#" class="filter__item">1997</a>
-                <a href="#" class="filter__item">1998</a>
+                {% for release_year in release_years %}
+                    <a href="{% url 'release_year-list' year=release_year.year %}"
+                       class="filter__item">{{ release_year.year }}</a>
+                {% endfor %}
             </div>
         </form>
     </div>
@@ -136,7 +136,7 @@
     <div class="main__container">
         <ul class="main__menu-list">
             <li>
-                <a href="#" class="main__menu-link">Главная</a>
+                <a href="{% url 'film-list' %}" class="main__menu-link">Главная</a>
             </li>
             <li>
                 <a href="#" class="main__menu-link">Категорий</a>
@@ -146,6 +146,18 @@
                         <li>
                             <a href="{% url 'genre-list' slug=genre.slug_link %}"
                                class="main__dropdown-link">{{ genre.name|title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="main__menu-link">По году</a>
+                <span class="is__parent" id="is__parent"></span>
+                <ul class="main__dropdown" id="main__dropdown">
+                    {% for release_year in release_years %}
+                        <li>
+                            <a href="{% url 'release_year-list' year=release_year.year %}"
+                               class="main__dropdown-link">{{ release_year.year }}</a>
                         </li>
                     {% endfor %}
                 </ul>

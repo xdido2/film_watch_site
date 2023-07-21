@@ -27,6 +27,7 @@ class Movie(Model):
 
     class Meta:
         unique_together = ['ru_title', 'orig_title']
+        ordering = ['-id']
 
     def get_absolute_url(self):
         return reverse('film-detail', args=[str(self.slug_link)])

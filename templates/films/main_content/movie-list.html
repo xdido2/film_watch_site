@@ -125,7 +125,7 @@
                             <div class="subtitle">
                                 <p class="subtitle-desc">Сортировка:</p>
                                 <button class="subtitle-btn">
-                                    <div class="subtitle-name">Новинки</div>
+                                    <div class="subtitle-name">Последние</div>
                                     <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>
 
                                     <div class="subtitle__dropdown">
@@ -134,7 +134,7 @@
                                                 <a href="{% url 'new_films-list' %}" class="sutitle__dropdown-link">Новинки</a>
                                             </li>
                                             <li>
-                                                <a href="{% url 'popular_films-list' %}" class="sutitle__dropdown-link">Популярные</a>
+                                                <a href="{% url 'popular_films-list' %}" class="sutitle__dropdown-link">Популярные(IMDB)</a>
                                             </li>
                                             <li>
                                                 <a href="{% url 'sort_a_z_films-list' %}"
@@ -146,7 +146,8 @@
                                                    class="sutitle__dropdown-link">От Я до А</a>
                                             </li>
                                             <li>
-                                                <a href="#" class="sutitle__dropdown-link">Последние</a>
+                                                <a href="{% url 'film-list' %}"
+                                                   class="sutitle__dropdown-link">Последние</a>
                                             </li>
                                         </ul>
                                     </div>
