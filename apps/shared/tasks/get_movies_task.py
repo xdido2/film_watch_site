@@ -5,6 +5,8 @@ import requests
 from celery import shared_task
 from dotenv import load_dotenv
 
+from apps.movies.models.movie import Movie, ReleaseYear
+
 load_dotenv()
 
 base_url_videocdn = 'https://videocdn.tv/api/movies'
@@ -29,8 +31,6 @@ retry_delay = 1
 
 @shared_task
 def get_movies_from_api():
-    from apps.movies.models.movie import Movie
-
     for i in range(last_page):
         content_videocdn = requests.get(f'{base_url_videocdn}?api_token={token_videocdn}&page={i}').json()
         for j in range(0, content_videocdn['per_page']):
@@ -67,6 +67,15 @@ def get_movies_from_api():
                 continue
             country = result_tmdb_movie_detail.get('production_countries', [])
             country_name = country[0]['name'] if country else ''
+
+            # Create and link the release year
+            release_year = int(result_tmdb.get('release_date', '')[:4])
+            existing_year = ReleaseYear.objects.filter(year=release_year).first()
+            if existing_year:
+                release_year_obj = existing_year
+            else:
+                release_year_obj = ReleaseYear.objects.create(year=release_year)
+
             movie = Movie(
                 id=result_tmdb.get('id'),
                 background_poster=result_tmdb.get('backdrop_path', ''),
@@ -77,7 +86,7 @@ def get_movies_from_api():
                 runtime=result_tmdb_movie_detail.get('runtime', 0),
                 vote=round(result_tmdb.get('vote_average', 0), 1),
                 vote_count=result_tmdb.get('vote_count', 0),
-                release_date=result_tmdb.get('release_date', ''),
+                release_year=release_year_obj,
                 iframe_src=result_videocdn['iframe_src'],
                 translate=result_videocdn['translations'][0].get('title', ''),
                 max_quality=result_videocdn['media'][0].get('max_quality'),

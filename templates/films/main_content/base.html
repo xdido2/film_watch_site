@@ -103,42 +103,69 @@
             <input type="text" name="q" placeholder="Поиск..." id="full-search__input">
             <button class="full__search-btn"><i class="fas fa-search"></i></button>
         </form>
+        <form method="get">
+            <h1 class="filter__title">Жанры</h1>
+            <div class="filter__container">
+                <a href="#" class="filter__item active">Боевики</a>
+                <a href="#" class="filter__item">Прикльючение</a>
+                <a href="#" class="filter__item">Фантастика</a>
+                <a href="#" class="filter__item">Детективы</a>
+            </div>
 
-        <h1 class="filter__title">Жанры</h1>
-        <div class="filter__container">
-            <a href="#" class="filter__item active">Боевики</a>
-            <a href="#" class="filter__item">Прикльючение</a>
-            <a href="#" class="filter__item">Фантастика</a>
-            <a href="#" class="filter__item">Детективы</a>
-        </div>
+            <h1 class="filter__title">Сортировка</h1>
+            <div class="filter__container">
+                <a href="#" class="filter__item">Новинки</a>
+                <a href="#" class="filter__item">Популярные</a>
+                <a href="#" class="filter__item">Последние</a>
+            </div>
 
-        <h1 class="filter__title">Сортировка</h1>
-        <div class="filter__container">
-            <a href="#" class="filter__item">Новинки</a>
-            <a href="#" class="filter__item">Популярные</a>
-            <a href="#" class="filter__item">Последние</a>
-        </div>
-
-        <h1 class="filter__title">Качество</h1>
-        <div class="filter__container">
-            <a href="#" class="filter__item">4K</a>
-            <a href="#" class="filter__item">FullHD</a>
-            <a href="#" class="filter__item">HD</a>
-            <a href="#" class="filter__item">HDRip</a>
-        </div>
-
-        <h1 class="filter__title">Год выпуска:</h1>
-        <div class="filter__container">
-            <a href="#" class="filter__item">1995</a>
-            <a href="#" class="filter__item">1996</a>
-            <a href="#" class="filter__item">1997</a>
-            <a href="#" class="filter__item">1998</a>
-        </div>
-
+            <h1 class="filter__title">Год выпуска:</h1>
+            <div class="filter__container">
+                <a href="#" class="filter__item">1995</a>
+                <a href="#" class="filter__item">1996</a>
+                <a href="#" class="filter__item">1997</a>
+                <a href="#" class="filter__item">1998</a>
+            </div>
+        </form>
     </div>
 </div>
 
 <!-- Main Menu -->
+
+<div class="main__menu" id="main__menu">
+    <div class="main__container">
+        <ul class="main__menu-list">
+            <li>
+                <a href="#" class="main__menu-link">Главная</a>
+            </li>
+            <li>
+                <a href="#" class="main__menu-link">Категорий</a>
+                <span class="is__parent" id="is__parent"></span>
+                <ul class="main__dropdown" id="main__dropdown">
+                    {% for genre in genres %}
+                        <li>
+                            <a href="{% url 'genre-list' slug=genre.slug_link %}"
+                               class="main__dropdown-link">{{ genre.name|title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="main__menu-link">Новинки</a>
+            </li>
+            <li>
+                <a href="#" class="main__menu-link">Стол Заказов</a>
+            </li>
+            <li>
+                <a href="#" class="main__menu-link">Помощь</a>
+            </li>
+            <li>
+                <a href="#" class="main__menu-link">Конакты</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 {% block main_content %}{% endblock %}
 
 
@@ -173,7 +200,7 @@
                 <h1 class="footer__title">Последние коментарии</h1>
                 {% for comment in last_comments %}
                     <div class="footer__product">
-                        <a href="{% url 'film-detail' slug=comment.movie.slug_link%}" class="footer__product-img">
+                        <a href="{% url 'film-detail' slug=comment.movie.slug_link %}" class="footer__product-img">
                             <img src="https://image.tmdb.org/t/p/original/{{ comment.movie.poster }}">
                         </a>
                         <div class="footer__product-navs">

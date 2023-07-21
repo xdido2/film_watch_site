@@ -59,12 +59,13 @@
                         <div class="product__body-content">
                             <ul class="product__menu">
                                 <li>
-                                    Год выпуска: <a href="#">{{ movie.release_date|slice:":4" }}</a>
+                                    Год выпуска: <a
+                                        href="{% url 'release_year-list' year=movie.release_year.year %}">{{ movie.release_year.year }}</a>
                                 </li>
                                 <li>
                                     Жанры:
                                     {% for genre in movie.genre.all|slice:":2" %}
-                                        <a href="#">{{ genre }}, </a>
+                                        <a href="{% url 'genre-list' slug=genre.slug_link %}">{{ genre }}, </a>
                                     {% endfor %}
                                 </li>
                             </ul>
@@ -182,7 +183,8 @@
                         <i class="fas fa-play"></i>
                     </a>
 
-                    <a href="{% url 'film-detail' slug=suggest.slug_link %}" class="content__product-name">{{ suggest.ru_title }}</a>
+                    <a href="{% url 'film-detail' slug=suggest.slug_link %}"
+                       class="content__product-name">{{ suggest.ru_title }}</a>
 
                     <ul class="content__product-menu">
                         <li>
@@ -218,7 +220,15 @@
                 <h1>Комментарии к фильму</h1>
                 <i class="fas fa-comment-alt"></i>
             </div>
-            <button class="btn-product__show btn-product">Добавить в закладки</button>
+            {% if is_favourite %}
+                <a href="{% url 'favourite_post' movie_id=movie.id %}" class="btn-product__show btn-product">
+                    <button class="btn-product__show btn-product">Добавлен в избранные</button>
+                </a>
+            {% else %}
+                <a href="{% url 'favourite_post' movie_id=movie.id %}" class="btn-product__show btn-product">
+                    <button class="btn-product__show btn-product">Добавить в избранные</button>
+                </a>
+            {% endif %}
         </div>
 
         <!-- Comments -->

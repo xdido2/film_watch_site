@@ -1,9 +1,18 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
+from apps.movies.models.comment import Comment
+from apps.movies.models.movie import Genre
+from apps.movies.models.movie import Movie
+
 
 def search_view(request):
     query = request.GET.get('q')
+    genres = Genre.objects.all()
+    last_comments = Comment.objects.all()[:2]
+    slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
+
+
     data = []
     if query == '':
         return redirect('film-list')
@@ -21,6 +30,9 @@ def search_view(request):
 
         context = {
             'total_count_movie': len(data),
+            'slider_movies': slider_movies,
+            'genres': genres,
+            'last_comments': last_comments,
             'page_obj': page_obj,
         }
         return render(request, 'films/main_content/search.html', context)

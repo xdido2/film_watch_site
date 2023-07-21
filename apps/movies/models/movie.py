@@ -1,7 +1,6 @@
 from autoslug import AutoSlugField
-from django.db.models import ManyToManyField, TextField, FloatField, PositiveIntegerField
+from django.db.models import ManyToManyField, TextField, FloatField, PositiveIntegerField, ForeignKey, CASCADE
 from django.db.models import Model, CharField
-from django.shortcuts import redirect
 from django.urls import reverse
 
 
@@ -14,7 +13,7 @@ class Movie(Model):
     runtime = PositiveIntegerField()
     vote = FloatField()
     vote_count = PositiveIntegerField()
-    release_date = CharField(max_length=15, null=True, blank=True)
+    release_year = ForeignKey('ReleaseYear', on_delete=CASCADE)
     iframe_src = CharField(max_length=255, unique=True)
     translate = CharField(max_length=255, null=True, blank=True)
     max_quality = PositiveIntegerField(null=True, blank=True)
@@ -43,3 +42,10 @@ class Genre(Model):
 
     def __str__(self):
         return self.name
+
+
+class ReleaseYear(Model):
+    year = PositiveIntegerField()
+
+    class Meta:
+        ordering = ['-year']

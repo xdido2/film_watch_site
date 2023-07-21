@@ -3,83 +3,6 @@
 
 {% block main_content %}
 
-    <div class="main__menu" id="main__menu">
-        <div class="main__container">
-            <ul class="main__menu-list">
-                <li>
-                    <a href="#" class="main__menu-link">Главная</a>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Категорий</a>
-                    <span class="is__parent" id="is__parent"></span>
-                    <ul class="main__dropdown" id="main__dropdown">
-                        <li>
-                            <a href="#" class="main__dropdown-link">Биография</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Боевики</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Военные</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Детективы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Документальные</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Драмы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Исторические</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Комедии</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Криминал</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Мелодрамы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Мультфильмы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Прикльючения</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Семейные</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Триллеры</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Ужасы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Фантастика</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Новинки</a>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Стол Заказов</a>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Помощь</a>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Конакты</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-
     <!-- Content -->
     <div class="main__container">
         <div class="content">
@@ -156,66 +79,48 @@
 
     <!-- Pagination -->
     <div class="main__container">
+        {#    {% if page_obj.has_other_pages %}#}
         <ul class="pagination">
-            <li>
-                <a href="#" class="pagination__link pagination__arrow">
-                    <i class="fas fa-angle-left"></i>
-                </a>
-            </li>
+            {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination__link pagination__arrow">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+            {% endif %}
 
-            <li>
-                <a href="#" class="pagination__link">
-                    1
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    13
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    14
-                </a>
-            </li>
 
-            <li>
-                <a href="#" class="pagination__link pagination__link-active">
-                    15
-                </a>
-            </li>
+            {% for page in page_obj.adjusted_elided_pages %}
+                {% if page_obj.is_ellipsis %}
+                    <li>
+                        <a href="?page={{ page }}" class="pagination__link">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% elif page_obj.number == page %}
+                    <li>
+                        <a href="" class="pagination__link pagination__link-active">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% if page == page_obj.paginator.ELLIPSIS %}#{% else %}?page={{ page }}{% endif %}"
+                           class="pagination__link">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
 
-            <li>
-                <a href="#" class="pagination__link">
-                    16
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    17
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    94
-                </a>
-            </li>
+            {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}" class="pagination__link pagination__arrow">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+            {% endif %}
 
-            <li>
-                <a href="#" class="pagination__link pagination__arrow">
-                    <i class="fas fa-angle-right"></i>
-                </a>
-            </li>
         </ul>
     </div>
 

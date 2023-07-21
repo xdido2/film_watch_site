@@ -3,83 +3,6 @@
 
 {% block main_content %}
 
-    <div class="main__menu" id="main__menu">
-        <div class="main__container">
-            <ul class="main__menu-list">
-                <li>
-                    <a href="#" class="main__menu-link">Главная</a>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Категорий</a>
-                    <span class="is__parent" id="is__parent"></span>
-                    <ul class="main__dropdown" id="main__dropdown">
-                        <li>
-                            <a href="#" class="main__dropdown-link">Биография</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Боевики</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Военные</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Детективы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Документальные</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Драмы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Исторические</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Комедии</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Криминал</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Мелодрамы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Мультфильмы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Прикльючения</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Семейные</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Триллеры</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Ужасы</a>
-                        </li>
-                        <li>
-                            <a href="#" class="main__dropdown-link">Фантастика</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Новинки</a>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Стол Заказов</a>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Помощь</a>
-                </li>
-                <li>
-                    <a href="#" class="main__menu-link">Конакты</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-
     <!-- Slider -->
     <div class="slider">
         {% for movie in slider_movies %}
@@ -117,7 +40,8 @@
                 <ul class="content__menu">
                     {% for genre in genres %}
                         <li>
-                            <a href="#" class="content__link">{{ genre.name }}</a>
+                            <a href="{% url 'genre-list' slug=genre.slug_link %}"
+                               class="content__link">{{ genre.name|title }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -132,169 +56,104 @@
             <!-- Content Body -->
             <div class="content__body">
                 <div class="content__inner">
-                    <div class="content__item">
-                        <div class="subtitle">
-                            <p class="subtitle-desc">Год выпуска:</p>
-                            <button class="subtitle-btn">
-                                <div class="subtitle-name">2021</div>
-                                <div class="subtitle-icon no-rotate"><i class="far fa-calendar-alt"></i></div>
+                    <form method="get">
 
-                                <div class="subtitle__dropdown">
-                                    <ul class="subtitle__dropdown-box">
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2021</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2020</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2019</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2018</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2017</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2016</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2015</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2014</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2013</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2012</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2011</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2010</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2009</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2008</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2007</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2006</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2005</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2004</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2003</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2002</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2001</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">2000</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">1999</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">1998</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">1997</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">1996</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </button>
+                        <div class="content__item">
+                            <div class="subtitle">
+                                <p class="subtitle-desc">Год выпуска:</p>
+                                <button class="subtitle-btn">
+                                    <div class="subtitle-name">{% now "Y" %}</div>
+                                    <div class="subtitle-icon no-rotate"><i class="far fa-calendar-alt"></i></div>
+
+                                    <div class="subtitle__dropdown">
+                                        <ul class="subtitle__dropdown-box">
+                                            {% for release_year in release_years %}
+                                                <li>
+                                                    <a href="{% url 'release_year-list' year=release_year.year %}"
+                                                       class="sutitle__dropdown-link">{{ release_year.year }}</a>
+
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </button>
+                            </div>
+
+                            {#                            <div class="subtitle">#}
+                            {#                                <p class="subtitle-desc">Качество видео:</p>#}
+                            {#                                <button class="subtitle-btn">#}
+                            {#                                    <div class="subtitle-name">FULLHD</div>#}
+                            {#                                    <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>#}
+                            {##}
+                            {#                                    <div class="subtitle__dropdown">#}
+                            {#                                        <ul class="subtitle__dropdown-box">#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">FULLHD</a>#}
+                            {#                                            </li>#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">HDRip</a>#}
+                            {#                                            </li>#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">SD</a>#}
+                            {#                                            </li>#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">4K</a>#}
+                            {#                                            </li>#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">FullHD 1080p</a>#}
+                            {#                                            </li>#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">1080p</a>#}
+                            {#                                            </li>#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">720p</a>#}
+                            {#                                            </li>#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">480p</a>#}
+                            {#                                            </li>#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">360p</a>#}
+                            {#                                            </li>#}
+                            {#                                            <li>#}
+                            {#                                                <a href="#" class="sutitle__dropdown-link">240p</a>#}
+                            {#                                            </li>#}
+                            {#                                        </ul>#}
+                            {#                                    </div>#}
+                            {#                                </button>#}
+                            {#                            </div>#}
+
+                            <div class="subtitle">
+                                <p class="subtitle-desc">Сортировка:</p>
+                                <button class="subtitle-btn">
+                                    <div class="subtitle-name">Новинки</div>
+                                    <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>
+
+                                    <div class="subtitle__dropdown">
+                                        <ul class="subtitle__dropdown-box">
+                                            <li>
+                                                <a href="{% url 'new_films-list' %}" class="sutitle__dropdown-link">Новинки</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'popular_films-list' %}" class="sutitle__dropdown-link">Популярные</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'sort_a_z_films-list' %}"
+                                                   class="sutitle__dropdown-link">От А
+                                                    до Я</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'sort_z_a_films-list' %}"
+                                                   class="sutitle__dropdown-link">От Я до А</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="sutitle__dropdown-link">Последние</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </button>
+                            </div>
                         </div>
-
-                        <div class="subtitle">
-                            <p class="subtitle-desc">Качество видео:</p>
-                            <button class="subtitle-btn">
-                                <div class="subtitle-name">FULLHD</div>
-                                <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>
-
-                                <div class="subtitle__dropdown">
-                                    <ul class="subtitle__dropdown-box">
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">FULLHD</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">HDRip</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">SD</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">4K</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">FullHD 1080p</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">1080p</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">720p</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">480p</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">360p</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">240p</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </button>
-                        </div>
-
-                        <div class="subtitle">
-                            <p class="subtitle-desc">Сортировка:</p>
-                            <button class="subtitle-btn">
-                                <div class="subtitle-name">Новинки</div>
-                                <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>
-
-                                <div class="subtitle__dropdown">
-                                    <ul class="subtitle__dropdown-box">
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">Новинки</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">Популярные</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">От А до Я</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">От Я до А</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="sutitle__dropdown-link">Последние</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
+                    </form>
 
                     <div class="content__item">
                         <div class="title">
