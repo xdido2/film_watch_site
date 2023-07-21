@@ -1,11 +1,11 @@
 from django.urls import path
 
-from apps.movies.filters.genres import genre_list_view
 from apps.movies.filters.new_films import new_films_list_view, popular_films_list_view, a_z_films_list_view, \
     z_a_films_list_view
-from apps.movies.filters.release_years import release_years_list_view
 from apps.movies.views.film import film_list_view, film_detail_view
+from apps.movies.views.release_years import release_years_list_view
 from apps.movies.views.search import search_view
+from movies.views.genres import genre_list_view
 
 urlpatterns = [
     path('', film_list_view, name='film-list'),

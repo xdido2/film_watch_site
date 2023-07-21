@@ -6,17 +6,18 @@ from django.shortcuts import render, get_object_or_404
 from apps.movies.forms.comment import CommentForm
 from apps.movies.models.comment import Comment
 from apps.movies.models.history import History
-from apps.movies.models.movie import Movie, Genre
-from apps.movies.models.movie import ReleaseYear
+from apps.movies.models.movie import Movie, Genre, ReleaseYear
+from apps.movies.filters.release_years import CombinedReleaseYearFilter
 
 
 def film_list_view(request):
     movies = Movie.objects.all()
+    release_year_filter = CombinedReleaseYearFilter(request.GET.dict(), queryset=movies)
     last_comments = Comment.objects.all()[:2]
     release_years = ReleaseYear.objects.all()
     genres = Genre.objects.all()
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
-    p = Paginator(movies, 15)
+    p = Paginator(release_year_filter.qs, 15)
     page_number = request.GET.get('page', 1)
 
     try:

@@ -1,20 +1,21 @@
 from django.core.paginator import Paginator, PageNotAnInteger
 from django.shortcuts import render
-from django_filters import FilterSet, NumberFilter, RangeFilter
 
+from apps.movies.filters.release_years import CombinedReleaseYearFilter
 from apps.movies.models.comment import Comment
 from apps.movies.models.movie import Genre
 from apps.movies.models.movie import Movie
 from apps.movies.models.movie import ReleaseYear
 
 
-def release_years_list_view(request, year):
+def genre_list_view(request, slug):
     release_years = ReleaseYear.objects.all()
-    release_years_movie = Movie.objects.filter(release_year__year=year)
-    slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
+    genres_movie = Movie.objects.filter(genre__slug_link=slug)
+    release_year_filter = CombinedReleaseYearFilter(request.GET.dict(), queryset=genres_movie)
     last_comments = Comment.objects.all()[:2]
+    slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
     genres = Genre.objects.all()
-    p = Paginator(release_years_movie, 15)
+    p = Paginator(release_year_filter.qs, 15)
     page_number = request.GET.get('page', 1)
     try:
         page_obj = p.get_page(page_number)
@@ -25,17 +26,8 @@ def release_years_list_view(request, year):
     context = {
         'last_comments': last_comments,
         'slider_movies': slider_movies,
-        'release_years': release_years,
         'genres': genres,
+        'release_years': release_years,
         'page_obj': page_obj,
     }
     return render(request, 'films/main_content/movie-list.html', context)
-
-
-class CombinedReleaseYearFilter(FilterSet):
-    exact_year = NumberFilter(field_name='release_year__year', lookup_expr='exact')
-    range_year = RangeFilter(field_name='release_year__year')
-
-    class Meta:
-        model = ReleaseYear
-        fields = ['exact_year', 'range_year']

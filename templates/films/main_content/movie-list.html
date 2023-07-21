@@ -1,6 +1,7 @@
 {% extends 'films/main_content/base.html' %}
 {% load static %}
 
+
 {% block main_content %}
 
     <!-- Slider -->
@@ -56,7 +57,7 @@
             <!-- Content Body -->
             <div class="content__body">
                 <div class="content__inner">
-                    <form method="get">
+                    <form method="get" action="{% url 'film-list' %}">
 
                         <div class="content__item">
                             <div class="subtitle">
@@ -69,9 +70,8 @@
                                         <ul class="subtitle__dropdown-box">
                                             {% for release_year in release_years %}
                                                 <li>
-                                                    <a href="{% url 'release_year-list' year=release_year.year %}"
+                                                    <a href="?exact_year={{ release_year.year }}"
                                                        class="sutitle__dropdown-link">{{ release_year.year }}</a>
-
                                                 </li>
                                             {% endfor %}
                                         </ul>
@@ -131,7 +131,7 @@
                                     <div class="subtitle__dropdown">
                                         <ul class="subtitle__dropdown-box">
                                             <li>
-                                                <a href="{% url 'new_films-list' %}" class="sutitle__dropdown-link">Новинки</a>
+                                                <a href="?range_year_min=2023" class="sutitle__dropdown-link">Новинки</a>
                                             </li>
                                             <li>
                                                 <a href="{% url 'popular_films-list' %}" class="sutitle__dropdown-link">Популярные(IMDB)</a>
