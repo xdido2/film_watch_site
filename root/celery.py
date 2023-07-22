@@ -11,7 +11,7 @@ app.autodiscover_tasks()
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
-    from shared.tasks.get_movies_task import get_movies_from_api
+    from apps.shared.tasks.get_movies_task import get_movies_from_api
     sender.add_periodic_task(
         crontab(hour=0, minute=3),
         get_movies_from_api.s(),

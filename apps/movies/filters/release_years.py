@@ -34,6 +34,8 @@ def release_years_list_view(request, year):
 
 class CombinedReleaseYearFilter(FilterSet):
     exact_year = NumberFilter(field_name='release_year__year', lookup_expr='exact')
+    # release_year__gt = NumberFilter(field_name='release_date', lookup_expr='year__gt')
+    # release_year__lt = NumberFilter(field_name='release_date', lookup_expr='year__lt')
     range_year = RangeFilter(field_name='release_year__year')
 
     class Meta:

@@ -1,13 +1,15 @@
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator, PageNotAnInteger
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
+from apps.movies.filters.release_years import CombinedReleaseYearFilter
 from apps.movies.forms.comment import CommentForm
 from apps.movies.models.comment import Comment
 from apps.movies.models.history import History
 from apps.movies.models.movie import Movie, Genre, ReleaseYear
-from apps.movies.filters.release_years import CombinedReleaseYearFilter
+from apps.shared.tasks.get_genres_task import get_genres_from_api
+from apps.shared.tasks.get_movies_task import get_movies_from_api
 
 
 def film_list_view(request):
@@ -72,3 +74,10 @@ def film_detail_view(request, slug):
         'is_favourite': is_favourite,
     }
     return render(request, 'films/main_content/movie-detail.html', context)
+
+
+def add_film_view(request):
+    get_genres_from_api.delay()
+    get_movies_from_api.delay()
+
+    return redirect('film-list')
