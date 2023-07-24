@@ -51,6 +51,7 @@ def get_movies_from_api():
             results_tmdb = response.get('results', [])
             if len(results_tmdb) == 0:
                 continue
+
             for k in results_tmdb:
                 if k['original_title'] == result_videocdn['orig_title']:
                     url_tmdb_movie_detail = f"https://api.themoviedb.org/3/movie/{k.get('id')}?language=ru-RU"
@@ -64,20 +65,26 @@ def get_movies_from_api():
                                 time.sleep(retry_delay)
                             else:
                                 raise err
+
                     existing_movie = Movie.objects.filter(ru_title=result_videocdn['ru_title'],
                                                           orig_title=orig_title).first()
                     if existing_movie:
                         continue
+
                     country = result_tmdb_movie_detail.get('production_countries', [])
                     country_name = country[0]['name'] if country else ''
 
-                    # Create and link the release year
-                    release_year = int(result_tmdb.get('release_date', '')[:4])
-                    existing_year = ReleaseYear.objects.filter(year=release_year).first()
-                    if existing_year:
-                        release_year_obj = existing_year
+                    # Handle the case when release_date is not available
+                    release_year_str = result_tmdb.get('release_date', '')[:4]
+                    if not release_year_str.isdigit():
+                        release_year_obj = None
                     else:
-                        release_year_obj = ReleaseYear.objects.create(year=release_year)
+                        release_year = int(release_year_str)
+                        existing_year = ReleaseYear.objects.filter(year=release_year).first()
+                        if existing_year:
+                            release_year_obj = existing_year
+                        else:
+                            release_year_obj = ReleaseYear.objects.create(year=release_year)
 
                     movie = Movie(
                         id=result_tmdb.get('id'),
@@ -102,6 +109,7 @@ def get_movies_from_api():
                     for genre_id in result_tmdb.get('genre_ids', []):
                         movie.genre.add(genre_id)
                     movie.save()
+
                 else:
                     continue
 

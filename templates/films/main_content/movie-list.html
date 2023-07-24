@@ -1,4 +1,5 @@
 {% extends 'films/main_content/base.html' %}
+{% load templatehelpers %}
 {% load static %}
 
 
@@ -57,104 +58,110 @@
             <!-- Content Body -->
             <div class="content__body">
                 <div class="content__inner">
-                    <form method="get" action="{% url 'film-list' %}">
+                    <div class="content__item">
+                        {% with params=request.GET.urlencode %}
 
-                        <div class="content__item">
-                            <div class="subtitle">
-                                <p class="subtitle-desc">Год выпуска:</p>
-                                <button class="subtitle-btn">
-                                    <div class="subtitle-name">{% now "Y" %}</div>
-                                    <div class="subtitle-icon no-rotate"><i class="far fa-calendar-alt"></i></div>
+                        <div class="subtitle">
+                            <p class="subtitle-desc">Год выпуска:</p>
+                            <button class="subtitle-btn">
+                                <div class="subtitle-name">
+                                    {% if current_year %}{{ current_year }}{% else %}{% now "Y" %}{% endif %}</div>
+                                <div class="subtitle-icon no-rotate"><i class="far fa-calendar-alt"></i></div>
 
-                                    <div class="subtitle__dropdown">
-                                        <ul class="subtitle__dropdown-box">
-                                            {% for release_year in release_years %}
-                                                <li>
-                                                    <a href="?exact_year={{ release_year.year }}"
-                                                       class="sutitle__dropdown-link">{{ release_year.year }}</a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </button>
-                            </div>
-
-                            {#                            <div class="subtitle">#}
-                            {#                                <p class="subtitle-desc">Качество видео:</p>#}
-                            {#                                <button class="subtitle-btn">#}
-                            {#                                    <div class="subtitle-name">FULLHD</div>#}
-                            {#                                    <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>#}
-                            {##}
-                            {#                                    <div class="subtitle__dropdown">#}
-                            {#                                        <ul class="subtitle__dropdown-box">#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">FULLHD</a>#}
-                            {#                                            </li>#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">HDRip</a>#}
-                            {#                                            </li>#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">SD</a>#}
-                            {#                                            </li>#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">4K</a>#}
-                            {#                                            </li>#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">FullHD 1080p</a>#}
-                            {#                                            </li>#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">1080p</a>#}
-                            {#                                            </li>#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">720p</a>#}
-                            {#                                            </li>#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">480p</a>#}
-                            {#                                            </li>#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">360p</a>#}
-                            {#                                            </li>#}
-                            {#                                            <li>#}
-                            {#                                                <a href="#" class="sutitle__dropdown-link">240p</a>#}
-                            {#                                            </li>#}
-                            {#                                        </ul>#}
-                            {#                                    </div>#}
-                            {#                                </button>#}
-                            {#                            </div>#}
-
-                            <div class="subtitle">
-                                <p class="subtitle-desc">Сортировка:</p>
-                                <button class="subtitle-btn">
-                                    <div class="subtitle-name">Последние</div>
-                                    <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>
-
-                                    <div class="subtitle__dropdown">
-                                        <ul class="subtitle__dropdown-box">
+                                <div class="subtitle__dropdown">
+                                    <ul class="subtitle__dropdown-box">
+                                        {% for release_year in release_years %}
                                             <li>
-                                                <a href="?range_year_min=2023" class="sutitle__dropdown-link">Новинки</a>
+                                                <a href="{% relative_url release_year.year 'year' params %}"
+                                                   class="sutitle__dropdown-link">{{ release_year.year }}</a>
                                             </li>
-                                            <li>
-                                                <a href="{% url 'popular_films-list' %}" class="sutitle__dropdown-link">Популярные(IMDB)</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'sort_a_z_films-list' %}"
-                                                   class="sutitle__dropdown-link">От А
-                                                    до Я</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'sort_z_a_films-list' %}"
-                                                   class="sutitle__dropdown-link">От Я до А</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'film-list' %}"
-                                                   class="sutitle__dropdown-link">Последние</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </button>
-                            </div>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </button>
                         </div>
-                    </form>
+
+                        {#                            <div class="subtitle">#}
+                        {#                                <p class="subtitle-desc">Качество видео:</p>#}
+                        {#                                <button class="subtitle-btn">#}
+                        {#                                    <div class="subtitle-name">FULLHD</div>#}
+                        {#                                    <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>#}
+                        {##}
+                        {#                                    <div class="subtitle__dropdown">#}
+                        {#                                        <ul class="subtitle__dropdown-box">#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">FULLHD</a>#}
+                        {#                                            </li>#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">HDRip</a>#}
+                        {#                                            </li>#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">SD</a>#}
+                        {#                                            </li>#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">4K</a>#}
+                        {#                                            </li>#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">FullHD 1080p</a>#}
+                        {#                                            </li>#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">1080p</a>#}
+                        {#                                            </li>#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">720p</a>#}
+                        {#                                            </li>#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">480p</a>#}
+                        {#                                            </li>#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">360p</a>#}
+                        {#                                            </li>#}
+                        {#                                            <li>#}
+                        {#                                                <a href="#" class="sutitle__dropdown-link">240p</a>#}
+                        {#                                            </li>#}
+                        {#                                        </ul>#}
+                        {#                                    </div>#}
+                        {#                                </button>#}
+                        {#                            </div>#}
+
+                        <div class="subtitle">
+                            <p class="subtitle-desc">Сортировка:</p>
+                            <button class="subtitle-btn">
+                                <div class="subtitle-name">
+                                    {% if filter_name %}{{ filter_name }}{% else %}Последние{% endif %}</div>
+                                <div class="subtitle-icon"><i class="fas fa-angle-down"></i></div>
+
+                                <div class="subtitle__dropdown">
+                                    <ul class="subtitle__dropdown-box">
+                                        <li>
+                                            <a href="{% relative_url 'new' 'sort' params %}"
+                                               class="sutitle__dropdown-link">Новинки</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% relative_url 'popular' 'sort' params %}"
+                                               class="sutitle__dropdown-link">Популярные(IMDB)</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% relative_url 'decrease' 'sort' params %}"
+                                               class="sutitle__dropdown-link">От
+                                                А до Я</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% relative_url 'increase' 'sort' params %}"
+                                               class="sutitle__dropdown-link">От
+                                                Я до А</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'film-list' %}"
+                                               class="sutitle__dropdown-link">Последние</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
+                    {% endwith %}
+                    </div>
+
 
                     <div class="content__item">
                         <div class="title">

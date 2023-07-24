@@ -3,23 +3,26 @@ from django.core.paginator import Paginator, PageNotAnInteger
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 
-from apps.movies.filters.release_years import CombinedReleaseYearFilter
 from apps.movies.forms.comment import CommentForm
 from apps.movies.models.comment import Comment
 from apps.movies.models.history import History
 from apps.movies.models.movie import Movie, Genre, ReleaseYear
 from apps.shared.tasks.get_genres_task import get_genres_from_api
 from apps.shared.tasks.get_movies_task import get_movies_from_api
+from shared.utils.sort_filter import movie_sort_filter
 
 
 def film_list_view(request):
     movies = Movie.objects.all()
-    release_year_filter = CombinedReleaseYearFilter(request.GET.dict(), queryset=movies)
+    _filter = request.GET.get('sort')
+    _year = request.GET.get('year')
+    sort_filter = movie_sort_filter(_filter, movies, _year)
+    # release_year_filter = CombinedReleaseYearFilter(request.GET.dict(), queryset=movies)
     last_comments = Comment.objects.all()[:2]
     release_years = ReleaseYear.objects.all()
     genres = Genre.objects.all()
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
-    p = Paginator(release_year_filter.qs, 15)
+    p = Paginator(sort_filter[0], 15)
     page_number = request.GET.get('page', 1)
 
     try:
@@ -30,10 +33,13 @@ def film_list_view(request):
 
     context = {
         'slider_movies': slider_movies,
+        'filter_name': sort_filter[1],
+        'current_year': _year,
         'last_comments': last_comments,
         'release_years': release_years,
         'genres': genres,
         'page_obj': page_obj,
+        'page': page_number,
     }
     return render(request, 'films/main_content/movie-list.html', context)
 

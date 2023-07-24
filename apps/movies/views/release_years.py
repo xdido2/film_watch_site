@@ -3,15 +3,19 @@ from django.shortcuts import render
 
 from apps.movies.models.comment import Comment
 from apps.movies.models.movie import Movie, ReleaseYear, Genre
+from shared.utils.sort_filter import movie_sort_filter
 
 
 def release_years_list_view(request, year):
     release_years = ReleaseYear.objects.all()
     release_years_movie = Movie.objects.filter(release_year__year=year)
+    _filter = request.GET.get('sort')
+    _year = request.GET.get('year')
+    sort_filter = movie_sort_filter(_filter, release_years_movie, _year)
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
     last_comments = Comment.objects.all()[:2]
     genres = Genre.objects.all()
-    p = Paginator(release_years_movie, 15)
+    p = Paginator(sort_filter[0], 15)
     page_number = request.GET.get('page', 1)
     try:
         page_obj = p.get_page(page_number)
@@ -21,6 +25,8 @@ def release_years_list_view(request, year):
 
     context = {
         'last_comments': last_comments,
+        'filter_name': sort_filter[1],
+        'current_year': _year,
         'slider_movies': slider_movies,
         'release_years': release_years,
         'genres': genres,

@@ -10,7 +10,12 @@
                 <div class="profile__inner">
 
                     <div class="profile-item">
-                        <img src="{{ user.avatar.url }}" class="profile__user-img">
+                        {% if user.avatart %}
+                            <img src="{{ user.avatar.url }}" class="profile__user-img">
+                        {% else %}
+                            <img src="{% static 'img/default/avatar.jpg' %}" class="profile__user-img">
+                        {% endif %}
+
                         <label for="file-input" class="profile__btn mt-15">Изменить картинку</label>
                         <input type="file" id="file-input" style="display: none;" name="avatar">
                     </div>

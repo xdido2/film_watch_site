@@ -260,7 +260,12 @@
                 {% for comment in comments %}
                     <div class="product__comment-item">
                         <div class="comment__navs">
-                            <img src="{{ comment.user.avatar.url }}" alt="" class="comment__img">
+                            {% if user.avatart %}
+                                <img src="{{ user.avatar.url }}" class="comment__img">
+                            {% else %}
+                                <img src="{% static 'img/default/avatar.jpg' %}" class="comment__img">
+                            {% endif %}
+
                         </div>
                         <div class="comment__body">
                             <div class="product__flex">

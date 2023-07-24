@@ -73,7 +73,12 @@
                         Выход
                     </a>
                     <a href="{% url 'user_profile' %}">
-                        <img src="{{ user.avatar.url }}" class="header__nav-img">
+                        {% if user.avatart %}
+                            <img src="{{ user.avatar.url }}" class="header__nav-img">
+                        {% else %}
+                            <img src="{% static 'img/default/avatar.jpg' %}" class="header__nav-img">
+                        {% endif %}
+
 
                     </a>
                 {% else %}

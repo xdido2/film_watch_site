@@ -13,7 +13,7 @@ class Movie(Model):
     runtime = PositiveIntegerField()
     vote = FloatField()
     vote_count = PositiveIntegerField()
-    release_year = ForeignKey('ReleaseYear', on_delete=CASCADE)
+    release_year = ForeignKey('ReleaseYear', on_delete=CASCADE, null=True, blank=True)
     iframe_src = CharField(max_length=255, unique=True)
     translate = CharField(max_length=255, null=True, blank=True)
     max_quality = PositiveIntegerField(null=True, blank=True)
