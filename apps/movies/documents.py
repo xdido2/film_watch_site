@@ -1,6 +1,5 @@
 from django_elasticsearch_dsl import Document, fields
 from django_elasticsearch_dsl import Index
-from django_elasticsearch_dsl.search import Search
 
 from apps.movies.models.movie import Movie
 

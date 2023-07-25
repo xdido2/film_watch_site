@@ -1,5 +1,4 @@
-import django_filters
-from django_filters import CharFilter, FilterSet
+from django_filters import FilterSet
 
 from apps.movies.models.movie import Movie
 

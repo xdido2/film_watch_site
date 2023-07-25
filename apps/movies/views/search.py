@@ -3,11 +3,13 @@ from django.shortcuts import render, redirect
 
 from apps.movies.models.comment import Comment
 from apps.movies.models.movie import Movie, ReleaseYear, Genre
+from apps.site_info.models.about import Settings
 
 
 def search_view(request):
     query = request.GET.get('q')
     genres = Genre.objects.all()
+    site_info = Settings.objects.first()
     last_comments = Comment.objects.all()[:2]
     release_years = ReleaseYear.objects.all()
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
@@ -31,7 +33,7 @@ def search_view(request):
             'total_count_movie': len(data),
             'slider_movies': slider_movies,
             'release_years': release_years,
-
+            'site_info': site_info,
             'genres': genres,
             'last_comments': last_comments,
             'page_obj': page_obj,

@@ -9,15 +9,16 @@ from apps.movies.models.history import History
 from apps.movies.models.movie import Movie, Genre, ReleaseYear
 from apps.shared.tasks.get_genres_task import get_genres_from_api
 from apps.shared.tasks.get_movies_task import get_movies_from_api
-from shared.utils.sort_filter import movie_sort_filter
+from apps.shared.utils.sort_filter import movie_sort_filter
+from apps.site_info.models.about import Settings
 
 
 def film_list_view(request):
     movies = Movie.objects.all()
+    site_info = Settings.objects.first()
     _filter = request.GET.get('sort')
     _year = request.GET.get('year')
     sort_filter = movie_sort_filter(_filter, movies, _year)
-    # release_year_filter = CombinedReleaseYearFilter(request.GET.dict(), queryset=movies)
     last_comments = Comment.objects.all()[:2]
     release_years = ReleaseYear.objects.all()
     genres = Genre.objects.all()
@@ -34,6 +35,7 @@ def film_list_view(request):
     context = {
         'slider_movies': slider_movies,
         'filter_name': sort_filter[1],
+        'site_info': site_info,
         'current_year': _year,
         'last_comments': last_comments,
         'release_years': release_years,
@@ -46,10 +48,11 @@ def film_list_view(request):
 
 def film_detail_view(request, slug):
     movie = get_object_or_404(Movie, slug_link=slug)
+    site_info = Settings.objects.first()
     genres = Genre.objects.all()
     last_comments = Comment.objects.all()[:2]
     comments = Comment.objects.filter(movie=movie)
-    suggest_movies = Movie.objects.filter(vote__gt=6.0, poster__isnull=False)[:4]
+    suggest_movies = Movie.objects.filter(genre__name=movie.genre.first(), vote__gt=6.0, poster__isnull=False)[:4]
     is_favourite = False
     movie_id = movie.id
     user = request.user
@@ -73,6 +76,7 @@ def film_detail_view(request, slug):
 
     context = {
         'movie': movie,
+        'site_info': site_info,
         'last_comments': last_comments,
         'suggest': suggest_movies,
         'comments': comments,

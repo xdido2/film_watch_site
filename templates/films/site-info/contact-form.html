@@ -1,0 +1,191 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Contact Form 09</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Обратная связь</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="wrapper">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 mb-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="dbox w-100 text-center">
+                                        <div class="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dbox w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-paper-plane"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p><span>Email:</span> <a
+                                                    href="mailto:{{ site_info.email }}">{{ site_info.email }}</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dbox w-100 text-center">
+                                        <div class="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="contact-wrap">
+                                <div id="form-message-warning" class="mb-4 w-100 text-center"></div>
+                                <div id="form-message-success" class="mb-4 w-100 text-center">
+                                    Ваша форма была отправлена!
+                                </div>
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="name" id="name"
+                                                       placeholder="Ваше имя">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" name="email" id="email"
+                                                       placeholder="E-mail">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="subject" id="subject"
+                                                       placeholder="Тема">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <textarea name="message" class="form-control" id="message" cols="30"
+                                                          rows="8" placeholder="Сообщение"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="submit" value="Отправить форму" class="btn btn-primary">
+                                                <div class="submitting"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    (function ($) {
+        "use strict";
+
+        // Form
+        var contactForm = function () {
+            if ($('#contactForm').length > 0) {
+                $("#contactForm").validate({
+                    rules: {
+                        name: "required",
+                        subject: "required",
+                        email: {
+                            required: true,
+                            email: true,
+                        },
+                        message: {
+                            required: true,
+                            minlength: 5,
+                        },
+                    },
+                    messages: {
+                        name: "Please enter your name",
+                        subject: "Please enter your subject",
+                        email: "Please enter a valid email address",
+                        message: "Please enter a message",
+                    },
+
+                    /* submit via ajax */
+                    submitHandler: function (form) {
+                        var $submit = $('.submitting'),
+                            waitText = 'Submitting...',
+                            formData = $(form).serialize();
+
+                        // Add CSRF token to form data
+                        formData += '&csrfmiddlewaretoken=' + $('input[name="csrfmiddlewaretoken"]').val();
+
+                        $.ajax({
+                            type: "POST",
+                            url: "{% url 'feedback' %}", // Replace 'contact' with the URL name from your Django URL configuration
+                            data: formData,
+
+                            beforeSend: function () {
+                                $submit.css('display', 'block').text(waitText);
+                            },
+                            success: function (msg) {
+                                if (msg.status === 'success') {
+                                    $('#form-message-warning').hide();
+                                    setTimeout(function () {
+                                        $('#contactForm').fadeOut();
+                                    }, 1000);
+                                    setTimeout(function () {
+                                        $('#form-message-success').fadeIn();
+                                    }, 1400);
+
+                                    setTimeout(function () {
+                                        $submit.css('display', 'none').text(waitText);
+                                    }, 1400);
+                                } else {
+                                    $('#form-message-warning').html(msg.message);
+                                    $('#form-message-warning').fadeIn();
+                                    $submit.css('display', 'none');
+                                }
+                            },
+                            error: function () {
+                                $('#form-message-warning').html("Something went wrong. Please try again.");
+                                $('#form-message-warning').fadeIn();
+                                $submit.css('display', 'none');
+                            },
+                        });
+                    }, // end submitHandler
+                });
+            }
+        };
+        contactForm();
+    })(jQuery);
+</script>
+
+
+</body>
+</html>
+

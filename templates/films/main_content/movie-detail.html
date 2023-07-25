@@ -58,10 +58,12 @@
 
                         <div class="product__body-content">
                             <ul class="product__menu">
+                            {% if movie.release_year.year %}
                                 <li>
                                     Год выпуска: <a
                                         href="{% url 'release_year-list' year=movie.release_year.year %}">{{ movie.release_year.year }}</a>
                                 </li>
+                            {% endif %}
                                 <li>
                                     Жанры:
                                     {% for genre in movie.genre.all|slice:":2" %}

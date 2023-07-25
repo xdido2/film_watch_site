@@ -6,8 +6,8 @@ from apps.users.views.auth.forgot_password import forgot_pass_send_email
 from apps.users.views.auth.login import login_view
 from apps.users.views.auth.register import register_view
 from apps.users.views.auth.user_activation import activate
-from apps.users.views.user.user_profile import user_profile_view
 from apps.users.views.user.favourite import favourite_post_view, favourite_list_view
+from apps.users.views.user.user_profile import user_profile_view
 
 urlpatterns = [
     path('user-profile', user_profile_view, name='user_profile'),

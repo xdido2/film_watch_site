@@ -1,17 +1,18 @@
 from django.core.paginator import Paginator, PageNotAnInteger
 from django.shortcuts import render
 
-from apps.movies.filters.release_years import CombinedReleaseYearFilter
 from apps.movies.models.comment import Comment
 from apps.movies.models.movie import Genre
 from apps.movies.models.movie import Movie
 from apps.movies.models.movie import ReleaseYear
-from shared.utils.sort_filter import movie_sort_filter
+from apps.shared.utils.sort_filter import movie_sort_filter
+from apps.site_info.models.about import Settings
 
 
 def genre_list_view(request, slug):
     release_years = ReleaseYear.objects.all()
     genres_movie = Movie.objects.filter(genre__slug_link=slug)
+    site_info = Settings.objects.first()
     _filter = request.GET.get('sort')
     _year = request.GET.get('year')
     sort_filter = movie_sort_filter(_filter, genres_movie, _year)
@@ -30,6 +31,7 @@ def genre_list_view(request, slug):
     context = {
         'last_comments': last_comments,
         'filter_name': sort_filter[1],
+        'site_info': site_info,
         'current_year': _year,
         'slider_movies': slider_movies,
         'genres': genres,

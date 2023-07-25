@@ -35,3 +35,13 @@ def send_email(protocol, domain, email, type_):
             'token': account_activation_token.make_token(user)
         })
         send_mail(subject, message, from_email, recipient_list)
+
+
+@shared_task
+def send_feedback_email(subject, email_message, email, data):
+    send_mail(
+        subject=subject,
+        message=email_message,
+        from_email=email,
+        recipient_list=[data.email],  # Replace with your email address
+    )

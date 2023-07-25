@@ -3,11 +3,13 @@ from django.shortcuts import render
 
 from apps.movies.models.comment import Comment
 from apps.movies.models.movie import Movie, ReleaseYear, Genre
-from shared.utils.sort_filter import movie_sort_filter
+from apps.shared.utils.sort_filter import movie_sort_filter
+from apps.site_info.models.about import Settings
 
 
 def release_years_list_view(request, year):
     release_years = ReleaseYear.objects.all()
+    site_info = Settings.objects.first()
     release_years_movie = Movie.objects.filter(release_year__year=year)
     _filter = request.GET.get('sort')
     _year = request.GET.get('year')
@@ -26,6 +28,7 @@ def release_years_list_view(request, year):
     context = {
         'last_comments': last_comments,
         'filter_name': sort_filter[1],
+        'site_info': site_info,
         'current_year': _year,
         'slider_movies': slider_movies,
         'release_years': release_years,

@@ -1,7 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 from django.forms import Form, ModelForm
-from django.shortcuts import get_object_or_404
 
 from apps.users.models import User
 

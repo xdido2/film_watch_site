@@ -21,16 +21,15 @@ headers = {
     "Authorization": f"Bearer {token_tmdb}"
 }
 
-content_videocdn = requests.get(f'{base_url_videocdn}?api_token={token_videocdn}&page={page}').json()
-
-last_page = content_videocdn['last_page']
-
-retry_attempts = 3
-retry_delay = 1
-
 
 @shared_task
 def get_movies_from_api():
+    content_videocdn = requests.get(f'{base_url_videocdn}?api_token={token_videocdn}&page={page}').json()
+
+    last_page = content_videocdn['last_page']
+
+    retry_attempts = 3
+    retry_delay = 1
     for i in range(last_page):
         content_videocdn = requests.get(f'{base_url_videocdn}?api_token={token_videocdn}&page={i}').json()
         for j in range(0, content_videocdn['per_page']):
@@ -41,7 +40,7 @@ def get_movies_from_api():
             for attempt in range(retry_attempts):
                 try:
                     response = requests.get(url_tmdb_movie, headers=headers).json()
-                    break  # If the request succeeds, exit the retry loop
+                    break
                 except requests.exceptions.ConnectionError as err:
                     if attempt < retry_attempts - 1:
                         time.sleep(retry_delay)

@@ -1,6 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger
 from django.shortcuts import render
-from django_filters import FilterSet, NumberFilter, RangeFilter
 
 from apps.movies.models.comment import Comment
 from apps.movies.models.movie import Genre
@@ -30,14 +29,3 @@ def release_years_list_view(request, year):
         'page_obj': page_obj,
     }
     return render(request, 'films/main_content/movie-list.html', context)
-
-
-class CombinedReleaseYearFilter(FilterSet):
-    exact_year = NumberFilter(field_name='release_year__year', lookup_expr='exact')
-    # release_year__gt = NumberFilter(field_name='release_date', lookup_expr='year__gt')
-    # release_year__lt = NumberFilter(field_name='release_date', lookup_expr='year__lt')
-    range_year = RangeFilter(field_name='release_year__year')
-
-    class Meta:
-        model = ReleaseYear
-        fields = ['exact_year', 'range_year']

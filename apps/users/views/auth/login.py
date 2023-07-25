@@ -2,9 +2,9 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
-from apps.users.models.user import User
-from apps.users.forms.login import LoginForm
 from apps.shared.decorators import anonymous_required
+from apps.users.forms.login import LoginForm
+from apps.users.models.user import User
 
 
 @anonymous_required(redirect_url='/')
