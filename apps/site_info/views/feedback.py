@@ -21,7 +21,7 @@ def feedback_view(request):
             'name': name,
             'email': email,
             'message': message,
-            'site_info': {'email': data.email},  # Replace with your email address
+            'site_info': {'email': data.owner_email},  # Replace with your email address
         }
         email_message = render_to_string('email/feedback-email.html', context)
 

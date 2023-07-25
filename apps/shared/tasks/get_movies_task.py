@@ -34,8 +34,8 @@ def get_movies_from_api():
         content_videocdn = requests.get(f'{base_url_videocdn}?api_token={token_videocdn}&page={i}').json()
         for j in range(0, content_videocdn['per_page']):
             result_videocdn = content_videocdn['data'][j]
-            orig_title = result_videocdn['orig_title']
-            url_tmdb_movie = f'{search_url_tmdb}&query={orig_title}'
+            ru_title = result_videocdn['ru_title']
+            url_tmdb_movie = f'{search_url_tmdb}&query={ru_title}'
 
             for attempt in range(retry_attempts):
                 try:
@@ -52,7 +52,7 @@ def get_movies_from_api():
                 continue
 
             for k in results_tmdb:
-                if k['original_title'] == result_videocdn['orig_title']:
+                if k['title'] == result_videocdn['ru_title'] and k['original_title'] == result_videocdn['orig_title']:
                     url_tmdb_movie_detail = f"https://api.themoviedb.org/3/movie/{k.get('id')}?language=ru-RU"
                     result_tmdb = k
                     for attempt in range(retry_attempts):
@@ -65,8 +65,8 @@ def get_movies_from_api():
                             else:
                                 raise err
 
-                    existing_movie = Movie.objects.filter(ru_title=result_videocdn['ru_title'],
-                                                          orig_title=orig_title).first()
+                    existing_movie = Movie.objects.filter(orig_title=result_videocdn['orig_title'],
+                                                          ru_title=ru_title).first()
                     if existing_movie:
                         continue
 
@@ -89,8 +89,8 @@ def get_movies_from_api():
                         id=result_tmdb.get('id'),
                         background_poster=result_tmdb.get('backdrop_path', ''),
                         poster=result_tmdb.get('poster_path', ''),
-                        ru_title=result_videocdn['ru_title'],
-                        orig_title=orig_title,
+                        ru_title=ru_title,
+                        orig_title=result_videocdn['orig_title'],
                         description=result_tmdb.get('overview', ''),
                         runtime=result_tmdb_movie_detail.get('runtime', 0),
                         vote=round(result_tmdb.get('vote_average', 0), 1),

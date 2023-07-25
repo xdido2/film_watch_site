@@ -43,5 +43,5 @@ def send_feedback_email(subject, email_message, email, data):
         subject=subject,
         message=email_message,
         from_email=email,
-        recipient_list=[data.email],  # Replace with your email address
+        recipient_list=[data.owner_email],  # Replace with your email address
     )
