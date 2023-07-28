@@ -23,4 +23,5 @@ urlpatterns = [
     path('add-content/', add_film_view, name='content'),
     path('order-film/', order_view, name='film-order'),
     path('post-comment/<int:movie_id>', post_comment, name='post-comment'),
+
 ]

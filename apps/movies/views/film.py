@@ -50,8 +50,8 @@ def film_detail_view(request, slug):
     movie = get_object_or_404(Movie, slug_link=slug)
     site_info = Settings.objects.first()
     genres = Genre.objects.all()
-    last_comments = Comment.objects.all()[:2]
-    comments = Comment.objects.filter(movie=movie)
+    last_comments = Comment.objects.filter(is_approved=True)[:2]
+    comments = Comment.objects.filter(movie=movie, is_approved=True)
     suggest_movies = Movie.objects.filter(genre__name=movie.genre.first(), vote__gt=6.0, poster__isnull=False)[:4]
     is_favourite = False
     movie_id = movie.id
@@ -65,6 +65,7 @@ def film_detail_view(request, slug):
         history.save()
     if movie.favourite.filter(id=user.id):
         is_favourite = True
+
 
     context = {
         'movie': movie,
