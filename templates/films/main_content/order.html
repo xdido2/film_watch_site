@@ -1,0 +1,21 @@
+{% extends 'films/auth/base.html' %}
+{% block title %}Заказ фильма{% endblock %}
+{% block main_content %}
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="title center">Заказ фильма</h1>
+            {% if success %}
+                <div class="p-3 mb-2 bg-success text-white">{{ success }}</div>
+            {% endif %}
+            <form method="post" action="{% url 'film-order' %}" class="form__control">
+                {% csrf_token %}
+                <input type="email" class="input-dark" placeholder="E-mail" name="email">
+                <input type="text" class="input-dark" placeholder="Название фильма" name="content_title">
+                <input type="url" class="input-dark" placeholder="Ссылка на фильм" name="content_url">
+                <textarea cols="30" rows="8" class="input-dark" placeholder="Описание фильму"
+                          name="content_description"></textarea>
+                <button class="btn-primary mt-15" type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

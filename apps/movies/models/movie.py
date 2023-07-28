@@ -50,5 +50,8 @@ class Genre(Model):
 class ReleaseYear(Model):
     year = PositiveIntegerField(null=True, blank=True)
 
+    def __str__(self):
+        return str(self.year)
+
     class Meta:
         ordering = ['-year']

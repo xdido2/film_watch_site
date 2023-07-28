@@ -1,0 +1,8 @@
+{% extends 'admin/index.html' %}
+
+{% block content %}
+    <div>
+        <a href="{% url 'content' %}">Add content</a>
+    </div>
+    {{ block.super }}
+{% endblock %}

@@ -66,14 +66,6 @@ def film_detail_view(request, slug):
     if movie.favourite.filter(id=user.id):
         is_favourite = True
 
-    if request.POST:
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            Comment.objects.create(movie=movie, user=user, content=form.data.get('content'))
-            return HttpResponseRedirect(movie.get_absolute_url())
-        else:
-            ValidationError('User must be register!')
-
     context = {
         'movie': movie,
         'site_info': site_info,
@@ -90,4 +82,4 @@ def add_film_view(request):
     get_genres_from_api.delay()
     get_movies_from_api.delay()
 
-    return redirect('film-list')
+    return redirect('admin:index')

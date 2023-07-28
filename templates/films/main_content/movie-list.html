@@ -208,7 +208,8 @@
 
                             <ul class="content__product-menu">
                                 <li>
-                                    <a href="#" class="content__product-category">{{ movie.genre.all.1.name }}</a>
+                                    <a href="{% url 'genre-list' slug=movie.genre.all.first.slug_link %}"
+                                       class="content__product-category">{{ movie.genre.all.first.name }}</a>
                                 </li>
                             </ul>
 
