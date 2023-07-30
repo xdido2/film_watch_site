@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'img/logo.jpg' %}" type="image/x-icon">
 
     <!-- Main Css -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -127,7 +128,7 @@
             <h1 class="filter__title">Год выпуска:</h1>
             <div class="filter__container">
                 {% for release_year in release_years %}
-                    <a href=""
+                    <a href="{% url 'release_year-list' year=release_year.year %}"
                        class="filter__item">{{ release_year.year }}</a>
                 {% endfor %}
             </div>
@@ -156,13 +157,10 @@
                 </ul>
             </li>
             <li>
-                <a href="{% url 'new_films-list' %}" class="main__menu-link">Новинки</a>
+                <a href="{% url 'film-list' %}?sort=new" class="main__menu-link">Новинки</a>
             </li>
             <li>
                 <a href="{% url 'film-order' %}" class="main__menu-link">Заказать фильм</a>
-            </li>
-            <li>
-                <a href="#" class="main__menu-link">Помощь</a>
             </li>
             <li>
                 <a href="{% url 'feedback' %}" class="main__menu-link">Конакты</a>
@@ -187,13 +185,10 @@
                         <a href="{% url 'film-list' %}" class="footer__link">Главная</a>
                     </li>
                     <li>
-                        <a href="{% url 'new_films-list' %}" class="footer__link">Новинки</a>
+                        <a href="{% url 'film-list' %}?sort=new" class="footer__link">Новинки</a>
                     </li>
                     <li>
                         <a href="{% url 'film-order' %}" class="footer__link">Заказать фильм</a>
-                    </li>
-                    <li>
-                        <a href="#" class="footer__link">Помощь</a>
                     </li>
                     <li>
                         <a href="{% url 'feedback' %}" class="footer__link">Конакты</a>

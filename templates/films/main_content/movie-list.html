@@ -208,8 +208,10 @@
 
                             <ul class="content__product-menu">
                                 <li>
-                                    <a href="{% url 'genre-list' slug=movie.genre.all.first.slug_link %}"
-                                       class="content__product-category">{{ movie.genre.all.first.name }}</a>
+                                    {% if movie.genre.first is not None %}
+                                        <a href="{% url 'genre-list' slug=movie.genre.first.slug_link %}"
+                                           class="content__product-category">{{ movie.genre.first.name }}</a>
+                                    {% endif %}
                                 </li>
                             </ul>
 
@@ -238,39 +240,60 @@
         <ul class="pagination">
             {% if page_obj.has_previous %}
                 <li>
-                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination__link pagination__arrow">
+                    <a href="{% relative_url page_obj.previous_page_number 'page' request.GET.urlencode %}"
+                       class="pagination__link pagination__arrow">
                         <i class="fas fa-angle-left"></i>
                     </a>
                 </li>
             {% endif %}
 
+            {% if page_obj.has_other_pages %}
+                    {% for page in page_obj.adjusted_elided_pages %}
+                        {% if page_obj.is_ellipsis %}
+                            <li>
+                                <a href="{% relative_url page 'page' request.GET.urlencode %}" class="pagination__link">
+                                    {{ page }}
+                                </a>
+                            </li>
+                        {% elif page_obj.number == page %}
+                            <li>
+                                <a href="" class="pagination__link pagination__link-active">
+                                    {{ page }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="
+                                        {% if page == page_obj.paginator.ELLIPSIS %}{% else %}{% relative_url page 'page' request.GET.urlencode %}{% endif %}"
+                                   class="pagination__link">
+                                    {{ page }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
 
-            {% for page in page_obj.adjusted_elided_pages %}
-                {% if page_obj.is_ellipsis %}
-                    <li>
-                        <a href="?page={{ page }}" class="pagination__link">
-                            {{ page }}
-                        </a>
-                    </li>
-                {% elif page_obj.number == page %}
-                    <li>
-                        <a href="" class="pagination__link pagination__link-active">
-                            {{ page }}
-                        </a>
-                    </li>
+            {% else %}
+                {% if page_obj.number == 1 %}
+                    <p>No results to display.</p>
                 {% else %}
-                    <li>
-                        <a href="{% if page == page_obj.paginator.ELLIPSIS %}#{% else %}?page={{ page }}{% endif %}"
-                           class="pagination__link">
-                            {{ page }}
-                        </a>
-                    </li>
+                    {# Redirect to page 1 if there are no results on other pages #}
+                    {% url 'my_view' page=1 as first_page_url %}
+                    {% with querystring=request.GET.urlencode %}{% if querystring %}{% endif %}
+                        <script>
+                            window.location.href = '{% relative_url 1 'page' request.GET.urlencode %}{% if querystring %}?{{ querystring }}{% endif %}';
+                        </script>
+                    {% endwith %}
                 {% endif %}
-            {% endfor %}
+            {% endif %}
+
+
+
+
 
             {% if page_obj.has_next %}
                 <li>
-                    <a href="?page={{ page_obj.next_page_number }}" class="pagination__link pagination__arrow">
+                    <a href="{% relative_url page_obj.next_page_number 'page' request.GET.urlencode %}"
+                       class="pagination__link pagination__arrow">
                         <i class="fas fa-angle-right"></i>
                     </a>
                 </li>

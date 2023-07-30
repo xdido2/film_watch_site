@@ -25,7 +25,7 @@ def search_view(request):
         for hit in s:
             data.append(hit)
 
-        p = Paginator(data, 18)
+        p = Paginator(data, 10)
         page_number = request.GET.get('page')
         page_obj = p.get_page(page_number)
 

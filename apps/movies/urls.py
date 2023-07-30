@@ -9,6 +9,7 @@ from apps.movies.views.release_years import release_years_list_view
 from apps.movies.views.search import search_view
 from apps.movies.views.order import order_view
 from apps.movies.views.comment import post_comment
+# from movies.views.film import cancel_film_view
 
 urlpatterns = [
     path('', film_list_view, name='film-list'),
@@ -21,6 +22,7 @@ urlpatterns = [
     path('release_year/<int:year>', release_years_list_view, name='release_year-list'),
     path('search/', search_view, name='search'),
     path('add-content/', add_film_view, name='content'),
+    # path('cancel-tasks/<uuid:task_id>', cancel_film_view, name='cancel'),
     path('order-film/', order_view, name='film-order'),
     path('post-comment/<int:movie_id>', post_comment, name='post-comment'),
 

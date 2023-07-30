@@ -1,3 +1,4 @@
+from celery.worker.control import revoke
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator, PageNotAnInteger
 from django.http import HttpResponseRedirect
@@ -23,7 +24,7 @@ def film_list_view(request):
     release_years = ReleaseYear.objects.all()
     genres = Genre.objects.all()
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
-    p = Paginator(sort_filter[0], 15)
+    p = Paginator(sort_filter[0], 10)
     page_number = request.GET.get('page', 1)
 
     try:
@@ -66,7 +67,6 @@ def film_detail_view(request, slug):
     if movie.favourite.filter(id=user.id):
         is_favourite = True
 
-
     context = {
         'movie': movie,
         'site_info': site_info,
@@ -82,5 +82,4 @@ def film_detail_view(request, slug):
 def add_film_view(request):
     get_genres_from_api.delay()
     get_movies_from_api.delay()
-
     return redirect('admin:index')

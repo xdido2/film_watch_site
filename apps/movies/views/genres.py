@@ -20,7 +20,7 @@ def genre_list_view(request, slug):
     last_comments = Comment.objects.all()[:2]
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
     genres = Genre.objects.all()
-    p = Paginator(sort_filter[0], 15)
+    p = Paginator(sort_filter[0], 10)
     page_number = request.GET.get('page', 1)
     try:
         page_obj = p.get_page(page_number)
