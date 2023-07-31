@@ -56,7 +56,13 @@
             {% for history in history %}
                 <div class="profile__item">
                     <a href="{% url 'film-detail' slug=history.movie.slug_link %}" class="profile-product__img">
-                        <img src="https://image.tmdb.org/t/p/original/{{ history.movie.poster }}">
+                        {% if movie.poster %}
+                            <img src="https://image.tmdb.org/t/p/original/{{ history.movie.poster }}">
+                        {% else %}
+                            <img src="{% static 'img/products/No_image_poster.png' %}">
+                        {% endif %}
+
+
                     </a>
                     <div class="profile-product__navs">
                         <a href="{% url 'film-detail' slug=history.movie.slug_link %}"
