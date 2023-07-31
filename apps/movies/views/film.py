@@ -20,7 +20,7 @@ def film_list_view(request):
     _filter = request.GET.get('sort')
     _year = request.GET.get('year')
     sort_filter = movie_sort_filter(_filter, movies, _year)
-    last_comments = Comment.objects.all()[:2]
+    last_comments = Comment.objects.filter(is_approved=True)[:2]
     release_years = ReleaseYear.objects.all()
     genres = Genre.objects.all()
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]

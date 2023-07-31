@@ -15,7 +15,7 @@ def release_years_list_view(request, year):
     _year = request.GET.get('year')
     sort_filter = movie_sort_filter(_filter, release_years_movie, _year)
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
-    last_comments = Comment.objects.all()[:2]
+    last_comments = Comment.objects.filter(is_approved=True)[:2]
     genres = Genre.objects.all()
     p = Paginator(sort_filter[0], 10)
     page_number = request.GET.get('page', 1)

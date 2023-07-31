@@ -10,7 +10,7 @@ def search_view(request):
     query = request.GET.get('q')
     genres = Genre.objects.all()
     site_info = Settings.objects.first()
-    last_comments = Comment.objects.all()[:2]
+    last_comments = Comment.objects.filter(is_approved=True)[:2]
     release_years = ReleaseYear.objects.all()
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
 

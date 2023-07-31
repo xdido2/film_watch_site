@@ -10,7 +10,7 @@ from apps.movies.models.movie import ReleaseYear
 def new_films_list_view(request):
     release_years = ReleaseYear.objects.all()
     genres_movie = Movie.objects.order_by('-release_year__year')
-    last_comments = Comment.objects.all()[:2]
+    last_comments = Comment.objects.filter(is_approved=True)[:2]
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
     genres = Genre.objects.all()
     p = Paginator(genres_movie, 10)
@@ -34,7 +34,7 @@ def new_films_list_view(request):
 def popular_films_list_view(request):
     release_years = ReleaseYear.objects.all()
     movies = Movie.objects.order_by('-vote_count')
-    last_comments = Comment.objects.all()[:2]
+    last_comments = Comment.objects.filter(is_approved=True)[:2]
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
     genres = Genre.objects.all()
     p = Paginator(movies, 10)
@@ -58,7 +58,7 @@ def popular_films_list_view(request):
 def a_z_films_list_view(request):
     release_years = ReleaseYear.objects.all()
     movies = Movie.objects.order_by('ru_title')
-    last_comments = Comment.objects.all()[:2]
+    last_comments = Comment.objects.filter(is_approved=True)[:2]
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
     genres = Genre.objects.all()
     p = Paginator(movies, 10)
@@ -82,7 +82,7 @@ def a_z_films_list_view(request):
 def z_a_films_list_view(request):
     release_years = ReleaseYear.objects.all()
     movies = Movie.objects.order_by('-ru_title')
-    last_comments = Comment.objects.all()[:2]
+    last_comments = Comment.objects.filter(is_approved=True)[:2]
     slider_movies = Movie.objects.filter(vote__gt=1.0, background_poster__isnull=False).order_by('-vote_count')[:5]
     genres = Genre.objects.all()
     p = Paginator(movies, 10)
