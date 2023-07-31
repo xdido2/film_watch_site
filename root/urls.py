@@ -16,12 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+from apps.sitemaps import MovieSitemap
+
+sitemaps = {
+    'movies': MovieSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('site/', include('apps.site_info.urls')),
     path('', include('apps.movies.urls')),
-    path('user/', include('apps.users.urls'))
+    path('user/', include('apps.users.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
 ]
 handler404 = "apps.views.page_not_found_view"
 handler500 = "apps.views.server_error_view"
