@@ -32,6 +32,19 @@
     <link rel="stylesheet" href="{% static 'css/product-show.css' %}">
     <!-- Profile Css -->
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <!-- Category Css -->
+
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -74,7 +87,7 @@
                         Выход
                     </a>
                     <a href="{% url 'user_profile' %}">
-                        {% if user.avatart %}
+                        {% if user.avatar %}
                             <img src="{{ user.avatar.url }}" class="header__nav-img">
                         {% else %}
                             <img src="{% static 'img/default/avatar.jpg' %}" class="header__nav-img">
@@ -293,11 +306,11 @@
         @2023 Dido Cinema Online Cinema. All Rights Reserved.
     </div>
 </div>
+</body>
+
 <!-- Header JS -->
 <script src="{% static 'js/header.js' %}"></script>
-<!-- Full Window Search JS -->
-<script src="
-{% static 'js/fullsearch.js' %}"></script>
+<script src="{% static 'js/fullsearch.js' %}"></script>
 <!-- JQuery -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <!-- Slick Slider Js -->

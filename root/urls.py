@@ -23,8 +23,8 @@ urlpatterns = [
     path('', include('apps.movies.urls')),
     path('user/', include('apps.users.urls'))
 ]
-# handler404 = "root.views.page_not_found_view"
-# handler500 = "root.views.page_not_found_view"
+handler404 = "apps.views.page_not_found_view"
+handler500 = "apps.views.server_error_view"
 
 # urlpatterns += static(settings.MEDIA_URL,
 #                       document_root=settings.MEDIA_ROOT)

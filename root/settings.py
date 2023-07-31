@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
