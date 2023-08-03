@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['didocinema.uz']
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 INSTALLED_APPS = [
@@ -53,7 +53,7 @@ ROOT_URLCONF = 'root.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / '../frontend'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,18 +84,18 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     'NAME': 'django.contrib.users.password_validation.UserAttributeSimilarityValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.users.password_validation.MinimumLengthValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.users.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.users.password_validation.NumericPasswordValidator',
-    # },
+    {
+        'NAME': 'django.contrib.users.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.users.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.users.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.users.password_validation.NumericPasswordValidator',
+    },
 ]
 
 LANGUAGE_CODE = 'en-US'
@@ -111,10 +111,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "../static",
 ]
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -156,7 +156,7 @@ LOGGING = {
         'django_file': {
             'level': 'INFO',  # Set the desired log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'django.log'),  # Path to your log file
+            'filename': os.path.join(BASE_DIR, '../django.log'),  # Path to your log file
             'formatter': 'verbose',
         },
     },
