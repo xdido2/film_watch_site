@@ -14,4 +14,4 @@ class MovieSitemap(Sitemap):
 
     def location(self, obj):
         return reverse('film-detail',
-                       args=[obj.slug_link])  # 'movie-detail' should be the name of your movie detail URL pattern
+                       args=[obj.slug_link])

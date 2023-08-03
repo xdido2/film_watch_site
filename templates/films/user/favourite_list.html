@@ -1,143 +1,120 @@
 {% extends 'films/main_content/base.html' %}
 {% load static %}
+{% load templatehelpers %}
+
 
 {% block main_content %}
-        <!-- Content -->
-    <div class="main__container">
-        <div class="content">
-            <!-- Content Navs -->
+<!-- Content -->
+<div class="main__container">
+    <div class="content">
+        <!-- Content Navs -->
 
-            <!-- Content Body -->
-            <div class="content__body">
-                <div class="content__inner">
+        <!-- Content Body -->
+        <div class="content__products">
+            {% for movie in favourite_list %}
+                <div class="content__product">
+                    <a href="{% url 'film-detail' slug=movie.slug_link %}" class="content__product-img">
 
 
-                    <div class="content__item">
-                        <div class="title">
-                            <h1>Мы соц.сетях</h1>
-                            <a href="#" class="footer__link">
-                                <i class="fab fa-vk"></i>
-                            </a>
-                            <a href="#" class="footer__link">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="#" class="footer__link">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="#" class="footer__link">
-                                <i class="fab fa-telegram-plane"></i>
-                            </a>
-                        </div>
+                        {% if movie.poster %}
+                            <img src="https://image.tmdb.org/t/p/original/{{ movie.poster }}"
+                                 class="product__img">
+
+                        {% else %}
+                            <img src="{% static 'img/products/No_image_poster.png' %}" class="product__img">
+                        {% endif %}
+
+                        <i class="fas fa-play"></i>
+                    </a>
+
+                    <a href="{% url 'film-detail' slug=movie.slug_link %}"
+                       class="content__product-name">{{ movie.ru_title }}</a>
+
+                    <ul class="content__product-menu">
+                        <li>
+                            <a href="#" class="content__product-category">{{ movie.genre.all.1.name }}</a>
+                        </li>
+                    </ul>
+
+                    <!-- Stars -->
+                    <ul class="content__product-stars">
+                        <li class="active">
+                            {{ movie.vote }}/10
+                        </li>
+                    </ul>
+
+                    <div class="content__product-navs">
+                        <button class="btn-primary">FullHD</button>
+                        <button class="btn-primary">Дуб.</button>
                     </div>
                 </div>
+            {% endfor %}
 
-                <div class="content__products">
-                    {% for movie in favourite_list %}
-                        <div class="content__product">
-                            <a href="{% url 'film-detail' slug=movie.slug_link %}" class="content__product-img">
-
-
-                                {% if movie.poster %}
-                                    <img src="https://image.tmdb.org/t/p/original/{{ movie.poster }}"
-                                         class="product__img">
-
-                                {% else %}
-                                    <img src="{% static 'img/products/No_image_poster.png' %}" class="product__img">
-                                {% endif %}
-
-                                <i class="fas fa-play"></i>
-                            </a>
-
-                            <a href="{% url 'film-detail' slug=movie.slug_link %}"
-                               class="content__product-name">{{ movie.ru_title }}</a>
-
-                            <ul class="content__product-menu">
-                                <li>
-                                    <a href="#" class="content__product-category">{{ movie.genre.all.1.name }}</a>
-                                </li>
-                            </ul>
-
-                            <!-- Stars -->
-                            <ul class="content__product-stars">
-                                <li class="active">
-                                    {{ movie.vote }}/10
-                                </li>
-                            </ul>
-
-                            <div class="content__product-navs">
-                                <button class="btn-primary">FullHD</button>
-                                <button class="btn-primary">Дуб.</button>
-                            </div>
-                        </div>
-                    {% endfor %}
-
-                </div>
-            </div>
         </div>
     </div>
+</div>
+</div>
 
-    <!-- Pagination -->
-    <div class="main__container">
-        <ul class="pagination">
-            <li>
-                <a href="#" class="pagination__link pagination__arrow">
-                    <i class="fas fa-angle-left"></i>
-                </a>
-            </li>
+<!-- Pagination -->
+<div class="main__container">
+    {#    {% if page_obj.has_other_pages %}#}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li>
+            <a href="?page={{ page_obj.previous_page_number }}"
+               class="pagination__link pagination__arrow">
+                <i class="fas fa-angle-left"></i>
+            </a>
+        </li>
+        {% endif %}
 
-            <li>
-                <a href="#" class="pagination__link">
-                    1
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    13
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    14
-                </a>
-            </li>
+        {% if page_obj.has_other_pages %}
+            {% for page in page_obj.adjusted_elided_pages %}
+                {% if page_obj.is_ellipsis %}
+                    <li>
+                        <a href="?page={{ page }}" class="pagination__link">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% elif page_obj.number == page %}
+                    <li>
+                        <a href="" class="pagination__link pagination__link-active">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="
 
-            <li>
-                <a href="#" class="pagination__link pagination__link-active">
-                    15
-                </a>
-            </li>
 
-            <li>
-                <a href="#" class="pagination__link">
-                    16
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    17
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="pagination__link">
-                    94
-                </a>
-            </li>
+                                {% if page == page_obj.paginator.ELLIPSIS %}{% else %}?page={{ page_obj.next_page_number }}{% endif %}"
+                           class="pagination__link">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
 
+        {% else %}
+            {% if page_obj.number == 1 %}
+                <p>No results to display.</p>
+            {% else %}
+                {# Redirect to page 1 if there are no results on other pages #}
+                {% url 'film-list' page=1 as first_page_url %}
+
+            {% endif %}
+        {% endif %}
+
+
+        {% if page_obj.has_next %}
             <li>
-                <a href="#" class="pagination__link pagination__arrow">
+                <a href="?page={{ page_obj.next_page_number }}"
+                   class="pagination__link pagination__arrow">
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
-        </ul>
-    </div>
+        {% endif %}
+
+    </ul>
+</div>
 {% endblock %}

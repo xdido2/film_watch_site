@@ -31,7 +31,7 @@ def get_movies_from_api():
 
         retry_attempts = 3
         retry_delay = 1
-        for i in range(last_page):
+        for i in range(1, last_page):
             content_videocdn = requests.get(f'{base_url_videocdn}?api_token={token_videocdn}&page={i}').json()
             for j in range(0, content_videocdn['per_page']):
                 result_videocdn = content_videocdn['data'][j]
@@ -53,19 +53,20 @@ def get_movies_from_api():
                     continue
 
                 for k in results_tmdb:
-                    if k['title'] == result_videocdn['ru_title'] and k['original_title'] == result_videocdn[
-                        'orig_title']:
-                        url_tmdb_movie_detail = f"https://api.themoviedb.org/3/movie/{k.get('id')}?language=ru-RU"
-                        result_tmdb = k
-                        for attempt in range(retry_attempts):
-                            try:
-                                result_tmdb_movie_detail = requests.get(url_tmdb_movie_detail, headers=headers).json()
-                                break  # If the request succeeds, exit the retry loop
-                            except requests.exceptions.ConnectionError as err:
-                                if attempt < retry_attempts - 1:
-                                    time.sleep(retry_delay)
-                                else:
-                                    raise err
+                    url_tmdb_movie_detail = f"https://api.themoviedb.org/3/movie/{k.get('id')}?language=ru-RU"
+                    result_tmdb = k
+                    for attempt in range(retry_attempts):
+                        try:
+                            result_tmdb_movie_detail = requests.get(url_tmdb_movie_detail, headers=headers).json()
+                            break  # If the request succeeds, exit the retry loop
+                        except requests.exceptions.ConnectionError as err:
+                            if attempt < retry_attempts - 1:
+                                time.sleep(retry_delay)
+                            else:
+                                raise err
+
+                    if result_tmdb_movie_detail.get('imdb_id') == result_videocdn['imdb_id'] or \
+                            result_tmdb_movie_detail['original_title'] == result_videocdn['orig_title']:
 
                         existing_movie = Movie.objects.filter(orig_title=result_videocdn['orig_title'],
                                                               ru_title=ru_title).first()
@@ -114,6 +115,6 @@ def get_movies_from_api():
                     else:
                         continue
 
-            time.sleep(5)
+                time.sleep(5)
     except Exception as err:
         print(err)
