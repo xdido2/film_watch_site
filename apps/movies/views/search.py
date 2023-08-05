@@ -18,7 +18,7 @@ def search_view(request):
     if query == '':
         return redirect('film-list')
     else:
-        from movies.documents import MoviesIndex
+        from apps.movies.documents import MoviesIndex
 
         s = MoviesIndex.search().query("multi_match", query=query, fields=["*"])
 
