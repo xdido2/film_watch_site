@@ -129,10 +129,4 @@ We welcome contributions!
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
 Developed with ❤️ by [Abdurashid Khikmatov](https://github.com/xdido2) 🚀
